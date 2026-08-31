@@ -3,662 +3,994 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07090E">
-<title>PelirFami | موتور رسانه</title>
+
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="PelirFami - پخش‌کننده مدرن رسانه برای اندروید">
+
+<title>PelirFami | پخش‌کننده رسانه</title>
 
 <style>
-:root{
---primary:#00F0FF;
---primary2:#00B4D8;
---primary3:#0077B6;
---glow:rgba(0,240,255,.20);
---bg:#07090E;
---surface:#0F141F;
---card:#0F1626;
---elevated:#161E2E;
---highlight:#1F293D;
---border:#243048;
---text:#F8FAFC;
---secondary:#94A3B8;
---muted:#64748B;
---success:#00E676;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-
-html{scroll-behavior:smooth}
+html{
+    scroll-behavior:smooth;
+}
 
 body{
-font-family:system-ui,"Segoe UI",Tahoma,sans-serif;
-background:
-radial-gradient(circle at 50% -10%,rgba(0,240,255,.12),transparent 35%),
-var(--bg);
-color:var(--text);
-line-height:1.7;
+    font-family:
+    "Segoe UI",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+    background:
+    radial-gradient(circle at 50% -10%, #12365c 0%, #07111f 38%, #03070d 100%);
+
+    color:#f8fafc;
+    line-height:1.8;
 }
 
-a{text-decoration:none;color:inherit}
+a{
+    text-decoration:none;
+    color:inherit;
+}
 
 .container{
-width:min(1120px,calc(100% - 32px));
-margin:auto;
+    width:min(1120px,92%);
+    margin:auto;
 }
+
+/* HEADER */
 
 header{
-position:sticky;
-top:0;
-z-index:50;
-background:rgba(7,9,14,.88);
-backdrop-filter:blur(15px);
-border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(3,7,13,.82);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.nav{
-height:72px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
+.navbar{
+    height:76px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:20px;
 }
 
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-font-size:25px;
-font-weight:900;
-letter-spacing:1px;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:22px;
+    font-weight:900;
 }
 
-.logo img{
-width:42px;
-height:42px;
-object-fit:cover;
-border-radius:12px;
-box-shadow:0 0 20px var(--glow);
+.brand img{
+    width:48px;
+    height:48px;
+
+    object-fit:cover;
+    border-radius:13px;
 }
 
-.logo .pelir{color:var(--primary)}
-.logo .fami{color:#fff}
-
-nav{
-display:flex;
-gap:8px;
+.brand span{
+    color:#ffffff;
 }
 
-nav a{
-padding:10px 16px;
-border-radius:14px;
-color:var(--secondary);
-transition:.2s;
+.brand b{
+    color:#00e5ff;
 }
 
-nav a:hover{
-color:var(--primary);
-background:var(--card);
+.nav-links{
+    display:flex;
+    gap:25px;
+
+    color:#cbd5e1;
+    font-size:14px;
 }
 
-.hero{
-min-height:650px;
-display:flex;
-align-items:center;
-text-align:center;
-padding:80px 0;
+.nav-links a{
+    transition:.2s;
 }
 
-.hero-content{
-max-width:850px;
-margin:auto;
+.nav-links a:hover{
+    color:#00e5ff;
 }
 
-.badge{
-display:inline-block;
-padding:7px 14px;
-border:1px solid rgba(0,240,255,.35);
-border-radius:999px;
-color:var(--primary);
-background:rgba(0,240,255,.06);
-font-size:13px;
-margin-bottom:24px;
-}
-
-h1{
-font-size:clamp(42px,7vw,76px);
-line-height:1.1;
-font-weight:900;
-margin-bottom:22px;
-}
-
-h1 span{color:var(--primary)}
-
-.hero p{
-max-width:680px;
-margin:0 auto 32px;
-font-size:18px;
-color:var(--secondary);
-}
-
-.buttons{
-display:flex;
-justify-content:center;
-gap:12px;
-flex-wrap:wrap;
-}
+/* BUTTONS */
 
 .btn{
-min-height:48px;
-padding:13px 24px;
-border-radius:14px;
-display:inline-flex;
-align-items:center;
-justify-content:center;
-font-weight:800;
-transition:.2s;
-cursor:pointer;
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+    padding:12px 21px;
+
+    border-radius:13px;
+
+    font-weight:800;
+
+    transition:.25s;
+
+    border:1px solid #24364e;
 }
 
 .btn:hover{
-transform:translateY(-2px) scale(1.03);
+    transform:translateY(-2px);
 }
 
-.btn-primary{
-background:var(--primary);
-color:#000;
-box-shadow:0 0 24px rgba(0,240,255,.3);
+.primary{
+    color:#001018;
+
+    border:none;
+
+    background:
+    linear-gradient(135deg,#00e5ff,#168cff);
+
+    box-shadow:
+    0 12px 35px rgba(0,180,255,.2);
 }
 
-.btn-secondary{
-background:var(--card);
-border:1px solid var(--border);
-color:var(--text);
+.secondary{
+    background:rgba(255,255,255,.04);
 }
 
-section{
-padding:85px 0;
-}
-
-.section-title{
-text-align:center;
-margin-bottom:45px;
-}
-
-.section-title h2{
-font-size:34px;
-font-weight:800;
-margin-bottom:8px;
-}
-
-.section-title p{
-color:var(--secondary);
-}
-
-.features{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:16px;
-}
-
-.card{
-background:linear-gradient(135deg,rgba(0,240,255,.12),transparent 30%),var(--card);
-border:1px solid var(--border);
-border-radius:18px;
-padding:25px;
-box-shadow:0 6px 16px rgba(0,0,0,.25);
-transition:.25s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-border-color:rgba(0,240,255,.5);
-box-shadow:0 0 25px rgba(0,240,255,.12);
-}
-
-.icon{
-width:52px;
-height:52px;
-border-radius:16px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:25px;
-background:rgba(0,240,255,.1);
-border:1px solid rgba(0,240,255,.25);
-margin-bottom:18px;
-}
-
-.card h3{
-font-size:19px;
-margin-bottom:8px;
-}
-
-.card p{
-color:var(--secondary);
-font-size:14px;
-}
-
-.download-box{
-max-width:800px;
-margin:auto;
-text-align:center;
-background:var(--surface);
-border:1px solid var(--border);
-border-radius:28px;
-padding:45px 25px;
-box-shadow:0 0 40px rgba(0,240,255,.07);
-}
-
-.version{
-color:var(--secondary);
-margin:12px 0 25px;
-}
-
-.qr{
-width:190px;
-height:190px;
-background:white;
-padding:10px;
-border-radius:18px;
-margin:28px auto;
-}
-
-.qr img{
-width:100%;
-height:100%;
-}
-
-.screenshots{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:14px;
-}
-
-.screenshots img{
-width:100%;
-display:block;
-border-radius:18px;
-border:1px solid var(--border);
-box-shadow:0 6px 16px rgba(0,0,0,.3);
-transition:.25s;
-}
-
-.screenshots img:hover{
-transform:scale(1.03);
-border-color:var(--primary);
-}
-
-.about{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
-align-items:center;
-}
-
-.about-text p{
-color:var(--secondary);
-margin-top:15px;
-}
-
-.info{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:20px;
-padding:25px;
-}
-
-.info div{
-display:flex;
-justify-content:space-between;
-padding:13px 0;
-border-bottom:1px solid rgba(36,48,72,.5);
-}
-
-.info div:last-child{border-bottom:0}
-
-.info span:last-child{
-color:var(--primary);
-font-weight:700;
-}
-
-footer{
-border-top:1px solid var(--border);
-padding:35px 0;
-text-align:center;
-color:var(--muted);
-}
-
-footer strong{color:var(--primary)}
-
-@media(max-width:800px){
-nav{display:none}
-
-.features{
-grid-template-columns:1fr;
-}
-
-.screenshots{
-grid-template-columns:repeat(2,1fr);
-}
-
-.about{
-grid-template-columns:1fr;
-}
+/* HERO */
 
 .hero{
-min-height:560px;
+    min-height:680px;
+
+    display:grid;
+
+    grid-template-columns:1.1fr .9fr;
+
+    align-items:center;
+
+    gap:60px;
+
+    padding:70px 0;
 }
 
-section{
-padding:65px 0;
-}
-}
+.badge{
+    display:inline-block;
 
-@media(max-width:480px){
-.container{
-width:min(100% - 22px,1120px);
-}
+    padding:6px 13px;
 
-.screenshots{
-grid-template-columns:1fr 1fr;
-gap:8px;
-}
+    margin-bottom:20px;
 
-h1{
-font-size:42px;
-}
+    border-radius:30px;
 
-.hero p{
-font-size:16px;
-}
-}
-.apk-size{
-    color:var(--secondary);
+    background:rgba(0,229,255,.08);
+
+    border:1px solid rgba(0,229,255,.25);
+
+    color:#00e5ff;
+
     font-size:13px;
 }
 
-.download-box{
-    position:relative;
+.hero h1{
+    font-size:clamp(43px,7vw,76px);
+
+    line-height:1.08;
+
+    letter-spacing:-2px;
+}
+
+.gradient{
+    background:
+    linear-gradient(
+        90deg,
+        #ffffff,
+        #00e5ff,
+        #5da9ff
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+}
+
+.hero-description{
+    max-width:650px;
+
+    margin:25px 0;
+
+    color:#94a3b8;
+
+    font-size:18px;
+}
+
+.buttons{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+/* LOGO */
+
+.logo-area{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.logo-box{
+    width:min(370px,80vw);
+
+    aspect-ratio:1;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:40px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #122238,
+        #060c15
+    );
+
+    border:1px solid #29425f;
+
+    box-shadow:
+    0 30px 90px rgba(0,0,0,.5);
+}
+
+.logo-box img{
+    width:72%;
+
+    max-width:280px;
+
+    border-radius:30px;
+
+    filter:
+    drop-shadow(
+        0 0 35px
+        rgba(0,229,255,.3)
+    );
+}
+
+/* SECTIONS */
+
+section{
+    padding:90px 0;
+}
+
+.section-title{
+    text-align:center;
+
+    margin-bottom:48px;
+}
+
+.section-title h2{
+    font-size:36px;
+}
+
+.section-title p{
+    margin-top:8px;
+
+    color:#94a3b8;
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.feature{
+    padding:25px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #0d1726,
+        #07101b
+    );
+
+    border:1px solid #20334d;
+
+    transition:.25s;
+}
+
+.feature:hover{
+    transform:translateY(-6px);
+
+    border-color:#31577b;
+}
+
+.feature-icon{
+    font-size:31px;
+
+    margin-bottom:10px;
+}
+
+.feature h3{
+    margin-bottom:7px;
+}
+
+.feature p{
+    color:#94a3b8;
+
+    font-size:14px;
+}
+
+/* SCREENSHOTS */
+
+.screenshots{
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+}
+
+.screenshot{
+    padding:8px;
+
+    border-radius:20px;
+
+    background:#05090f;
+
+    border:1px solid #20334d;
+
     overflow:hidden;
 }
 
-.download-box::before{
-    content:"";
-    position:absolute;
-    width:260px;
-    height:260px;
-    border-radius:50%;
-    background:rgba(0,240,255,.08);
-    filter:blur(50px);
-    top:-140px;
-    left:-80px;
-    pointer-events:none;
+.screenshot img{
+    display:block;
+
+    width:100%;
+
+    aspect-ratio:9/16;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    transition:.3s;
 }
 
-.download-box > *{
-    position:relative;
-    z-index:1;
+.screenshot:hover img{
+    transform:scale(1.03);
 }
 
-.hero-content{
-    animation:heroIn .7s ease both;
+/* DOWNLOAD */
+
+.download-card{
+    display:grid;
+
+    grid-template-columns:1fr 250px;
+
+    align-items:center;
+
+    gap:45px;
+
+    padding:45px;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #0c1d30,
+        #07101b
+    );
+
+    border:1px solid #21415f;
 }
 
-@keyframes heroIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
+.version{
+    display:inline-block;
+
+    padding:5px 12px;
+
+    margin-bottom:12px;
+
+    border-radius:20px;
+
+    color:#00e676;
+
+    background:rgba(0,230,118,.08);
+
+    border:1px solid rgba(0,230,118,.22);
+
+    font-size:13px;
+}
+
+.download-card h2{
+    font-size:35px;
+}
+
+.download-card p{
+    margin:10px 0 20px;
+
+    color:#94a3b8;
+}
+
+.qr-container{
+    text-align:center;
+}
+
+.qr{
+    width:200px;
+
+    padding:12px;
+
+    margin:auto;
+
+    border-radius:18px;
+
+    background:#ffffff;
+}
+
+.qr img{
+    display:block;
+
+    width:100%;
+}
+
+.qr-text{
+    margin-top:9px;
+
+    color:#94a3b8;
+
+    font-size:12px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:40px 0;
+
+    text-align:center;
+
+    color:#64748b;
+
+    border-top:1px solid #1a293d;
+}
+
+.footer-name{
+    margin-bottom:5px;
+
+    color:#ffffff;
+
+    font-size:21px;
+
+    font-weight:900;
+}
+
+.footer-name b{
+    color:#00e5ff;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .nav-links{
+        display:none;
     }
-    to{
-        opacity:1;
-        transform:translateY(0);
+
+    .hero{
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+        padding-top:45px;
     }
+
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .buttons{
+        justify-content:center;
+    }
+
+    .features{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .screenshots{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .download-card{
+        grid-template-columns:1fr;
+
+        text-align:center;
+    }
+
 }
 
-.card,
-.screenshots img{
-    will-change:transform;
-}
+@media(max-width:520px){
 
-.logo img{
-    transition:.25s ease;
-}
-
-.logo:hover img{
-    transform:rotate(-4deg) scale(1.08);
-}
-
-@media(max-width:600px){
-    .nav{
-        height:64px;
+    .hero h1{
+        font-size:43px;
     }
 
-    .logo{
-        font-size:20px;
+    section{
+        padding:65px 0;
     }
 
-    .logo img{
-        width:36px;
-        height:36px;
+    .features{
+        grid-template-columns:1fr;
     }
 
-    .nav > .btn{
-        padding:10px 14px;
-        font-size:13px;
+    .screenshots{
+        grid-template-columns:
+        repeat(2,1fr);
+
+        gap:10px;
     }
+
+    .download-card{
+        padding:28px 18px;
+    }
+
+    .download-card h2{
+        font-size:28px;
+    }
+
+    .logo-box{
+        width:280px;
+    }
+
+    header .primary{
+        display:none;
+    }
+
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="container nav">
+<!-- HEADER -->
 
-<a class="logo" href="#">
-<img src="assets/images/logo/logo.png" alt="PelirFami">
-<span class="pelir">Pelir</span><span class="fami">Fami</span>
+<header>
+
+<div class="container navbar">
+
+<a class="brand" href="#home">
+
+<img
+src="assets/images/logo/logo.png"
+alt="PelirFami Logo"
+>
+
+<span>
+Pelir<b>Fami</b>
+</span>
+
 </a>
 
-<nav>
+<nav class="nav-links">
+
+<a href="#home">خانه</a>
+
 <a href="#features">ویژگی‌ها</a>
-<a href="#screenshots">تصاویر</a>
+
+<a href="#screenshots">اسکرین‌شات‌ها</a>
+
 <a href="#download">دانلود</a>
-<a href="#about">درباره</a>
+
 </nav>
 
-<a class="btn btn-primary" href="assets/downloads/PelirFami.apk">
+<a
+class="btn primary"
+href="#download"
+>
 دانلود برنامه
 </a>
 
 </div>
+
 </header>
 
-<main>
 
-<section class="hero">
-<div class="container hero-content">
+<!-- HERO -->
 
-<div class="badge">NEXT GENERATION MEDIA ENGINE</div>
+<main id="home">
+
+<section class="hero container">
+
+<div>
+
+<span class="badge">
+نسخه جدید • Media Player
+</span>
 
 <h1>
-<span>Pelir</span>Fami
+
+تمام رسانه‌ها،
+
+<br>
+
+<span class="gradient">
+یکجا با PelirFami
+</span>
+
 </h1>
 
-<p>
-یک موتور رسانه‌ای مدرن برای پخش، مدیریت و تجربه بهتر فایل‌های ویدیویی، صوتی و رسانه‌ای.
+<p class="hero-description">
+
+PelirFami یک پخش‌کننده مدرن و سریع برای
+تجربه بهتر تماشای ویدیو، گوش دادن به موسیقی
+و مدیریت محتوای رسانه‌ای است.
+
 </p>
 
 <div class="buttons">
-<a class="btn btn-primary" href="assets/downloads/PelirFami.apk">
-⬇ دانلود PelirFami
+
+<a
+class="btn primary"
+href="#download"
+>
+⬇ دانلود APK
 </a>
 
-<a class="btn btn-secondary" href="#features">
+<a
+class="btn secondary"
+href="#features"
+>
 مشاهده ویژگی‌ها
 </a>
+
 </div>
 
 </div>
+
+
+<div class="logo-area">
+
+<div class="logo-box">
+
+<img
+src="assets/images/logo/logo.png"
+alt="PelirFami"
+>
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- FEATURES -->
+
 <section id="features">
+
 <div class="container">
 
 <div class="section-title">
-<h2>ویژگی‌های PelirFami</h2>
-<p>همه چیز برای یک تجربه رسانه‌ای مدرن</p>
+
+<h2>
+ویژگی‌های PelirFami
+</h2>
+
+<p>
+ساخته شده برای یک تجربه رسانه‌ای ساده، سریع و مدرن
+</p>
+
 </div>
+
 
 <div class="features">
 
-<div class="card">
-<div class="icon">▶</div>
-<h3>پخش قدرتمند</h3>
-<p>پشتیبانی از انواع فایل‌ها و لینک‌های رسانه‌ای با کنترل‌های پیشرفته.</p>
+
+<div class="feature">
+
+<div class="feature-icon">
+▶️
 </div>
 
-<div class="card">
-<div class="icon">🎬</div>
-<h3>گالری هوشمند</h3>
-<p>نمایش و مدیریت ویدیوها، تصاویر و فایل‌های رسانه‌ای در یک محیط مرتب.</p>
-</div>
+<h3>
+پخش‌کننده قدرتمند
+</h3>
 
-<div class="card">
-<div class="icon">🔒</div>
-<h3>گاوصندوق خصوصی</h3>
-<p>محیط خصوصی برای محافظت از فایل‌های شخصی با PIN و قابلیت‌های امنیتی.</p>
-</div>
-
-<div class="card">
-<div class="icon">🌐</div>
-<h3>چندزبانه</h3>
-<p>پشتیبانی از زبان‌های مختلف با سازگاری کامل RTL و LTR.</p>
-</div>
-
-<div class="card">
-<div class="icon">⚡</div>
-<h3>سریع و روان</h3>
-<p>رابط کاربری سبک و مدرن برای تجربه سریع و بدون پیچیدگی.</p>
-</div>
-
-<div class="card">
-<div class="icon">🎛</div>
-<h3>کنترل حرفه‌ای</h3>
-<p>سرعت پخش، نسبت تصویر، زیرنویس و کنترل‌های مختلف در اختیار شما.</p>
-</div>
+<p>
+پخش ویدیو و محتوای رسانه‌ای با رابط کاربری مدرن و روان.
+</p>
 
 </div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+🌐
 </div>
+
+<h3>
+پخش آنلاین
+</h3>
+
+<p>
+امکان پخش محتوای آنلاین و استفاده از لینک‌های رسانه‌ای.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+🎬
+</div>
+
+<h3>
+کنترل حرفه‌ای
+</h3>
+
+<p>
+کنترل سرعت، جست‌وجو، حالت نمایش و امکانات کاربردی پخش.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+🔊
+</div>
+
+<h3>
+پخش صوتی
+</h3>
+
+<p>
+یک محیط ساده برای گوش دادن به فایل‌های صوتی.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+🔒
+</div>
+
+<h3>
+حریم خصوصی
+</h3>
+
+<p>
+آماده برای امکانات خصوصی و مدیریت بهتر رسانه‌های شخصی.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">
+⚡
+</div>
+
+<h3>
+سریع و سبک
+</h3>
+
+<p>
+تمرکز روی سرعت، سادگی و تجربه روان در دستگاه‌های مختلف.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
 </section>
 
+
+<!-- SCREENSHOTS -->
+
 <section id="screenshots">
+
 <div class="container">
 
 <div class="section-title">
-<h2>تصاویر برنامه</h2>
-<p>نگاهی به محیط PelirFami</p>
-</div>
 
-<div class="screenshots">
-<img src="assets/images/screenshots/screen1.jpg" alt="PelirFami Screenshot 1">
-<img src="assets/images/screenshots/screen2.jpg" alt="PelirFami Screenshot 2">
-<img src="assets/images/screenshots/screen3.jpg" alt="PelirFami Screenshot 3">
-<img src="assets/images/screenshots/screen4.jpg" alt="PelirFami Screenshot 4">
-</div>
-
-</div>
-</section>
-
-<section id="download">
-<div class="container">
-
-<div class="download-box">
-
-<h2>دانلود PelirFami</h2>
-
-<div class="version">
-    نسخه فعلی: <strong>1.0</strong>
-    <span class="apk-size"> • APK حدود 30.6 MB</span>
-</div>
+<h2>
+محیط برنامه
+</h2>
 
 <p>
-نسخه اندروید برنامه را دریافت کنید و تجربه PelirFami را شروع کنید.
+نگاهی به PelirFami
 </p>
 
-<div class="qr">
-<img
-src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fexample.com%2Fassets%2Fdownloads%2FPelirFami.apk"
-alt="QR Code">
 </div>
 
-<a class="btn btn-primary" href="assets/downloads/PelirFami.apk">
-⬇ دانلود فایل APK
+
+<div class="screenshots">
+
+<div class="screenshot">
+
+<img
+src="assets/images/screenshots/screen1.jpg"
+alt="PelirFami Screenshot 1"
+loading="lazy"
+>
+
+</div>
+
+
+<div class="screenshot">
+
+<img
+src="assets/images/screenshots/screen2.jpg"
+alt="PelirFami Screenshot 2"
+loading="lazy"
+>
+
+</div>
+
+
+<div class="screenshot">
+
+<img
+src="assets/images/screenshots/screen3.jpg"
+alt="PelirFami Screenshot 3"
+loading="lazy"
+>
+
+</div>
+
+
+<div class="screenshot">
+
+<img
+src="assets/images/screenshots/screen4.jpg"
+alt="PelirFami Screenshot 4"
+loading="lazy"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DOWNLOAD -->
+
+<section id="download">
+
+<div class="container">
+
+<div class="download-card">
+
+<div>
+
+<span class="version">
+نسخه 1.0.0
+</span>
+
+<h2>
+PelirFami را دریافت کن
+</h2>
+
+<p>
+
+نسخه اندروید PelirFami را دریافت و روی
+دستگاه خود نصب کنید.
+
+</p>
+
+<div class="buttons">
+
+<a
+class="btn primary"
+href="assets/downloads/PelirFami.apk"
+download
+>
+⬇ دانلود APK
+</a>
+
+<a
+class="btn secondary"
+href="download.html"
+>
+صفحه دانلود
 </a>
 
 </div>
 
 </div>
-</section>
 
-<section id="about">
-<div class="container about">
 
-<div class="about-text">
-<div class="section-title" style="text-align:right;margin-bottom:0">
-<h2>درباره PelirFami</h2>
+<div class="qr-container">
+
+<div class="qr">
+
+<img
+src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Ffamipelir.github.io%2FPelirFami%2F"
+alt="QR Code PelirFami"
+>
+
 </div>
 
-<p>
-PelirFami یک پخش‌کننده و موتور رسانه‌ای مدرن است که با تمرکز بر سرعت،
-سادگی، امکانات حرفه‌ای و تجربه کاربری طراحی شده است.
-</p>
-
-<p>
-این وب‌سایت مرکز رسمی معرفی و دریافت نسخه برنامه PelirFami است.
-</p>
-</div>
-
-<div class="info">
-
-<div>
-<span>نام برنامه</span>
-<span>PelirFami</span>
-</div>
-
-<div>
-<span>نسخه</span>
-<span>1.0</span>
-</div>
-
-<div>
-<span>پلتفرم</span>
-<span>Android</span>
-</div>
-
-<div>
-<span>نوع</span>
-<span>Media Player</span>
-</div>
-
-<div>
-<span>پشتیبانی</span>
-<span>famipelir@gmail.com</span>
+<div class="qr-text">
+برای باز کردن سایت اسکن کنید
 </div>
 
 </div>
 
 </div>
+
+</div>
+
 </section>
 
 </main>
 
+
+<!-- FOOTER -->
+
 <footer>
+
 <div class="container">
-<strong>PelirFami</strong> — Media Engine
-<br>
-© 2026 PelirFami. All rights reserved.
+
+<div class="footer-name">
+Pelir<b>Fami</b>
 </div>
+
+<div>
+Media Player • تجربه‌ای مدرن برای رسانه
+</div>
+
+<div style="margin-top:8px">
+© 2026 PelirFami
+</div>
+
+</div>
+
 </footer>
 
 </body>
 </html>
-
