@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta name="theme-color" content="#080b12">
 <meta name="description" content="PelirFami - پخش‌کننده مدرن و حرفه‌ای ویدیو و صدا">
-<meta name="author" content="PelirFami">
+<meta name="author" content="محمدمهدی حسن پور">
 
 <title>PelirFami | Media Player</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 *{
     box-sizing:border-box;
@@ -48,6 +53,7 @@ body::before{
     position:fixed;
     inset:0;
     pointer-events:none;
+
     background:
         linear-gradient(
             rgba(255,255,255,.015) 1px,
@@ -58,8 +64,15 @@ body::before{
             rgba(255,255,255,.015) 1px,
             transparent 1px
         );
+
     background-size:50px 50px;
-    mask-image:linear-gradient(to bottom,black,transparent);
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent
+        );
 }
 
 a{
@@ -76,32 +89,40 @@ button{
     margin:auto;
 }
 
-/* NAV */
+
+/* =========================
+   NAVIGATION
+========================= */
 
 nav{
     position:sticky;
     top:0;
     z-index:1000;
 
-    background:rgba(8,11,18,.78);
+    background:
+        rgba(8,11,18,.78);
 
     backdrop-filter:blur(20px);
     -webkit-backdrop-filter:blur(20px);
 
-    border-bottom:1px solid rgba(255,255,255,.07);
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
 }
 
 .nav{
     height:74px;
 
     display:flex;
+
     align-items:center;
     justify-content:space-between;
 }
 
 .brand{
     display:flex;
+
     align-items:center;
+
     gap:12px;
 
     font-size:21px;
@@ -122,12 +143,15 @@ nav{
 
 .nav-links{
     display:flex;
+
     align-items:center;
+
     gap:25px;
 }
 
 .nav-links a{
     color:#9fa9ba;
+
     font-size:14px;
 
     transition:.25s;
@@ -160,21 +184,28 @@ nav{
 
 .lang-btn:hover{
     border-color:#5a6c91;
-    transform:translateY(-2px);
+
+    transform:
+        translateY(-2px);
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
     min-height:760px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     text-align:center;
 
     position:relative;
+
     overflow:hidden;
 
     padding:90px 0;
@@ -197,7 +228,8 @@ nav{
     left:50%;
     top:-130px;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
     animation:
         glowMove 7s ease-in-out infinite;
@@ -206,11 +238,15 @@ nav{
 @keyframes glowMove{
 
     0%,100%{
-        transform:translateX(-50%) scale(1);
+        transform:
+            translateX(-50%)
+            scale(1);
     }
 
     50%{
-        transform:translateX(-50%) scale(1.12);
+        transform:
+            translateX(-50%)
+            scale(1.12);
     }
 }
 
@@ -252,11 +288,13 @@ nav{
     display:inline-flex;
 
     align-items:center;
+
     gap:8px;
 
     border:1px solid #293143;
 
-    background:rgba(17,23,34,.75);
+    background:
+        rgba(17,23,34,.75);
 
     color:#8eafff;
 
@@ -274,6 +312,7 @@ nav{
 
 .badge::before{
     content:"";
+
     width:7px;
     height:7px;
 
@@ -315,14 +354,18 @@ nav{
 .hero p{
     max-width:720px;
 
-    margin:0 auto 32px;
+    margin:
+        0 auto 32px;
 
     color:#aeb7c7;
 
     font-size:18px;
 }
 
-/* BUTTONS */
+
+/* =========================
+   BUTTONS
+========================= */
 
 .buttons{
     display:flex;
@@ -361,6 +404,7 @@ nav{
 
 .btn-primary{
     background:#fff;
+
     color:#080b12;
 
     box-shadow:
@@ -397,7 +441,10 @@ nav{
     color:#fff;
 }
 
-/* STATS */
+
+/* =========================
+   STATS
+========================= */
 
 .stats{
     display:grid;
@@ -429,6 +476,7 @@ nav{
 
 .stat:hover{
     transform:translateY(-4px);
+
     border-color:#35425b;
 }
 
@@ -444,7 +492,10 @@ nav{
     font-size:13px;
 }
 
-/* SECTIONS */
+
+/* =========================
+   SECTIONS
+========================= */
 
 section{
     padding:100px 0;
@@ -466,7 +517,10 @@ section{
     color:#8994a7;
 }
 
-/* FEATURES */
+
+/* =========================
+   FEATURES
+========================= */
 
 .features{
     display:grid;
@@ -545,7 +599,10 @@ section{
     font-size:14px;
 }
 
-/* WINDOWS */
+
+/* =========================
+   WINDOWS
+========================= */
 
 .windows-section{
     background:
@@ -677,7 +734,10 @@ section{
     color:#77869f;
 }
 
-/* SCREENSHOTS */
+
+/* =========================
+   SCREENSHOTS
+========================= */
 
 .screenshots{
     display:grid;
@@ -711,7 +771,10 @@ section{
         0 20px 60px rgba(0,0,0,.35);
 }
 
-/* DOWNLOAD */
+
+/* =========================
+   DOWNLOAD
+========================= */
 
 .download-box{
     border:1px solid #202633;
@@ -793,7 +856,10 @@ section{
     display:block;
 }
 
-/* ABOUT */
+
+/* =========================
+   ABOUT
+========================= */
 
 .about{
     max-width:780px;
@@ -807,7 +873,187 @@ section{
     font-size:16px;
 }
 
-/* FOOTER */
+
+/* =========================
+   CREATOR
+========================= */
+
+.creator-section{
+    padding:
+        40px 0 100px;
+}
+
+.creator-card{
+    position:relative;
+
+    max-width:850px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:28px;
+
+    padding:35px;
+
+    border:1px solid #252e40;
+
+    border-radius:28px;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(53,108,255,.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #111827,
+            #0b1019
+        );
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.25);
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.creator-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:#356cff;
+
+    opacity:.06;
+
+    filter:blur(50px);
+
+    right:-70px;
+    top:-70px;
+}
+
+.creator-card:hover{
+    transform:translateY(-6px);
+
+    border-color:#405476;
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.35);
+}
+
+.creator-avatar{
+    width:100px;
+    height:100px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:26px;
+
+    font-size:48px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #19243a,
+            #0d1421
+        );
+
+    border:1px solid #30415e;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.3);
+}
+
+.creator-info{
+    position:relative;
+
+    z-index:2;
+}
+
+.creator-label{
+    display:inline-block;
+
+    color:#8eafff;
+
+    font-size:13px;
+
+    margin-bottom:5px;
+}
+
+.creator-info h2{
+    font-size:28px;
+
+    margin-bottom:5px;
+}
+
+.creator-info p{
+    color:#929daf;
+
+    font-size:14px;
+
+    margin-bottom:18px;
+}
+
+.instagram-btn{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:10px 17px;
+
+    border-radius:12px;
+
+    background:#111827;
+
+    border:1px solid #303b51;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    transition:.25s;
+}
+
+.instagram-btn span:first-child{
+    font-size:21px;
+
+    line-height:1;
+}
+
+.instagram-btn:hover{
+    transform:translateY(-3px);
+
+    border-color:#64779d;
+
+    background:#172033;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
     border-top:1px solid #202633;
@@ -839,7 +1085,10 @@ footer{
     color:#fff;
 }
 
-/* LTR */
+
+/* =========================
+   LTR
+========================= */
 
 [dir="ltr"]{
     text-align:left;
@@ -863,7 +1112,10 @@ footer{
     transform:translateX(4px);
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:850px){
 
@@ -878,7 +1130,8 @@ footer{
     .hero{
         min-height:auto;
 
-        padding:75px 0 85px;
+        padding:
+            75px 0 85px;
     }
 
     .hero-logo{
@@ -887,7 +1140,8 @@ footer{
     }
 
     .hero h1{
-        font-size:clamp(42px,13vw,65px);
+        font-size:
+            clamp(42px,13vw,65px);
 
         letter-spacing:-2px;
     }
@@ -950,7 +1204,33 @@ footer{
     .section-title h2{
         font-size:31px;
     }
+
+    .creator-section{
+        padding:
+            20px 0 75px;
+    }
+
+    .creator-card{
+        flex-direction:column;
+
+        text-align:center;
+
+        padding:30px 20px;
+    }
+
+    .creator-avatar{
+        width:90px;
+        height:90px;
+
+        font-size:42px;
+    }
+
+    .creator-info h2{
+        font-size:24px;
+    }
+
 }
+
 
 @media(max-width:450px){
 
@@ -969,15 +1249,37 @@ footer{
     .nav{
         height:68px;
     }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+    }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
 
-<!-- NAVIGATION -->
+
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <nav>
 
@@ -993,36 +1295,42 @@ alt="PelirFami">
 
 </a>
 
+
 <div class="nav-links">
 
 <a
 href="#features"
 data-fa="امکانات"
 data-en="Features">
-امکانات </a>
+امکانات
+</a>
 
 <a
 href="#screenshots"
 data-fa="تصاویر"
 data-en="Screenshots">
-تصاویر </a>
+تصاویر
+</a>
 
 <a
 href="#windows"
 data-fa="ویندوز"
 data-en="Windows">
-ویندوز </a>
+ویندوز
+</a>
 
 <a
 href="#download"
 data-fa="دانلود"
 data-en="Download">
-دانلود </a>
+دانلود
+</a>
 
 <button
 class="lang-btn"
 onclick="toggleLanguage()">
-EN </button>
+EN
+</button>
 
 </div>
 
@@ -1030,7 +1338,11 @@ EN </button>
 
 </nav>
 
-<!-- HERO -->
+
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
@@ -1043,21 +1355,25 @@ class="hero-logo"
 src="assets/images/logo/logo.png"
 alt="PelirFami Logo">
 
+
 <div class="badge">
 
 <span
 data-fa="پخش‌کننده رسانه‌ای مدرن"
 data-en="Modern Media Player">
-پخش‌کننده رسانه‌ای مدرن </span>
+پخش‌کننده رسانه‌ای مدرن
+</span>
 
 </div>
+
 
 <h1>
 
 <span
 data-fa="فمی‌پلیر،"
 data-en="PelirFami,">
-فمی‌پلیر، </span>
+فمی‌پلیر،
+</span>
 
 <br>
 
@@ -1065,9 +1381,11 @@ data-en="PelirFami,">
 class="gradient"
 data-fa="رسانه‌ها را بهتر پخش کن"
 data-en="Play media better">
-رسانه‌ها را بهتر پخش کن </span>
+رسانه‌ها را بهتر پخش کن
+</span>
 
 </h1>
+
 
 <p
 data-fa="یک پخش‌کننده مدرن برای ویدیو و صدا؛ سریع، ساده و حرفه‌ای."
@@ -1076,6 +1394,7 @@ data-en="A modern media player for video and audio — fast, simple and professi
 یک پخش‌کننده مدرن برای ویدیو و صدا؛ سریع، ساده و حرفه‌ای.
 
 </p>
+
 
 <div class="buttons">
 
@@ -1087,9 +1406,11 @@ href="https://github.com/famipelir/PelirFami/releases/latest">
 <span
 data-fa="⬇ دانلود اندروید"
 data-en="⬇ Download Android">
-⬇ دانلود اندروید </span>
+⬇ دانلود اندروید
+</span>
 
 </a>
+
 
 <a
 class="btn btn-windows"
@@ -1098,9 +1419,11 @@ href="#windows">
 <span
 data-fa="🪟 نسخه ویندوز"
 data-en="🪟 Windows Version">
-🪟 نسخه ویندوز </span>
+🪟 نسخه ویندوز
+</span>
 
 </a>
+
 
 <a
 class="btn btn-secondary"
@@ -1109,11 +1432,13 @@ href="#features">
 <span
 data-fa="مشاهده امکانات"
 data-en="Explore Features">
-مشاهده امکانات </span>
+مشاهده امکانات
+</span>
 
 </a>
 
 </div>
+
 
 <div class="stats">
 
@@ -1126,30 +1451,38 @@ Loading...
 <span
 data-fa="آخرین نسخه"
 data-en="Latest Version">
-آخرین نسخه </span>
+آخرین نسخه
+</span>
 
 </div>
 
+
 <div class="stat">
 
-<strong>Android + Windows</strong>
+<strong>
+Android + Windows
+</strong>
 
 <span
 data-fa="پلتفرم‌ها"
 data-en="Platforms">
-پلتفرم‌ها </span>
+پلتفرم‌ها
+</span>
 
 </div>
+
 
 <div class="stat">
 
 <strong id="heroSize">
-—</strong>
+—
+</strong>
 
 <span
 data-fa="حجم APK"
 data-en="APK Size">
-حجم APK </span>
+حجم APK
+</span>
 
 </div>
 
@@ -1159,7 +1492,11 @@ data-en="APK Size">
 
 </section>
 
-<!-- FEATURES -->
+
+
+<!-- =========================
+     FEATURES
+========================= -->
 
 <section id="features">
 
@@ -1176,12 +1513,16 @@ data-en="PelirFami Features">
 <p
 data-fa="تجربه‌ای ساده، سریع و مدرن برای پخش رسانه"
 data-en="A simple, fast and modern media playback experience">
+
 تجربه‌ای ساده، سریع و مدرن برای پخش رسانه
+
 </p>
 
 </div>
 
+
 <div class="features">
+
 
 <div class="card">
 
@@ -1196,10 +1537,14 @@ data-en="Video Playback">
 <p
 data-fa="پخش روان فایل‌های ویدیویی با رابط کاربری مدرن."
 data-en="Smooth video playback with a modern interface.">
+
 پخش روان فایل‌های ویدیویی با رابط کاربری مدرن.
+
 </p>
 
 </div>
+
+
 
 <div class="card">
 
@@ -1214,10 +1559,14 @@ data-en="Online Streaming">
 <p
 data-fa="امکان پخش محتوای رسانه‌ای از لینک‌های آنلاین."
 data-en="Play media content directly from online links.">
+
 امکان پخش محتوای رسانه‌ای از لینک‌های آنلاین.
+
 </p>
 
 </div>
+
+
 
 <div class="card">
 
@@ -1232,10 +1581,14 @@ data-en="Audio & Music">
 <p
 data-fa="محیط یکپارچه برای فایل‌های صوتی و تصویری."
 data-en="A unified experience for audio and video.">
+
 محیط یکپارچه برای فایل‌های صوتی و تصویری.
+
 </p>
 
 </div>
+
+
 
 <div class="card">
 
@@ -1250,10 +1603,14 @@ data-en="Fast & Lightweight">
 <p
 data-fa="تمرکز روی سرعت اجرا و تجربه کاربری ساده."
 data-en="Focused on performance and simplicity.">
+
 تمرکز روی سرعت اجرا و تجربه کاربری ساده.
+
 </p>
 
 </div>
+
+
 
 <div class="card">
 
@@ -1268,10 +1625,14 @@ data-en="Android">
 <p
 data-fa="طراحی شده برای تجربه راحت و سریع روی دستگاه‌های اندرویدی."
 data-en="Designed for a fast and comfortable Android experience.">
+
 طراحی شده برای تجربه راحت و سریع روی دستگاه‌های اندرویدی.
+
 </p>
 
 </div>
+
+
 
 <div class="card">
 
@@ -1286,10 +1647,14 @@ data-en="Windows">
 <p
 data-fa="نسخه دسکتاپ برای سیستم‌های Windows با معماری‌های مختلف."
 data-en="Desktop version for Windows systems with multiple architectures.">
+
 نسخه دسکتاپ برای سیستم‌های Windows با معماری‌های مختلف.
+
 </p>
 
 </div>
+
+
 
 <div class="card">
 
@@ -1304,10 +1669,14 @@ data-en="Advanced Controls">
 <p
 data-fa="کنترل‌های سریع و تجربه‌ای روان برای مدیریت پخش رسانه."
 data-en="Quick controls and a smooth experience for media playback.">
+
 کنترل‌های سریع و تجربه‌ای روان برای مدیریت پخش رسانه.
+
 </p>
 
 </div>
+
+
 
 <div class="card">
 
@@ -1322,10 +1691,14 @@ data-en="Dark Interface">
 <p
 data-fa="طراحی تاریک و مدرن برای استفاده راحت‌تر."
 data-en="A clean dark interface designed for comfortable use.">
+
 طراحی تاریک و مدرن برای استفاده راحت‌تر.
+
 </p>
 
 </div>
+
+
 
 <div class="card">
 
@@ -1340,10 +1713,13 @@ data-en="Modern Experience">
 <p
 data-fa="طراحی ساده و حرفه‌ای با تمرکز روی تجربه کاربر."
 data-en="A simple professional design focused on user experience.">
+
 طراحی ساده و حرفه‌ای با تمرکز روی تجربه کاربر.
+
 </p>
 
 </div>
+
 
 </div>
 
@@ -1351,9 +1727,15 @@ data-en="A simple professional design focused on user experience.">
 
 </section>
 
-<!-- WINDOWS -->
 
-<section id="windows" class="windows-section">
+
+<!-- =========================
+     WINDOWS
+========================= -->
+
+<section
+id="windows"
+class="windows-section">
 
 <div class="container">
 
@@ -1361,15 +1743,22 @@ data-en="A simple professional design focused on user experience.">
 
 <div class="windows-content">
 
+
 <div>
 
-<div class="windows-icon">🪟</div>
+<div class="windows-icon">
+🪟
+</div>
+
 
 <h2
 data-fa="PelirFami برای ویندوز"
 data-en="PelirFami for Windows">
+
 PelirFami برای ویندوز
+
 </h2>
+
 
 <p
 data-fa="نسخه دسکتاپ PelirFami را برای Windows دریافت کن. سایت معماری سیستم شما را بررسی می‌کند و نسخه مناسب را پیشنهاد می‌دهد."
@@ -1379,15 +1768,15 @@ data-en="Get the PelirFami desktop version for Windows. The website detects your
 
 </p>
 
+
 <div class="arch">
 
 <span>x64</span>
-
 <span>x86</span>
-
 <span>ARM64</span>
 
 </div>
+
 
 <div class="buttons">
 
@@ -1399,9 +1788,13 @@ href="https://github.com/famipelir/PelirFami/releases/latest">
 <span
 data-fa="🖥️ دانلود نسخه مناسب سیستم من"
 data-en="🖥️ Download for my system">
-🖥️ دانلود نسخه مناسب سیستم من </span>
+
+🖥️ دانلود نسخه مناسب سیستم من
+
+</span>
 
 </a>
+
 
 <a
 class="btn btn-secondary"
@@ -1410,11 +1803,15 @@ href="https://github.com/famipelir/PelirFami/releases/latest">
 <span
 data-fa="مشاهده همه نسخه‌ها"
 data-en="View all versions">
-مشاهده همه نسخه‌ها </span>
+
+مشاهده همه نسخه‌ها
+
+</span>
 
 </a>
 
 </div>
+
 
 <div
 id="systemDetect"
@@ -1428,49 +1825,87 @@ data-en="Detecting your system...">
 
 </div>
 
+
+
 <div class="windows-downloads">
+
 
 <a
 id="windowsX64"
 href="https://github.com/famipelir/PelirFami/releases/latest">
 
 <div>
-<strong>Windows x64</strong>
+
+<strong>
+Windows x64
+</strong>
+
 <br>
-<small>64-bit Intel / AMD</small>
+
+<small>
+64-bit Intel / AMD
+</small>
+
 </div>
 
-<span>→</span>
+<span>
+→
+</span>
 
 </a>
+
+
 
 <a
 id="windowsX86"
 href="https://github.com/famipelir/PelirFami/releases/latest">
 
 <div>
-<strong>Windows x86</strong>
+
+<strong>
+Windows x86
+</strong>
+
 <br>
-<small>32-bit Intel / AMD</small>
+
+<small>
+32-bit Intel / AMD
+</small>
+
 </div>
 
-<span>→</span>
+<span>
+→
+</span>
 
 </a>
+
+
 
 <a
 id="windowsArm64"
 href="https://github.com/famipelir/PelirFami/releases/latest">
 
 <div>
-<strong>Windows ARM64</strong>
+
+<strong>
+Windows ARM64
+</strong>
+
 <br>
-<small>ARM-based Windows</small>
+
+<small>
+ARM-based Windows
+</small>
+
 </div>
 
-<span>→</span>
+<span>
+→
+</span>
 
 </a>
+
 
 </div>
 
@@ -1482,7 +1917,11 @@ href="https://github.com/famipelir/PelirFami/releases/latest">
 
 </section>
 
-<!-- SCREENSHOTS -->
+
+
+<!-- =========================
+     SCREENSHOTS
+========================= -->
 
 <section id="screenshots">
 
@@ -1493,16 +1932,21 @@ href="https://github.com/famipelir/PelirFami/releases/latest">
 <h2
 data-fa="نمایی از برنامه"
 data-en="App Preview">
+
 نمایی از برنامه
+
 </h2>
 
 <p
 data-fa="تصاویر محیط PelirFami"
 data-en="PelirFami screenshots">
+
 تصاویر محیط PelirFami
+
 </p>
 
 </div>
+
 
 <div class="screenshots">
 
@@ -1528,7 +1972,11 @@ alt="PelirFami Screenshot 4">
 
 </section>
 
-<!-- DOWNLOAD -->
+
+
+<!-- =========================
+     DOWNLOAD
+========================= -->
 
 <section id="download">
 
@@ -1538,18 +1986,26 @@ alt="PelirFami Screenshot 4">
 
 <div class="download-grid">
 
+
 <div>
 
 <span
 id="releaseVersion"
 class="version">
-آخرین نسخه </span>
+
+آخرین نسخه
+
+</span>
+
 
 <h2
 data-fa="همین حالا نصب کن"
 data-en="Get PelirFami now">
+
 همین حالا نصب کن
+
 </h2>
+
 
 <p
 data-fa="آخرین نسخه PelirFami را مستقیماً از GitHub دریافت کن."
@@ -1559,7 +2015,9 @@ data-en="Download the latest version of PelirFami directly from GitHub.">
 
 </p>
 
+
 <div class="buttons">
+
 
 <a
 id="androidDownload"
@@ -1569,9 +2027,13 @@ href="https://github.com/famipelir/PelirFami/releases/latest">
 <span
 data-fa="⬇ دانلود APK"
 data-en="⬇ Download APK">
-⬇ دانلود APK </span>
+
+⬇ دانلود APK
+
+</span>
 
 </a>
+
 
 <a
 class="btn btn-windows"
@@ -1580,9 +2042,13 @@ href="#windows">
 <span
 data-fa="🪟 دانلود ویندوز"
 data-en="🪟 Download Windows">
-🪟 دانلود ویندوز </span>
+
+🪟 دانلود ویندوز
+
+</span>
 
 </a>
+
 
 <a
 class="btn btn-secondary"
@@ -1591,13 +2057,19 @@ href="https://github.com/famipelir/PelirFami/releases/latest">
 <span
 data-fa="مشاهده Release"
 data-en="View Release">
-مشاهده Release </span>
+
+مشاهده Release
+
+</span>
 
 </a>
 
+
 </div>
 
 </div>
+
+
 
 <div class="qr">
 
@@ -1608,6 +2080,7 @@ alt="PelirFami Download QR Code">
 
 </div>
 
+
 </div>
 
 </div>
@@ -1616,7 +2089,11 @@ alt="PelirFami Download QR Code">
 
 </section>
 
-<!-- ABOUT -->
+
+
+<!-- =========================
+     ABOUT
+========================= -->
 
 <section>
 
@@ -1627,10 +2104,13 @@ alt="PelirFami Download QR Code">
 <h2
 data-fa="درباره PelirFami"
 data-en="About PelirFami">
+
 درباره PelirFami
+
 </h2>
 
 </div>
+
 
 <p
 class="about"
@@ -1645,7 +2125,87 @@ PelirFami با هدف ساخت یک تجربه مدرن و یکپارچه برا
 
 </section>
 
-<!-- FOOTER -->
+
+
+<!-- =========================
+     CREATOR
+========================= -->
+
+<section class="creator-section">
+
+<div class="container">
+
+<div class="creator-card">
+
+
+<div class="creator-avatar">
+👨‍💻
+</div>
+
+
+<div class="creator-info">
+
+<span
+class="creator-label"
+data-fa="ساخته شده توسط"
+data-en="Created by">
+
+ساخته شده توسط
+
+</span>
+
+
+<h2
+data-fa="محمدمهدی حسن پور"
+data-en="Mohammad Mahdi Hasanpour">
+
+محمدمهدی حسن پور
+
+</h2>
+
+
+<p
+data-fa="طراحی و توسعه‌ی PelirFami توسط محمدمهدی حسن پور"
+data-en="PelirFami designed and developed by Mohammad Mahdi Hasanpour">
+
+طراحی و توسعه‌ی PelirFami توسط محمدمهدی حسن پور
+
+</p>
+
+
+<a
+class="instagram-btn"
+href="https://instagram.com/mr_hassanpour2008"
+target="_blank"
+rel="noopener noreferrer">
+
+<span>
+◎
+</span>
+
+<span
+data-fa="اینستاگرام سازنده"
+data-en="Creator's Instagram">
+
+اینستاگرام سازنده
+
+</span>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
@@ -1654,6 +2214,7 @@ PelirFami با هدف ساخت یک تجربه مدرن و یکپارچه برا
 <span>
 © 2026 PelirFami
 </span>
+
 
 <a
 href="https://github.com/famipelir/PelirFami">
@@ -1666,6 +2227,8 @@ GitHub
 
 </footer>
 
+
+
 <script>
 
 /* =========================
@@ -1674,6 +2237,7 @@ GitHub
 
 let currentLanguage = "fa";
 
+
 function toggleLanguage(){
 
     currentLanguage =
@@ -1681,8 +2245,10 @@ function toggleLanguage(){
             ? "en"
             : "fa";
 
+
     document.documentElement.lang =
         currentLanguage;
+
 
     document.documentElement.dir =
         currentLanguage === "fa"
@@ -1700,7 +2266,10 @@ function toggleLanguage(){
                 );
 
             if(text){
-                element.textContent = text;
+
+                element.textContent =
+                    text;
+
             }
 
         });
@@ -1711,6 +2280,7 @@ function toggleLanguage(){
             currentLanguage === "fa"
                 ? "EN"
                 : "FA";
+
 }
 
 
@@ -1720,6 +2290,7 @@ function toggleLanguage(){
 
 const GITHUB_API =
     "https://api.github.com/repos/famipelir/PelirFami/releases/latest";
+
 
 const RELEASE_PAGE =
     "https://github.com/famipelir/PelirFami/releases/latest";
@@ -1732,9 +2303,15 @@ async function loadLatestRelease(){
         const response =
             await fetch(GITHUB_API);
 
+
         if(!response.ok){
-            throw new Error("GitHub API error");
+
+            throw new Error(
+                "GitHub API error"
+            );
+
         }
+
 
         const release =
             await response.json();
@@ -1761,16 +2338,20 @@ async function loadLatestRelease(){
             release.assets || [];
 
 
-        /* APK */
+        /* =====================
+           APK
+        ===================== */
 
         const apk =
-            assets.find(function(asset){
+            assets.find(
+                function(asset){
 
-                return asset.name
-                    .toLowerCase()
-                    .endsWith(".apk");
+                    return asset.name
+                        .toLowerCase()
+                        .endsWith(".apk");
 
-            });
+                }
+            );
 
 
         if(apk){
@@ -1820,7 +2401,9 @@ async function loadLatestRelease(){
         }
 
 
-        /* WINDOWS */
+        /* =====================
+           WINDOWS
+        ===================== */
 
         const findWindowsAsset =
             function(type){
@@ -1831,6 +2414,7 @@ async function loadLatestRelease(){
                         const name =
                             asset.name
                                 .toLowerCase();
+
 
                         return (
                             name.includes("windows") &&
@@ -1846,8 +2430,10 @@ async function loadLatestRelease(){
         const x64 =
             findWindowsAsset("x64");
 
+
         const x86 =
             findWindowsAsset("x86");
+
 
         const arm64 =
             findWindowsAsset("arm64");
@@ -1928,6 +2514,7 @@ function detectWindowsArchitecture(
         navigator.userAgent
             .toLowerCase();
 
+
     const platform =
         (
             navigator.userAgentData &&
@@ -2007,10 +2594,12 @@ function detectWindowsArchitecture(
         button.href =
             x64.browser_download_url;
 
+
         detect.textContent =
             currentLanguage === "fa"
                 ? "✓ سیستم شما: Windows x64 — نسخه مناسب انتخاب شد."
                 : "✓ Your system: Windows x64 — recommended version selected.";
+
 
     }else if(
         architecture === "x86" &&
@@ -2020,10 +2609,12 @@ function detectWindowsArchitecture(
         button.href =
             x86.browser_download_url;
 
+
         detect.textContent =
             currentLanguage === "fa"
                 ? "✓ سیستم شما: Windows x86 — نسخه مناسب انتخاب شد."
                 : "✓ Your system: Windows x86 — recommended version selected.";
+
 
     }else if(
         architecture === "ARM64" &&
@@ -2033,15 +2624,18 @@ function detectWindowsArchitecture(
         button.href =
             arm64.browser_download_url;
 
+
         detect.textContent =
             currentLanguage === "fa"
                 ? "✓ سیستم شما: Windows ARM64 — نسخه مناسب انتخاب شد."
                 : "✓ Your system: Windows ARM64 — recommended version selected.";
 
+
     }else{
 
         button.href =
             RELEASE_PAGE;
+
 
         detect.textContent =
             currentLanguage === "fa"
@@ -2060,6 +2654,7 @@ function detectWindowsArchitecture(
 loadLatestRelease();
 
 </script>
+
 
 </body>
 </html>
