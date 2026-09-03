@@ -1,13 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta name="theme-color" content="#080b12">
-<meta name="description" content="PelirFami - Modern Media Player">
+<meta name="description" content="PelirFami - پخش‌کننده مدرن و حرفه‌ای ویدیو و صدا">
+<meta name="author" content="PelirFami">
+
 <title>PelirFami | Media Player</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -19,10 +24,42 @@ html{
 }
 
 body{
-    font-family:Segoe UI,Tahoma,Arial,sans-serif;
-    background:#080b12;
+    font-family:
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(53,108,255,.12),
+            transparent 35%
+        ),
+        #080b12;
+
     color:#fff;
     line-height:1.7;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            rgba(255,255,255,.015) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.015) 1px,
+            transparent 1px
+        );
+    background-size:50px 50px;
+    mask-image:linear-gradient(to bottom,black,transparent);
 }
 
 a{
@@ -30,24 +67,33 @@ a{
     color:inherit;
 }
 
+button{
+    font-family:inherit;
+}
+
 .container{
-    width:min(1150px,92%);
+    width:min(1180px,92%);
     margin:auto;
 }
 
-/* NAVBAR */
+/* NAV */
 
 nav{
     position:sticky;
     top:0;
-    z-index:100;
-    background:rgba(8,11,18,.85);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid #202633;
+    z-index:1000;
+
+    background:rgba(8,11,18,.78);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(255,255,255,.07);
 }
 
 .nav{
-    height:72px;
+    height:74px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -57,6 +103,7 @@ nav{
     display:flex;
     align-items:center;
     gap:12px;
+
     font-size:21px;
     font-weight:800;
 }
@@ -64,8 +111,13 @@ nav{
 .brand img{
     width:44px;
     height:44px;
+
     border-radius:13px;
+
     object-fit:cover;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.35);
 }
 
 .nav-links{
@@ -75,9 +127,10 @@ nav{
 }
 
 .nav-links a{
-    color:#aeb7c7;
+    color:#9fa9ba;
     font-size:14px;
-    transition:.2s;
+
+    transition:.25s;
 }
 
 .nav-links a:hover{
@@ -86,37 +139,79 @@ nav{
 
 .lang-btn{
     border:1px solid #303848;
-    background:#111722;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151c29,
+            #0d121b
+        );
+
     color:#fff;
-    border-radius:10px;
-    padding:8px 13px;
+
+    border-radius:11px;
+
+    padding:8px 14px;
+
     cursor:pointer;
+
+    transition:.25s;
+}
+
+.lang-btn:hover{
+    border-color:#5a6c91;
+    transform:translateY(-2px);
 }
 
 /* HERO */
 
 .hero{
-    min-height:720px;
+    min-height:760px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     text-align:center;
+
     position:relative;
     overflow:hidden;
-    padding:80px 0;
+
+    padding:90px 0;
 }
 
 .hero-glow{
     position:absolute;
-    width:500px;
-    height:500px;
+
+    width:650px;
+    height:650px;
+
     border-radius:50%;
+
     background:#356cff;
-    opacity:.14;
-    filter:blur(110px);
+
+    opacity:.11;
+
+    filter:blur(130px);
+
     left:50%;
-    top:40px;
+    top:-130px;
+
     transform:translateX(-50%);
+
+    animation:
+        glowMove 7s ease-in-out infinite;
+}
+
+@keyframes glowMove{
+
+    0%,100%{
+        transform:translateX(-50%) scale(1);
+    }
+
+    50%{
+        transform:translateX(-50%) scale(1.12);
+    }
 }
 
 .hero-content{
@@ -125,123 +220,245 @@ nav{
 }
 
 .hero-logo{
-    width:125px;
-    height:125px;
-    border-radius:32px;
+    width:135px;
+    height:135px;
+
+    border-radius:34px;
+
     object-fit:cover;
-    box-shadow:0 25px 80px rgba(0,0,0,.5);
-    margin-bottom:25px;
-    animation:float 4s ease-in-out infinite;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.55),
+        0 0 60px rgba(53,108,255,.15);
+
+    margin-bottom:28px;
+
+    animation:
+        float 4s ease-in-out infinite;
 }
 
 @keyframes float{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-8px)}
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
 }
 
 .badge{
-    display:inline-block;
+    display:inline-flex;
+
+    align-items:center;
+    gap:8px;
+
     border:1px solid #293143;
-    background:#111722;
+
+    background:rgba(17,23,34,.75);
+
     color:#8eafff;
+
     border-radius:100px;
-    padding:7px 14px;
+
+    padding:7px 15px;
+
     font-size:13px;
-    margin-bottom:18px;
+
+    margin-bottom:20px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.18);
+}
+
+.badge::before{
+    content:"";
+    width:7px;
+    height:7px;
+
+    background:#6f9aff;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 12px #6f9aff;
 }
 
 .hero h1{
-    font-size:clamp(44px,8vw,82px);
+    font-size:
+        clamp(46px,8vw,86px);
+
     line-height:1.05;
-    letter-spacing:-3px;
-    margin-bottom:20px;
+
+    letter-spacing:-4px;
+
+    margin-bottom:23px;
 }
 
 .gradient{
-    background:linear-gradient(90deg,#fff,#78a1ff);
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #78a1ff,
+            #b7c9ff
+        );
+
     -webkit-background-clip:text;
+
+    background-clip:text;
+
     color:transparent;
 }
 
 .hero p{
-    max-width:700px;
-    margin:0 auto 30px;
+    max-width:720px;
+
+    margin:0 auto 32px;
+
     color:#aeb7c7;
+
     font-size:18px;
 }
 
+/* BUTTONS */
+
 .buttons{
     display:flex;
+
     justify-content:center;
     align-items:center;
+
     gap:12px;
+
     flex-wrap:wrap;
 }
 
 .btn{
     display:inline-flex;
+
     align-items:center;
     justify-content:center;
-    gap:8px;
+
+    gap:9px;
+
     padding:14px 24px;
+
     border-radius:14px;
+
     font-weight:700;
-    transition:.2s;
+
+    transition:
+        transform .25s,
+        box-shadow .25s,
+        border-color .25s;
 }
 
 .btn:hover{
-    transform:translateY(-3px);
+    transform:translateY(-4px);
 }
 
 .btn-primary{
     background:#fff;
     color:#080b12;
+
+    box-shadow:
+        0 10px 35px rgba(255,255,255,.08);
+}
+
+.btn-primary:hover{
+    box-shadow:
+        0 15px 45px rgba(255,255,255,.15);
 }
 
 .btn-secondary{
     background:#111722;
+
     border:1px solid #303848;
+
     color:#fff;
 }
 
+.btn-secondary:hover{
+    border-color:#536688;
+}
+
+.btn-windows{
+    background:
+        linear-gradient(
+            135deg,
+            #111a2b,
+            #16233d
+        );
+
+    border:1px solid #3b5685;
+
+    color:#fff;
+}
+
+/* STATS */
+
 .stats{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    max-width:650px;
-    margin:45px auto 0;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:13px;
+
+    max-width:680px;
+
+    margin:48px auto 0;
 }
 
 .stat{
     border:1px solid #202633;
-    background:#0e131d;
-    border-radius:17px;
-    padding:17px;
+
+    background:
+        rgba(14,19,29,.72);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    transition:.25s;
+}
+
+.stat:hover{
+    transform:translateY(-4px);
+    border-color:#35425b;
 }
 
 .stat strong{
     display:block;
+
     font-size:21px;
 }
 
 .stat span{
     color:#808b9f;
+
     font-size:13px;
 }
 
 /* SECTIONS */
 
 section{
-    padding:90px 0;
+    padding:100px 0;
 }
 
 .section-title{
     text-align:center;
-    margin-bottom:42px;
+
+    margin-bottom:45px;
 }
 
 .section-title h2{
-    font-size:36px;
+    font-size:38px;
+
     margin-bottom:8px;
 }
 
@@ -253,105 +470,326 @@ section{
 
 .features{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:17px;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
 }
 
 .card{
     border:1px solid #202633;
-    background:linear-gradient(145deg,#101621,#0b0f17);
-    border-radius:21px;
-    padding:27px;
-    transition:.25s;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16,22,33,.92),
+            rgba(11,15,23,.92)
+        );
+
+    border-radius:22px;
+
+    padding:28px;
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    background:#356cff;
+
+    opacity:.05;
+
+    border-radius:50%;
+
+    filter:blur(35px);
+
+    top:-50px;
+    left:-50px;
 }
 
 .card:hover{
-    transform:translateY(-6px);
-    border-color:#3a4863;
+    transform:translateY(-7px);
+
+    border-color:#3d4d6c;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.2);
 }
 
 .card-icon{
-    font-size:31px;
-    margin-bottom:12px;
+    font-size:32px;
+
+    margin-bottom:13px;
 }
 
 .card h3{
     margin-bottom:8px;
+
     font-size:19px;
 }
 
 .card p{
     color:#8f9aac;
+
     font-size:14px;
+}
+
+/* WINDOWS */
+
+.windows-section{
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(25,48,92,.08),
+            transparent
+        );
+}
+
+.windows-box{
+    border:1px solid #263653;
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(53,108,255,.14),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #101827,
+            #0b1019
+        );
+
+    border-radius:30px;
+
+    padding:48px;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.windows-content{
+    display:grid;
+
+    grid-template-columns:
+        1.3fr .7fr;
+
+    align-items:center;
+
+    gap:50px;
+}
+
+.windows-icon{
+    font-size:58px;
+
+    margin-bottom:15px;
+}
+
+.windows-box h2{
+    font-size:40px;
+
+    margin-bottom:12px;
+}
+
+.windows-box p{
+    color:#98a2b3;
+
+    margin-bottom:24px;
+}
+
+.arch{
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin:20px 0;
+}
+
+.arch span{
+    padding:6px 11px;
+
+    border:1px solid #303e59;
+
+    background:#101827;
+
+    border-radius:9px;
+
+    color:#aebce0;
+
+    font-size:12px;
+}
+
+.system-detect{
+    color:#8fa6d5;
+
+    font-size:13px;
+
+    margin-top:15px;
+}
+
+.windows-downloads{
+    display:grid;
+
+    gap:10px;
+}
+
+.windows-downloads a{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    border:1px solid #293852;
+
+    background:#0e1521;
+
+    padding:13px 16px;
+
+    border-radius:13px;
+
+    transition:.25s;
+}
+
+.windows-downloads a:hover{
+    transform:translateX(-4px);
+
+    border-color:#5875a8;
+
+    background:#121c2d;
+}
+
+.windows-downloads small{
+    color:#77869f;
 }
 
 /* SCREENSHOTS */
 
 .screenshots{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:17px;
 }
 
 .screenshots img{
     width:100%;
+
     aspect-ratio:9/16;
+
     object-fit:cover;
-    border-radius:20px;
+
+    border-radius:21px;
+
     border:1px solid #202633;
-    transition:.25s;
+
+    transition:.3s;
 }
 
 .screenshots img:hover{
     transform:scale(1.025);
+
+    border-color:#40506e;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.35);
 }
 
 /* DOWNLOAD */
 
 .download-box{
     border:1px solid #202633;
-    background:linear-gradient(145deg,#101621,#0b0f17);
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(53,108,255,.09),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #101621,
+            #0b0f17
+        );
+
     border-radius:30px;
-    padding:45px;
+
+    padding:48px;
 }
 
 .download-grid{
     display:grid;
-    grid-template-columns:1fr 230px;
+
+    grid-template-columns:
+        1fr 230px;
+
     align-items:center;
+
     gap:45px;
 }
 
 .version{
     display:inline-block;
+
     background:#111a2b;
+
     color:#8eafff;
+
     padding:6px 11px;
+
     border-radius:8px;
+
     font-size:13px;
+
     margin-bottom:15px;
 }
 
 .download-box h2{
     font-size:40px;
+
     margin-bottom:12px;
 }
 
 .download-box p{
     color:#98a2b3;
+
     margin-bottom:25px;
 }
 
 .qr{
     background:#fff;
+
     border-radius:20px;
+
     padding:13px;
+
     width:200px;
+
     margin:auto;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
 }
 
 .qr img{
     width:100%;
+
     display:block;
 }
 
@@ -359,9 +797,13 @@ section{
 
 .about{
     max-width:780px;
+
     text-align:center;
+
     margin:auto;
+
     color:#9aa5b6;
+
     font-size:16px;
 }
 
@@ -369,63 +811,35 @@ section{
 
 footer{
     border-top:1px solid #202633;
+
     padding:30px 0;
+
     color:#737e91;
+
     font-size:13px;
 }
 
 .footer{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:15px;
 }
 
-/* RESPONSIVE */
+.footer a{
+    color:#9ca9bd;
 
-@media(max-width:850px){
-
-    .nav-links a{
-        display:none;
-    }
-
-    .features{
-        grid-template-columns:1fr;
-    }
-
-    .screenshots{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .download-grid{
-        grid-template-columns:1fr;
-        text-align:center;
-    }
-
-    .qr{
-        width:190px;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-        max-width:300px;
-    }
-
-    .hero{
-        min-height:auto;
-        padding:70px 0;
-    }
-
-    .hero h1{
-        letter-spacing:-2px;
-    }
-
-    .download-box{
-        padding:30px 20px;
-    }
+    transition:.2s;
 }
 
-/* LANGUAGE */
+.footer a:hover{
+    color:#fff;
+}
+
+/* LTR */
 
 [dir="ltr"]{
     text-align:left;
@@ -444,7 +858,121 @@ footer{
 [dir="ltr"] .footer{
     flex-direction:row;
 }
+
+[dir="ltr"] .windows-downloads a:hover{
+    transform:translateX(4px);
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .nav-links{
+        gap:10px;
+    }
+
+    .nav-links a{
+        display:none;
+    }
+
+    .hero{
+        min-height:auto;
+
+        padding:75px 0 85px;
+    }
+
+    .hero-logo{
+        width:115px;
+        height:115px;
+    }
+
+    .hero h1{
+        font-size:clamp(42px,13vw,65px);
+
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+
+        max-width:320px;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .windows-content{
+        grid-template-columns:1fr;
+
+        text-align:center;
+    }
+
+    .windows-box{
+        padding:30px 20px;
+    }
+
+    .windows-box h2{
+        font-size:32px;
+    }
+
+    .windows-downloads{
+        text-align:right;
+    }
+
+    .screenshots{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .download-grid{
+        grid-template-columns:1fr;
+
+        text-align:center;
+    }
+
+    .download-box{
+        padding:30px 20px;
+    }
+
+    .qr{
+        width:185px;
+    }
+
+    section{
+        padding:75px 0;
+    }
+
+    .section-title h2{
+        font-size:31px;
+    }
+}
+
+@media(max-width:450px){
+
+    .screenshots{
+        grid-template-columns:1fr;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .nav{
+        height:68px;
+    }
+}
+
 </style>
+
 </head>
 
 <body>
@@ -452,39 +980,55 @@ footer{
 <!-- NAVIGATION -->
 
 <nav>
+
 <div class="container nav">
 
 <a href="#" class="brand">
-<img src="assets/images/logo/logo.png" alt="PelirFami">
+
+<img
+src="assets/images/logo/logo.png"
+alt="PelirFami">
+
 <span>PelirFami</span>
+
 </a>
 
 <div class="nav-links">
 
-<a href="#features"
+<a
+href="#features"
 data-fa="امکانات"
 data-en="Features">
-امکانات
-</a>
+امکانات </a>
 
-<a href="#screenshots"
+<a
+href="#screenshots"
 data-fa="تصاویر"
 data-en="Screenshots">
-تصاویر
-</a>
+تصاویر </a>
 
-<a href="#download"
+<a
+href="#windows"
+data-fa="ویندوز"
+data-en="Windows">
+ویندوز </a>
+
+<a
+href="#download"
 data-fa="دانلود"
 data-en="Download">
-دانلود
-</a>
+دانلود </a>
 
-<button class="lang-btn" onclick="toggleLanguage()">EN</button>
+<button
+class="lang-btn"
+onclick="toggleLanguage()">
+EN </button>
 
 </div>
+
 </div>
+
 </nav>
-
 
 <!-- HERO -->
 
@@ -500,7 +1044,12 @@ src="assets/images/logo/logo.png"
 alt="PelirFami Logo">
 
 <div class="badge">
-PelirFami • v1.0.0
+
+<span
+data-fa="پخش‌کننده رسانه‌ای مدرن"
+data-en="Modern Media Player">
+پخش‌کننده رسانه‌ای مدرن </span>
+
 </div>
 
 <h1>
@@ -508,8 +1057,7 @@ PelirFami • v1.0.0
 <span
 data-fa="فمی‌پلیر،"
 data-en="PelirFami,">
-فمی‌پلیر،
-</span>
+فمی‌پلیر، </span>
 
 <br>
 
@@ -517,8 +1065,7 @@ data-en="PelirFami,">
 class="gradient"
 data-fa="رسانه‌ها را بهتر پخش کن"
 data-en="Play media better">
-رسانه‌ها را بهتر پخش کن
-</span>
+رسانه‌ها را بهتر پخش کن </span>
 
 </h1>
 
@@ -533,13 +1080,25 @@ data-en="A modern media player for video and audio — fast, simple and professi
 <div class="buttons">
 
 <a
+id="heroAndroidButton"
 class="btn btn-primary"
-href="https://github.com/famipelir/PelirFami/releases/download/v1.0.0/PelirFami.apk">
+href="https://github.com/famipelir/PelirFami/releases/latest">
 
-<span data-fa="⬇ دانلود APK"
-data-en="⬇ Download APK">
-⬇ دانلود APK
-</span>
+<span
+data-fa="⬇ دانلود اندروید"
+data-en="⬇ Download Android">
+⬇ دانلود اندروید </span>
+
+</a>
+
+<a
+class="btn btn-windows"
+href="#windows">
+
+<span
+data-fa="🪟 نسخه ویندوز"
+data-en="🪟 Windows Version">
+🪟 نسخه ویندوز </span>
 
 </a>
 
@@ -550,48 +1109,55 @@ href="#features">
 <span
 data-fa="مشاهده امکانات"
 data-en="Explore Features">
-مشاهده امکانات
-</span>
+مشاهده امکانات </span>
 
 </a>
 
 </div>
 
-
 <div class="stats">
 
 <div class="stat">
-<strong>v1.0.0</strong>
+
+<strong id="heroVersion">
+Loading...
+</strong>
+
 <span
 data-fa="آخرین نسخه"
 data-en="Latest Version">
-آخرین نسخه
-</span>
+آخرین نسخه </span>
+
 </div>
 
 <div class="stat">
-<strong>Android</strong>
+
+<strong>Android + Windows</strong>
+
 <span
-data-fa="پلتفرم"
-data-en="Platform">
-پلتفرم
-</span>
+data-fa="پلتفرم‌ها"
+data-en="Platforms">
+پلتفرم‌ها </span>
+
 </div>
 
 <div class="stat">
-<strong>30.6 MB</strong>
+
+<strong id="heroSize">
+—</strong>
+
 <span
 data-fa="حجم APK"
 data-en="APK Size">
-حجم APK
-</span>
-</div>
+حجم APK </span>
 
 </div>
 
 </div>
+
+</div>
+
 </section>
-
 
 <!-- FEATURES -->
 
@@ -608,16 +1174,14 @@ data-en="PelirFami Features">
 </h2>
 
 <p
-data-fa="ویژگی‌های اصلی نسخه فعلی"
-data-en="Main features of the current release">
-ویژگی‌های اصلی نسخه فعلی
+data-fa="تجربه‌ای ساده، سریع و مدرن برای پخش رسانه"
+data-en="A simple, fast and modern media playback experience">
+تجربه‌ای ساده، سریع و مدرن برای پخش رسانه
 </p>
 
 </div>
 
-
 <div class="features">
-
 
 <div class="card">
 
@@ -637,7 +1201,6 @@ data-en="Smooth video playback with a modern interface.">
 
 </div>
 
-
 <div class="card">
 
 <div class="card-icon">🔗</div>
@@ -655,7 +1218,6 @@ data-en="Play media content directly from online links.">
 </p>
 
 </div>
-
 
 <div class="card">
 
@@ -675,7 +1237,6 @@ data-en="A unified experience for audio and video.">
 
 </div>
 
-
 <div class="card">
 
 <div class="card-icon">⚡</div>
@@ -694,48 +1255,232 @@ data-en="Focused on performance and simplicity.">
 
 </div>
 
-
 <div class="card">
 
 <div class="card-icon">📱</div>
 
 <h3
-data-fa="مناسب اندروید"
-data-en="Android Ready">
-مناسب اندروید
+data-fa="اندروید"
+data-en="Android">
+اندروید
 </h3>
 
 <p
-data-fa="طراحی شده برای تجربه راحت روی دستگاه‌های اندرویدی."
-data-en="Designed for a comfortable Android experience.">
-طراحی شده برای تجربه راحت روی دستگاه‌های اندرویدی.
+data-fa="طراحی شده برای تجربه راحت و سریع روی دستگاه‌های اندرویدی."
+data-en="Designed for a fast and comfortable Android experience.">
+طراحی شده برای تجربه راحت و سریع روی دستگاه‌های اندرویدی.
 </p>
 
 </div>
 
+<div class="card">
+
+<div class="card-icon">🪟</div>
+
+<h3
+data-fa="ویندوز"
+data-en="Windows">
+ویندوز
+</h3>
+
+<p
+data-fa="نسخه دسکتاپ برای سیستم‌های Windows با معماری‌های مختلف."
+data-en="Desktop version for Windows systems with multiple architectures.">
+نسخه دسکتاپ برای سیستم‌های Windows با معماری‌های مختلف.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">🎚️</div>
+
+<h3
+data-fa="کنترل حرفه‌ای"
+data-en="Advanced Controls">
+کنترل حرفه‌ای
+</h3>
+
+<p
+data-fa="کنترل‌های سریع و تجربه‌ای روان برای مدیریت پخش رسانه."
+data-en="Quick controls and a smooth experience for media playback.">
+کنترل‌های سریع و تجربه‌ای روان برای مدیریت پخش رسانه.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">🌙</div>
+
+<h3
+data-fa="رابط تاریک"
+data-en="Dark Interface">
+رابط تاریک
+</h3>
+
+<p
+data-fa="طراحی تاریک و مدرن برای استفاده راحت‌تر."
+data-en="A clean dark interface designed for comfortable use.">
+طراحی تاریک و مدرن برای استفاده راحت‌تر.
+</p>
+
+</div>
 
 <div class="card">
 
 <div class="card-icon">✨</div>
 
 <h3
-data-fa="رابط مدرن"
-data-en="Modern UI">
-رابط مدرن
+data-fa="تجربه مدرن"
+data-en="Modern Experience">
+تجربه مدرن
 </h3>
 
 <p
-data-fa="ظاهر تاریک، تمیز و مدرن برای تجربه‌ای حرفه‌ای."
-data-en="A clean, dark and modern interface.">
-ظاهر تاریک، تمیز و مدرن برای تجربه‌ای حرفه‌ای.
+data-fa="طراحی ساده و حرفه‌ای با تمرکز روی تجربه کاربر."
+data-en="A simple professional design focused on user experience.">
+طراحی ساده و حرفه‌ای با تمرکز روی تجربه کاربر.
 </p>
 
 </div>
 
 </div>
+
 </div>
+
 </section>
 
+<!-- WINDOWS -->
+
+<section id="windows" class="windows-section">
+
+<div class="container">
+
+<div class="windows-box">
+
+<div class="windows-content">
+
+<div>
+
+<div class="windows-icon">🪟</div>
+
+<h2
+data-fa="PelirFami برای ویندوز"
+data-en="PelirFami for Windows">
+PelirFami برای ویندوز
+</h2>
+
+<p
+data-fa="نسخه دسکتاپ PelirFami را برای Windows دریافت کن. سایت معماری سیستم شما را بررسی می‌کند و نسخه مناسب را پیشنهاد می‌دهد."
+data-en="Get the PelirFami desktop version for Windows. The website detects your system architecture and recommends the appropriate version.">
+
+نسخه دسکتاپ PelirFami را برای Windows دریافت کن. سایت معماری سیستم شما را بررسی می‌کند و نسخه مناسب را پیشنهاد می‌دهد.
+
+</p>
+
+<div class="arch">
+
+<span>x64</span>
+
+<span>x86</span>
+
+<span>ARM64</span>
+
+</div>
+
+<div class="buttons">
+
+<a
+id="windowsRecommended"
+class="btn btn-primary"
+href="https://github.com/famipelir/PelirFami/releases/latest">
+
+<span
+data-fa="🖥️ دانلود نسخه مناسب سیستم من"
+data-en="🖥️ Download for my system">
+🖥️ دانلود نسخه مناسب سیستم من </span>
+
+</a>
+
+<a
+class="btn btn-secondary"
+href="https://github.com/famipelir/PelirFami/releases/latest">
+
+<span
+data-fa="مشاهده همه نسخه‌ها"
+data-en="View all versions">
+مشاهده همه نسخه‌ها </span>
+
+</a>
+
+</div>
+
+<div
+id="systemDetect"
+class="system-detect"
+data-fa="در حال تشخیص سیستم..."
+data-en="Detecting your system...">
+
+در حال تشخیص سیستم...
+
+</div>
+
+</div>
+
+<div class="windows-downloads">
+
+<a
+id="windowsX64"
+href="https://github.com/famipelir/PelirFami/releases/latest">
+
+<div>
+<strong>Windows x64</strong>
+<br>
+<small>64-bit Intel / AMD</small>
+</div>
+
+<span>→</span>
+
+</a>
+
+<a
+id="windowsX86"
+href="https://github.com/famipelir/PelirFami/releases/latest">
+
+<div>
+<strong>Windows x86</strong>
+<br>
+<small>32-bit Intel / AMD</small>
+</div>
+
+<span>→</span>
+
+</a>
+
+<a
+id="windowsArm64"
+href="https://github.com/famipelir/PelirFami/releases/latest">
+
+<div>
+<strong>Windows ARM64</strong>
+<br>
+<small>ARM-based Windows</small>
+</div>
+
+<span>→</span>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 <!-- SCREENSHOTS -->
 
@@ -758,7 +1503,6 @@ data-en="PelirFami screenshots">
 </p>
 
 </div>
-
 
 <div class="screenshots">
 
@@ -784,7 +1528,6 @@ alt="PelirFami Screenshot 4">
 
 </section>
 
-
 <!-- DOWNLOAD -->
 
 <section id="download">
@@ -795,12 +1538,12 @@ alt="PelirFami Screenshot 4">
 
 <div class="download-grid">
 
-
 <div>
 
-<span class="version">
-PelirFami v1.0.0
-</span>
+<span
+id="releaseVersion"
+class="version">
+آخرین نسخه </span>
 
 <h2
 data-fa="همین حالا نصب کن"
@@ -809,26 +1552,37 @@ data-en="Get PelirFami now">
 </h2>
 
 <p
-data-fa="آخرین نسخه APK را مستقیماً دریافت کن."
-data-en="Download the latest APK directly.">
-آخرین نسخه APK را مستقیماً دریافت کن.
-</p>
+data-fa="آخرین نسخه PelirFami را مستقیماً از GitHub دریافت کن."
+data-en="Download the latest version of PelirFami directly from GitHub.">
 
+آخرین نسخه PelirFami را مستقیماً از GitHub دریافت کن.
+
+</p>
 
 <div class="buttons">
 
 <a
+id="androidDownload"
 class="btn btn-primary"
-href="https://github.com/famipelir/PelirFami/releases/download/v1.0.0/PelirFami.apk">
+href="https://github.com/famipelir/PelirFami/releases/latest">
 
 <span
-data-fa="⬇ دانلود مستقیم APK"
-data-en="⬇ Direct APK Download">
-⬇ دانلود مستقیم APK
-</span>
+data-fa="⬇ دانلود APK"
+data-en="⬇ Download APK">
+⬇ دانلود APK </span>
 
 </a>
 
+<a
+class="btn btn-windows"
+href="#windows">
+
+<span
+data-fa="🪟 دانلود ویندوز"
+data-en="🪟 Download Windows">
+🪟 دانلود ویندوز </span>
+
+</a>
 
 <a
 class="btn btn-secondary"
@@ -837,8 +1591,7 @@ href="https://github.com/famipelir/PelirFami/releases/latest">
 <span
 data-fa="مشاهده Release"
 data-en="View Release">
-مشاهده Release
-</span>
+مشاهده Release </span>
 
 </a>
 
@@ -846,22 +1599,22 @@ data-en="View Release">
 
 </div>
 
-
 <div class="qr">
 
 <img
-src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fgithub.com%2Ffamipelir%2FPelirFami%2Freleases%2Fdownload%2Fv1.0.0%2FPelirFami.apk"
-alt="PelirFami APK QR Code">
+id="qrCode"
+src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fgithub.com%2Ffamipelir%2FPelirFami%2Freleases%2Flatest"
+alt="PelirFami Download QR Code">
 
 </div>
 
+</div>
 
 </div>
-</div>
+
 </div>
 
 </section>
-
 
 <!-- ABOUT -->
 
@@ -879,20 +1632,18 @@ data-en="About PelirFami">
 
 </div>
 
-
 <p
 class="about"
-data-fa="PelirFami با هدف ساخت یک تجربه مدرن و یکپارچه برای پخش و مدیریت رسانه ساخته شده است. نسخه 1.0.0 اولین انتشار عمومی پروژه است و در نسخه‌های آینده امکانات بیشتری به آن اضافه خواهد شد."
-data-en="PelirFami is built to provide a modern and unified experience for playing and managing media. Version 1.0.0 is the first public release, with more features planned for future versions.">
+data-fa="PelirFami با هدف ساخت یک تجربه مدرن و یکپارچه برای پخش و مدیریت رسانه ساخته شده است. این پروژه برای ارائه تجربه‌ای سریع، ساده و حرفه‌ای در دستگاه‌های اندروید و ویندوز توسعه داده می‌شود."
+data-en="PelirFami is built to provide a modern and unified experience for playing and managing media. The project is designed to deliver a fast, simple and professional experience across Android and Windows.">
 
-PelirFami با هدف ساخت یک تجربه مدرن و یکپارچه برای پخش و مدیریت رسانه ساخته شده است. نسخه 1.0.0 اولین انتشار عمومی پروژه است و در نسخه‌های آینده امکانات بیشتری به آن اضافه خواهد شد.
+PelirFami با هدف ساخت یک تجربه مدرن و یکپارچه برای پخش و مدیریت رسانه ساخته شده است. این پروژه برای ارائه تجربه‌ای سریع، ساده و حرفه‌ای در دستگاه‌های اندروید و ویندوز توسعه داده می‌شود.
 
 </p>
 
 </div>
 
 </section>
-
 
 <!-- FOOTER -->
 
@@ -906,50 +1657,407 @@ PelirFami با هدف ساخت یک تجربه مدرن و یکپارچه برا
 
 <a
 href="https://github.com/famipelir/PelirFami">
+
 GitHub
+
 </a>
 
 </div>
 
 </footer>
 
-
 <script>
+
+/* =========================
+   LANGUAGE
+========================= */
 
 let currentLanguage = "fa";
 
 function toggleLanguage(){
 
-currentLanguage =
-currentLanguage === "fa"
-? "en"
-: "fa";
+    currentLanguage =
+        currentLanguage === "fa"
+            ? "en"
+            : "fa";
 
-document.documentElement.lang =
-currentLanguage;
+    document.documentElement.lang =
+        currentLanguage;
 
-document.documentElement.dir =
-currentLanguage === "fa"
-? "rtl"
-: "ltr";
-
-
-document.querySelectorAll("[data-fa]").forEach(function(element){
-
-element.textContent =
-element.getAttribute(
-"data-" + currentLanguage
-);
-
-});
+    document.documentElement.dir =
+        currentLanguage === "fa"
+            ? "rtl"
+            : "ltr";
 
 
-document.querySelector(".lang-btn").textContent =
-currentLanguage === "fa"
-? "EN"
-: "FA";
+    document
+        .querySelectorAll("[data-fa]")
+        .forEach(function(element){
+
+            const text =
+                element.getAttribute(
+                    "data-" + currentLanguage
+                );
+
+            if(text){
+                element.textContent = text;
+            }
+
+        });
+
+
+    document.querySelector(".lang-btn")
+        .textContent =
+            currentLanguage === "fa"
+                ? "EN"
+                : "FA";
+}
+
+
+/* =========================
+   GITHUB RELEASE
+========================= */
+
+const GITHUB_API =
+    "https://api.github.com/repos/famipelir/PelirFami/releases/latest";
+
+const RELEASE_PAGE =
+    "https://github.com/famipelir/PelirFami/releases/latest";
+
+
+async function loadLatestRelease(){
+
+    try{
+
+        const response =
+            await fetch(GITHUB_API);
+
+        if(!response.ok){
+            throw new Error("GitHub API error");
+        }
+
+        const release =
+            await response.json();
+
+
+        const version =
+            release.tag_name ||
+            "Latest";
+
+
+        document.getElementById(
+            "heroVersion"
+        ).textContent =
+            version;
+
+
+        document.getElementById(
+            "releaseVersion"
+        ).textContent =
+            "PelirFami " + version;
+
+
+        const assets =
+            release.assets || [];
+
+
+        /* APK */
+
+        const apk =
+            assets.find(function(asset){
+
+                return asset.name
+                    .toLowerCase()
+                    .endsWith(".apk");
+
+            });
+
+
+        if(apk){
+
+            document.getElementById(
+                "androidDownload"
+            ).href =
+                apk.browser_download_url;
+
+
+            document.getElementById(
+                "heroAndroidButton"
+            ).href =
+                apk.browser_download_url;
+
+
+            const sizeMB =
+                (
+                    apk.size /
+                    1024 /
+                    1024
+                ).toFixed(1);
+
+
+            document.getElementById(
+                "heroSize"
+            ).textContent =
+                sizeMB + " MB";
+
+
+            document.getElementById(
+                "qrCode"
+            ).src =
+                "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="
+                +
+                encodeURIComponent(
+                    apk.browser_download_url
+                );
+
+        }else{
+
+            document.getElementById(
+                "heroSize"
+            ).textContent =
+                "APK";
+
+        }
+
+
+        /* WINDOWS */
+
+        const findWindowsAsset =
+            function(type){
+
+                return assets.find(
+                    function(asset){
+
+                        const name =
+                            asset.name
+                                .toLowerCase();
+
+                        return (
+                            name.includes("windows") &&
+                            name.includes(type)
+                        );
+
+                    }
+                );
+
+            };
+
+
+        const x64 =
+            findWindowsAsset("x64");
+
+        const x86 =
+            findWindowsAsset("x86");
+
+        const arm64 =
+            findWindowsAsset("arm64");
+
+
+        if(x64){
+
+            document.getElementById(
+                "windowsX64"
+            ).href =
+                x64.browser_download_url;
+
+        }
+
+
+        if(x86){
+
+            document.getElementById(
+                "windowsX86"
+            ).href =
+                x86.browser_download_url;
+
+        }
+
+
+        if(arm64){
+
+            document.getElementById(
+                "windowsArm64"
+            ).href =
+                arm64.browser_download_url;
+
+        }
+
+
+        detectWindowsArchitecture(
+            x64,
+            x86,
+            arm64
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Release loading failed:",
+            error
+        );
+
+
+        document.getElementById(
+            "heroVersion"
+        ).textContent =
+            "Latest";
+
+
+        document.getElementById(
+            "releaseVersion"
+        ).textContent =
+            "Latest Release";
+
+    }
 
 }
+
+
+/* =========================
+   WINDOWS ARCHITECTURE
+========================= */
+
+function detectWindowsArchitecture(
+    x64,
+    x86,
+    arm64
+){
+
+    const ua =
+        navigator.userAgent
+            .toLowerCase();
+
+    const platform =
+        (
+            navigator.userAgentData &&
+            navigator.userAgentData.platform
+        )
+        ||
+        navigator.platform
+        ||
+        "";
+
+
+    const text =
+        (
+            ua +
+            " " +
+            platform
+        ).toLowerCase();
+
+
+    let architecture =
+        "unknown";
+
+
+    if(
+        text.includes("arm64") ||
+        text.includes("aarch64")
+    ){
+
+        architecture =
+            "ARM64";
+
+    }else if(
+        text.includes("wow64")
+    ){
+
+        architecture =
+            "x64";
+
+    }else if(
+        text.includes("win64") ||
+        text.includes("x64") ||
+        text.includes("amd64")
+    ){
+
+        architecture =
+            "x64";
+
+    }else if(
+        text.includes("win32") ||
+        text.includes("i686") ||
+        text.includes("x86")
+    ){
+
+        architecture =
+            "x86";
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "windowsRecommended"
+        );
+
+
+    const detect =
+        document.getElementById(
+            "systemDetect"
+        );
+
+
+    if(
+        architecture === "x64" &&
+        x64
+    ){
+
+        button.href =
+            x64.browser_download_url;
+
+        detect.textContent =
+            currentLanguage === "fa"
+                ? "✓ سیستم شما: Windows x64 — نسخه مناسب انتخاب شد."
+                : "✓ Your system: Windows x64 — recommended version selected.";
+
+    }else if(
+        architecture === "x86" &&
+        x86
+    ){
+
+        button.href =
+            x86.browser_download_url;
+
+        detect.textContent =
+            currentLanguage === "fa"
+                ? "✓ سیستم شما: Windows x86 — نسخه مناسب انتخاب شد."
+                : "✓ Your system: Windows x86 — recommended version selected.";
+
+    }else if(
+        architecture === "ARM64" &&
+        arm64
+    ){
+
+        button.href =
+            arm64.browser_download_url;
+
+        detect.textContent =
+            currentLanguage === "fa"
+                ? "✓ سیستم شما: Windows ARM64 — نسخه مناسب انتخاب شد."
+                : "✓ Your system: Windows ARM64 — recommended version selected.";
+
+    }else{
+
+        button.href =
+            RELEASE_PAGE;
+
+        detect.textContent =
+            currentLanguage === "fa"
+                ? "سیستم شناسایی شد؛ برای اطمینان نسخه مناسب را از Release انتخاب کنید."
+                : "System detected. Choose the appropriate version from the Release page.";
+
+    }
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadLatestRelease();
 
 </script>
 
