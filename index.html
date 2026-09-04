@@ -1,2544 +1,3600 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color" content="#080b12">
-    <meta name="description"
-          content="PelirFami - پخش‌کننده مدرن و حرفه‌ای ویدیو و صدا برای Android، Android TV و Windows">
-
-    <meta property="og:title" content="PelirFami | Media Player">
-    <meta property="og:description"
-          content="پخش‌کننده مدرن و حرفه‌ای ویدیو و صدا">
-    <meta property="og:type" content="website">
-
-    <title>PelirFami | Media Player</title>
-
-    <link rel="icon" href="assets/images/logo/logo.png">
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --bg: #080b12;
-            --bg2: #0d111a;
-            --card: rgba(20, 25, 37, 0.88);
-            --card2: #111722;
-            --text: #f5f7fb;
-            --muted: #9ca7b8;
-            --accent: #6c63ff;
-            --accent2: #8f88ff;
-            --green: #25d366;
-            --border: rgba(255,255,255,.08);
-            --shadow: 0 20px 60px rgba(0,0,0,.35);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family:
-                Tahoma,
-                Arial,
-                sans-serif;
-
-            background:
-                radial-gradient(
-                    circle at 20% 10%,
-                    rgba(108,99,255,.14),
-                    transparent 35%
-                ),
-                radial-gradient(
-                    circle at 80% 40%,
-                    rgba(37,211,102,.06),
-                    transparent 30%
-                ),
-                var(--bg);
-
-            color: var(--text);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button,
-        a {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        .container {
-            width: min(1180px, calc(100% - 32px));
-            margin: auto;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================== */
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            background: rgba(8,11,18,.78);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-inner {
-            min-height: 74px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 900;
-            font-size: 1.15rem;
-            white-space: nowrap;
-        }
-
-        .brand img {
-            width: 42px;
-            height: 42px;
-            object-fit: contain;
-            border-radius: 12px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            padding: 8px 11px;
-            border-radius: 10px;
-            font-size: .88rem;
-            transition: .2s;
-        }
-
-        .nav-links a:hover {
-            color: white;
-            background: rgba(255,255,255,.06);
-        }
-
-        .language-btn {
-            border: 1px solid var(--border);
-            background: rgba(255,255,255,.05);
-            color: white;
-            padding: 8px 13px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        /* =========================
-           HERO
-        ========================== */
-
-        .hero {
-            min-height: 720px;
-
-            display: flex;
-            align-items: center;
-
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-
-            width: 420px;
-            height: 420px;
-
-            background: rgba(108,99,255,.13);
-            filter: blur(100px);
-            border-radius: 50%;
-
-            top: 80px;
-            right: -120px;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-
-            display: grid;
-            grid-template-columns: 1.2fr .8fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-
-            padding: 8px 13px;
-
-            background: rgba(108,99,255,.12);
-            border: 1px solid rgba(108,99,255,.3);
-
-            border-radius: 999px;
-
-            color: #b8b4ff;
-            font-size: .85rem;
-
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.7rem, 7vw, 5.8rem);
-            line-height: 1.05;
-            margin-bottom: 22px;
-            letter-spacing: -3px;
-        }
-
-        .hero h1 span {
-            color: var(--accent2);
-        }
-
-        .hero p {
-            color: var(--muted);
-            font-size: 1.12rem;
-            max-width: 650px;
-            margin-bottom: 30px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-
-            min-height: 48px;
-            padding: 11px 19px;
-
-            border-radius: 13px;
-            border: 1px solid var(--border);
-
-            font-family: inherit;
-            font-weight: 700;
-
-            transition:
-                transform .2s,
-                background .2s,
-                border-color .2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-primary {
-            background: linear-gradient(
-                135deg,
-                var(--accent),
-                #5148e8
-            );
-            border-color: transparent;
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,.05);
-        }
-
-        .btn-green {
-            background: rgba(37,211,102,.1);
-            border-color: rgba(37,211,102,.3);
-            color: #7cffab;
-        }
-
-        .hero-logo {
-            display: flex;
-            justify-content: center;
-        }
-
-        .hero-logo-box {
-            width: min(360px, 75vw);
-            aspect-ratio: 1;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 40px;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(108,99,255,.22),
-                    transparent 65%
-                ),
-                rgba(255,255,255,.025);
-
-            border: 1px solid var(--border);
-
-            box-shadow:
-                0 0 100px rgba(108,99,255,.12),
-                var(--shadow);
-        }
-
-        .hero-logo-box img {
-            width: 65%;
-            filter: drop-shadow(
-                0 20px 30px rgba(0,0,0,.4)
-            );
-        }
-
-        /* =========================
-           SECTION
-        ========================== */
-
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 55px;
-        }
-
-        .section-title h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: var(--muted);
-        }
-
-        /* =========================
-           FEATURES
-        ========================== */
-
-        .features-grid {
-            display: grid;
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .feature {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 27px;
-
-            box-shadow: var(--shadow);
-
-            transition:
-                transform .25s,
-                border-color .25s;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-            border-color: rgba(108,99,255,.35);
-        }
-
-        .feature-icon {
-            width: 52px;
-            height: 52px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 15px;
-
-            background: rgba(108,99,255,.12);
-
-            font-size: 1.5rem;
-
-            margin-bottom: 17px;
-        }
-
-        .feature h3 {
-            margin-bottom: 8px;
-        }
-
-        .feature p {
-            color: var(--muted);
-            font-size: .92rem;
-        }
-
-        /* =========================
-           PLATFORM
-        ========================== */
-
-        .platform {
-            background: rgba(255,255,255,.018);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .platform-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-
-            background: var(--card);
-            border: 1px solid var(--border);
-
-            border-radius: 28px;
-            padding: 35px;
-
-            box-shadow: var(--shadow);
-        }
-
-        .platform-card h3 {
-            font-size: 2rem;
-            margin-bottom: 13px;
-        }
-
-        .platform-card p {
-            color: var(--muted);
-            margin-bottom: 22px;
-        }
-
-        .platform-list {
-            list-style: none;
-            display: grid;
-            gap: 9px;
-            margin-bottom: 25px;
-        }
-
-        .platform-list li {
-            color: #d9deea;
-        }
-
-        .platform-list li::before {
-            content: "✓";
-            color: #72e7a0;
-            font-weight: bold;
-            margin-left: 8px;
-        }
-
-        .platform-visual {
-            min-height: 280px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 22px;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    rgba(108,99,255,.2),
-                    transparent 65%
-                ),
-                #0a0e16;
-
-            border: 1px solid var(--border);
-
-            font-size: 7rem;
-        }
-
-        /* =========================
-           DOWNLOAD
-        ========================== */
-
-        .download-grid {
-            display: grid;
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .download-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 28px;
-
-            display: flex;
-            flex-direction: column;
-
-            box-shadow: var(--shadow);
-        }
-
-        .download-card .icon {
-            font-size: 2.7rem;
-            margin-bottom: 12px;
-        }
-
-        .download-card h3 {
-            margin-bottom: 7px;
-        }
-
-        .download-card p {
-            color: var(--muted);
-            font-size: .9rem;
-            margin-bottom: 20px;
-            flex: 1;
-        }
-
-        .download-card .btn {
-            width: 100%;
-        }
-
-        .status {
-            margin-top: 10px;
-            color: var(--muted);
-            font-size: .78rem;
-            min-height: 24px;
-        }
-
-        /* =========================
-           WINDOWS
-        ========================== */
-
-        .windows-box {
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(108,99,255,.1),
-                    rgba(255,255,255,.025)
-                );
-
-            border: 1px solid var(--border);
-            border-radius: 28px;
-
-            padding: 38px;
-
-            box-shadow: var(--shadow);
-        }
-
-        .windows-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .windows-header h2 {
-            font-size: 2rem;
-        }
-
-        .architecture {
-            display: grid;
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
-            gap: 15px;
-        }
-
-        .architecture-card {
-            background: rgba(0,0,0,.2);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 22px;
-        }
-
-        .architecture-card h3 {
-            margin-bottom: 5px;
-        }
-
-        .architecture-card p {
-            color: var(--muted);
-            font-size: .85rem;
-            margin-bottom: 15px;
-        }
-
-        /* =========================
-           GAME CENTER
-        ========================== */
-
-        .games-section {
-            position: relative;
-        }
-
-        .game-center {
-            position: relative;
-            overflow: hidden;
-
-            border-radius: 32px;
-
-            padding: 55px 35px;
-
-            background:
-                radial-gradient(
-                    circle at 80% 20%,
-                    rgba(108,99,255,.2),
-                    transparent 35%
-                ),
-                radial-gradient(
-                    circle at 20% 80%,
-                    rgba(37,211,102,.08),
-                    transparent 30%
-                ),
-                var(--card);
-
-            border: 1px solid var(--border);
-
-            box-shadow: var(--shadow);
-
-            text-align: center;
-        }
-
-        .game-center .game-icon {
-            font-size: 4rem;
-            margin-bottom: 10px;
-        }
-
-        .game-center h2 {
-            font-size: clamp(2rem, 5vw, 3.3rem);
-            margin-bottom: 10px;
-        }
-
-        .game-center p {
-            color: var(--muted);
-            max-width: 650px;
-            margin: 0 auto 25px;
-        }
-
-        .game-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        /* =========================
-           SCREENSHOTS
-        ========================== */
-
-        .screenshots {
-            display: grid;
-            grid-template-columns:
-                repeat(4, minmax(0, 1fr));
-            gap: 16px;
-        }
-
-        .screenshot {
-            border-radius: 20px;
-            overflow: hidden;
-
-            border: 1px solid var(--border);
-
-            background: #10151f;
-
-            aspect-ratio: 9 / 16;
-        }
-
-        .screenshot img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-
-            transition: transform .35s;
-        }
-
-        .screenshot:hover img {
-            transform: scale(1.04);
-        }
-
-        /* =========================
-           ABOUT
-        ========================== */
-
-        .about-box {
-            max-width: 850px;
-            margin: auto;
-
-            text-align: center;
-
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-
-            padding: 45px;
-
-            box-shadow: var(--shadow);
-        }
-
-        .about-box p {
-            color: var(--muted);
-            margin-bottom: 20px;
-        }
-
-        /* =========================
-           CREATOR
-        ========================== */
-
-        .creator {
-            text-align: center;
-        }
-
-        .creator-box {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-
-            padding: 30px 45px;
-
-            background: var(--card);
-            border: 1px solid var(--border);
-
-            border-radius: 24px;
-        }
-
-        .creator-box strong {
-            font-size: 1.3rem;
-        }
-
-        .instagram {
-            color: #ff75b5;
-        }
-
-        /* =========================
-           FOOTER
-        ========================== */
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 35px 0;
-            color: var(--muted);
-        }
-
-        .footer-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        /* =========================
-           LOADING
-        ========================== */
-
-        .loading {
-            opacity: .65;
-            pointer-events: none;
-        }
-
-        /* =========================
-           RTL / LTR
-        ========================== */
-
-        html[dir="ltr"] .platform-list li::before {
-            margin-left: 0;
-            margin-right: 8px;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================== */
-
-        @media (max-width: 900px) {
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-logo {
-                order: -1;
-            }
-
-            .hero-logo-box {
-                width: 230px;
-            }
-
-            .features-grid,
-            .download-grid {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-            }
-
-            .platform-card {
-                grid-template-columns: 1fr;
-            }
-
-            .architecture {
-                grid-template-columns: 1fr;
-            }
-
-            .screenshots {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-            }
-
-            .nav-inner {
-                flex-direction: column;
-                padding: 12px 0;
-            }
-
-            .nav-links {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 550px) {
-
-            .container {
-                width: min(100% - 22px, 1180px);
-            }
-
-            section {
-                padding: 70px 0;
-            }
-
-            .hero {
-                min-height: auto;
-                padding: 80px 0;
-            }
-
-            .hero h1 {
-                letter-spacing: -1.5px;
-            }
-
-            .features-grid,
-            .download-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .screenshots {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-                gap: 10px;
-            }
-
-            .platform-card,
-            .windows-box,
-            .about-box,
-            .game-center {
-                padding: 25px 18px;
-            }
-
-            .windows-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .nav-links a {
-                font-size: .76rem;
-                padding: 7px 6px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#080b12">
+<meta name="description" content="PelirFami - Modern media player">
+
+<title>PelirFami</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#080b12;
+    --bg2:#0d111b;
+    --panel:#111722;
+    --panel2:#151c29;
+    --border:rgba(255,255,255,.09);
+
+    --text:#f5f7fb;
+    --muted:#9ca7b8;
+
+    --accent:#7c5cff;
+    --accent2:#00d4ff;
+    --green:#35d07f;
+    --red:#ff5577;
+
+    --radius:22px;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(circle at 15% 10%,rgba(124,92,255,.16),transparent 28%),
+        radial-gradient(circle at 85% 15%,rgba(0,212,255,.10),transparent 25%),
+        var(--bg);
+
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body.rtl{
+    direction:rtl;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font:inherit;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+/* =========================
+   NAV
+========================= */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:rgba(8,11,18,.78);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+    min-height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    font-size:20px;
+    font-weight:900;
+}
+
+.logo img{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.nav-links a{
+    padding:10px 13px;
+    border-radius:12px;
+    color:var(--muted);
+    transition:.2s;
+    font-size:14px;
+}
+
+.nav-links a:hover{
+    color:white;
+    background:rgba(255,255,255,.06);
+}
+
+/* =========================
+   LANGUAGE
+========================= */
+
+.language-wrap{
+    position:relative;
+}
+
+.language-btn{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.05);
+    color:white;
+
+    padding:10px 13px;
+    border-radius:13px;
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.language-btn:hover{
+    background:rgba(255,255,255,.09);
+}
+
+.language-menu{
+    position:absolute;
+    top:calc(100% + 9px);
+    inset-inline-end:0;
+
+    width:230px;
+    max-height:360px;
+    overflow-y:auto;
+
+    background:#101620;
+    border:1px solid var(--border);
+    border-radius:16px;
+
+    padding:7px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.45);
+
+    display:none;
+}
+
+.language-menu.show{
+    display:block;
+}
+
+.language-option{
+    width:100%;
+
+    border:0;
+    background:transparent;
+    color:#dce2eb;
+
+    padding:10px 11px;
+    border-radius:11px;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    cursor:pointer;
+    text-align:start;
+}
+
+.language-option:hover{
+    background:rgba(255,255,255,.07);
+}
+
+.language-option.active{
+    background:rgba(124,92,255,.17);
+    color:white;
+}
+
+.language-flag{
+    width:24px;
+    text-align:center;
+}
+
+.language-name{
+    flex:1;
+}
+
+.language-native{
+    color:#758093;
+    font-size:11px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:100px 0 80px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:50px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 13px;
+    border-radius:999px;
+
+    background:rgba(124,92,255,.12);
+    border:1px solid rgba(124,92,255,.25);
+
+    color:#cfc5ff;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(42px,6vw,76px);
+    line-height:1.02;
+    letter-spacing:-2px;
+    margin-bottom:22px;
+}
+
+.hero h1 span{
+    background:linear-gradient(
+        90deg,
+        var(--accent),
+        var(--accent2)
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:650px;
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.9;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    gap:9px;
+
+    padding:13px 18px;
+    border-radius:14px;
+
+    border:1px solid var(--border);
+
+    cursor:pointer;
+    transition:.2s;
+
+    font-weight:700;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:linear-gradient(
+        135deg,
+        var(--accent),
+        #5d82ff
+    );
+    border-color:transparent;
+}
+
+.btn-secondary{
+    background:rgba(255,255,255,.05);
+}
+
+.hero-card{
+    position:relative;
+
+    min-height:390px;
+
+    border:1px solid var(--border);
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(124,92,255,.16),
+            rgba(0,212,255,.06)
+        ),
+        var(--panel);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+}
+
+.hero-card::before{
+    content:"";
+
+    width:230px;
+    height:230px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(124,92,255,.35),
+            transparent 68%
+        );
+
+    position:absolute;
+}
+
+.hero-logo{
+    position:relative;
+    width:150px;
+    height:150px;
+
+    object-fit:contain;
+
+    border-radius:35px;
+
+    box-shadow:
+        0 0 70px rgba(124,92,255,.35);
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:80px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:17px;
+}
+
+.feature{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+
+    padding:25px;
+
+    transition:.25s;
+}
+
+.feature:hover{
+    transform:translateY(-4px);
+    border-color:rgba(124,92,255,.35);
+}
+
+.feature-icon{
+    width:50px;
+    height:50px;
+
+    display:grid;
+    place-items:center;
+
+    background:rgba(124,92,255,.12);
+    border-radius:15px;
+
+    font-size:23px;
+    margin-bottom:18px;
+}
+
+.feature h3{
+    margin-bottom:9px;
+}
+
+.feature p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+/* =========================
+   PLATFORMS
+========================= */
+
+.platforms{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.platform{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+
+    padding:28px;
+}
+
+.platform-icon{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.platform h3{
+    margin-bottom:9px;
+}
+
+.platform p{
+    color:var(--muted);
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    padding:7px 11px;
+
+    border-radius:999px;
+
+    background:rgba(53,208,127,.09);
+    color:var(--green);
+
+    font-size:12px;
+}
+
+/* =========================
+   SCREENSHOTS
+========================= */
+
+.screenshots{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.screenshot{
+    aspect-ratio:16/10;
+
+    border-radius:18px;
+    overflow:hidden;
+
+    border:1px solid var(--border);
+    background:var(--panel);
+}
+
+.screenshot img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    display:block;
+
+    transition:.35s;
+}
+
+.screenshot:hover img{
+    transform:scale(1.04);
+}
+
+/* =========================
+   GAME CENTER
+========================= */
+
+.game-center{
+    padding:40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,92,255,.14),
+            rgba(0,212,255,.07)
+        );
+
+    border:1px solid var(--border);
+    border-radius:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:30px;
+}
+
+.game-center h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.game-center p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+.download-box{
+    background:var(--panel);
+    border:1px solid var(--border);
+
+    border-radius:28px;
+    padding:35px;
+
+    text-align:center;
+}
+
+.download-box h2{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.download-box p{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid var(--border);
+    padding:35px 0;
+    margin-top:30px;
+}
+
+.footer-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+
+    color:var(--muted);
+    font-size:13px;
+}
+
+.footer-links{
+    display:flex;
+    gap:15px;
+}
+
+.footer-links a:hover{
+    color:white;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+.mobile-menu{
+    display:none;
+
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.05);
+    color:white;
+
+    width:44px;
+    height:44px;
+
+    border-radius:13px;
+    cursor:pointer;
+
+    font-size:20px;
+}
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-card{
+        min-height:300px;
+    }
+
+    .features{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .platforms{
+        grid-template-columns:1fr;
+    }
+
+    .screenshots{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .game-center{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+@media(max-width:600px){
+
+    .nav-inner{
+        min-height:64px;
+    }
+
+    .logo span{
+        display:none;
+    }
+
+    .hero{
+        padding:65px 0 45px;
+    }
+
+    .hero h1{
+        font-size:44px;
+        letter-spacing:-1px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    section{
+        padding:60px 0;
+    }
+
+    .section-title h2{
+        font-size:30px;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .screenshots{
+        grid-template-columns:1fr;
+    }
+
+    .game-center{
+        padding:28px;
+    }
+
+    .download-box{
+        padding:27px 20px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+
+/* =========================
+   MOBILE NAV MENU
+========================= */
+
+.mobile-nav{
+    display:none;
+
+    padding:10px 0 15px;
+
+    border-top:1px solid var(--border);
+}
+
+.mobile-nav.show{
+    display:block;
+}
+
+.mobile-nav a{
+    display:block;
+
+    padding:13px 5px;
+
+    color:var(--muted);
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.mobile-nav a:hover{
+    color:white;
+}
+
+/* =========================
+   RTL FIXES
+========================= */
+
+html[dir="rtl"] .hero h1{
+    letter-spacing:0;
+}
+
+html[dir="rtl"] .language-menu{
+    inset-inline-end:0;
+}
+
+html[dir="rtl"] .btn{
+    direction:rtl;
+}
+</style>
 </head>
 
 <body>
 
 <!-- =========================
-     NAVIGATION
-========================== -->
+     NAVBAR
+========================= -->
 
-<nav>
-    <div class="container nav-inner">
+<header class="navbar">
 
-        <a href="index.html" class="brand">
-            <img src="assets/images/logo/logo.png" alt="PelirFami">
-            <span>PelirFami</span>
-        </a>
+<div class="container">
 
-        <div class="nav-links">
+<div class="nav-inner">
 
-            <a href="#features"
-               data-fa="ویژگی‌ها"
-               data-en="Features">
-                ویژگی‌ها
-            </a>
+<a href="index.html" class="logo">
+    <img src="assets/images/logo/logo.png" alt="PelirFami">
+    <span>PelirFami</span>
+</a>
 
-            <a href="#androidTv"
-               data-fa="Android TV"
-               data-en="Android TV">
-                Android TV
-            </a>
+<nav class="nav-links">
 
-            <a href="#windows"
-               data-fa="Windows"
-               data-en="Windows">
-                Windows
-            </a>
+<a href="#features" data-i18n="nav.features">
+    Features
+</a>
 
-            <a href="#screenshots"
-               data-fa="تصاویر"
-               data-en="Screenshots">
-                تصاویر
-            </a>
+<a href="#platforms" data-i18n="nav.platforms">
+    Platforms
+</a>
 
-            <a href="#download"
-               data-fa="دانلود"
-               data-en="Download">
-                دانلود
-            </a>
+<a href="games.html" data-i18n="nav.games">
+    🎮 Games
+</a>
 
-            <a href="games.html"
-               data-fa="🎮 بازی‌ها"
-               data-en="🎮 Games">
-                🎮 بازی‌ها
-            </a>
+<a href="#download" data-i18n="nav.download">
+    Download
+</a>
 
-            <button
-                id="languageBtn"
-                class="language-btn"
-                type="button">
-                EN
-            </button>
+<a href="#about" data-i18n="nav.about">
+    About
+</a>
 
-        </div>
-    </div>
 </nav>
 
+<div style="display:flex;align-items:center;gap:8px;">
 
-<!-- =========================
-     HERO
-========================== -->
+<div class="language-wrap">
 
-<header class="hero">
+<button
+    class="language-btn"
+    id="languageButton"
+    type="button"
+>
+    🌐
+    <span id="currentLanguage">English</span>
+    ▾
+</button>
 
-    <div class="container hero-content">
+<div
+    class="language-menu"
+    id="languageMenu"
+>
+</div>
 
-        <div>
+</div>
 
-            <div class="badge"
-                 data-fa="🎬 پخش‌کننده مدرن و حرفه‌ای"
-                 data-en="🎬 Modern Professional Media Player">
-                🎬 پخش‌کننده مدرن و حرفه‌ای
-            </div>
+<button
+    class="mobile-menu"
+    id="mobileMenuButton"
+    type="button"
+    aria-label="Menu"
+>
+    ☰
+</button>
 
-            <h1>
-                <span>Pelir</span>Fami
-            </h1>
+</div>
 
-            <p
-                data-fa="یک پخش‌کننده قدرتمند برای ویدیو و صدا؛ ساخته شده برای Android، Android TV و Windows."
-                data-en="A powerful video and audio player built for Android, Android TV and Windows.">
-                یک پخش‌کننده قدرتمند برای ویدیو و صدا؛
-                ساخته شده برای Android، Android TV و Windows.
-            </p>
+</div>
 
-            <div class="hero-buttons">
+<div
+    class="mobile-nav"
+    id="mobileNav"
+>
 
-                <a
-                    id="heroAndroidButton"
-                    class="btn btn-primary"
-                    href="coming-soon.html?product=android">
+<a href="#features" data-i18n="nav.features">
+    Features
+</a>
 
-                    📱
-                    <span
-                        data-fa="دانلود Android"
-                        data-en="Download Android">
-                        دانلود Android
-                    </span>
+<a href="#platforms" data-i18n="nav.platforms">
+    Platforms
+</a>
 
-                </a>
+<a href="games.html" data-i18n="nav.games">
+    🎮 Games
+</a>
 
-                <a
-                    id="heroTvButton"
-                    class="btn btn-secondary"
-                    href="#androidTv">
+<a href="#download" data-i18n="nav.download">
+    Download
+</a>
 
-                    📺
-                    <span
-                        data-fa="Android TV"
-                        data-en="Android TV">
-                        Android TV
-                    </span>
+<a href="#about" data-i18n="nav.about">
+    About
+</a>
 
-                </a>
+</div>
 
-                <a
-                    href="#windows"
-                    class="btn btn-secondary">
-
-                    🖥️
-                    <span
-                        data-fa="نسخه Windows"
-                        data-en="Windows Version">
-                        نسخه Windows
-                    </span>
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="hero-logo">
-
-            <div class="hero-logo-box">
-
-                <img
-                    src="assets/images/logo/logo.png"
-                    alt="PelirFami Logo">
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </header>
 
 
 <!-- =========================
+     HERO
+========================= -->
+
+<main>
+
+<section class="hero">
+
+<div class="container">
+
+<div class="hero-grid">
+
+<div>
+
+<div class="badge">
+    ✨
+    <span data-i18n="hero.badge">
+        Modern media player
+    </span>
+</div>
+
+<h1>
+    <span data-i18n="hero.title1">
+        Your media.
+    </span>
+
+    <br>
+
+    <span data-i18n="hero.title2">
+        Your way.
+    </span>
+</h1>
+
+<p data-i18n="hero.description">
+    PelirFami is a modern and powerful media player
+    designed for a smooth and enjoyable video and audio
+    experience across multiple platforms.
+</p>
+
+<div class="hero-buttons">
+
+<a
+    href="#download"
+    class="btn btn-primary"
+    data-i18n="hero.download"
+>
+    ⬇ Download
+</a>
+
+<a
+    href="games.html"
+    class="btn btn-secondary"
+    data-i18n="hero.games"
+>
+    🎮 Game Center
+</a>
+
+</div>
+
+</div>
+
+
+<div class="hero-card">
+
+<img
+    src="assets/images/logo/logo.png"
+    alt="PelirFami"
+    class="hero-logo"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
      FEATURES
-========================== -->
+========================= -->
 
 <section id="features">
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-title">
+<div class="section-title">
 
-            <h2
-                data-fa="ویژگی‌های PelirFami"
-                data-en="PelirFami Features">
-                ویژگی‌های PelirFami
-            </h2>
+<h2 data-i18n="features.title">
+    Everything you need
+</h2>
 
-            <p
-                data-fa="همه چیز برای یک تجربه پخش بهتر"
-                data-en="Everything you need for a better playback experience">
-                همه چیز برای یک تجربه پخش بهتر
-            </p>
+<p data-i18n="features.subtitle">
+    Simple, powerful and modern.
+</p>
 
-        </div>
+</div>
 
 
-        <div class="features-grid">
+<div class="features">
 
-            <div class="feature">
+<div class="feature">
 
-                <div class="feature-icon">▶️</div>
+<div class="feature-icon">▶</div>
 
-                <h3
-                    data-fa="پخش قدرتمند"
-                    data-en="Powerful Playback">
-                    پخش قدرتمند
-                </h3>
+<h3 data-i18n="features.f1.title">
+    Powerful Playback
+</h3>
 
-                <p
-                    data-fa="پشتیبانی از فرمت‌های مختلف ویدیو و صدا برای تجربه‌ای روان."
-                    data-en="Support for different video and audio formats for smooth playback.">
-                    پشتیبانی از فرمت‌های مختلف ویدیو و صدا
-                    برای تجربه‌ای روان.
-                </p>
+<p data-i18n="features.f1.text">
+    Smooth playback for popular video and audio formats.
+</p>
 
-            </div>
+</div>
 
 
-            <div class="feature">
+<div class="feature">
 
-                <div class="feature-icon">🔗</div>
+<div class="feature-icon">🎚️</div>
 
-                <h3
-                    data-fa="پخش مستقیم لینک"
-                    data-en="Direct URL Playback">
-                    پخش مستقیم لینک
-                </h3>
+<h3 data-i18n="features.f2.title">
+    Smart Controls
+</h3>
 
-                <p
-                    data-fa="لینک ویدیو را وارد کنید و مستقیماً آن را پخش کنید."
-                    data-en="Enter a video URL and play it directly.">
-                    لینک ویدیو را وارد کنید و مستقیماً آن را پخش کنید.
-                </p>
+<p data-i18n="features.f2.text">
+    Gestures, playback speed, subtitles and aspect ratio controls.
+</p>
 
-            </div>
+</div>
 
 
-            <div class="feature">
+<div class="feature">
 
-                <div class="feature-icon">📝</div>
+<div class="feature-icon">🔒</div>
 
-                <h3
-                    data-fa="زیرنویس"
-                    data-en="Subtitles">
-                    زیرنویس
-                </h3>
+<h3 data-i18n="features.f3.title">
+    Privacy
+</h3>
 
-                <p
-                    data-fa="پشتیبانی از زیرنویس برای تماشای راحت‌تر فیلم‌ها."
-                    data-en="Subtitle support for a better movie experience.">
-                    پشتیبانی از زیرنویس برای تماشای راحت‌تر فیلم‌ها.
-                </p>
+<p data-i18n="features.f3.text">
+    Your media experience stays under your control.
+</p>
 
-            </div>
+</div>
 
 
-            <div class="feature">
+<div class="feature">
 
-                <div class="feature-icon">⚡</div>
+<div class="feature-icon">📺</div>
 
-                <h3
-                    data-fa="سرعت پخش"
-                    data-en="Playback Speed">
-                    سرعت پخش
-                </h3>
+<h3 data-i18n="features.f4.title">
+    TV Ready
+</h3>
 
-                <p
-                    data-fa="سرعت پخش را مطابق نیاز خود تنظیم کنید."
-                    data-en="Adjust playback speed according to your needs.">
-                    سرعت پخش را مطابق نیاز خود تنظیم کنید.
-                </p>
+<p data-i18n="features.f4.text">
+    Designed to work comfortably on Android TV devices.
+</p>
 
-            </div>
+</div>
 
 
-            <div class="feature">
+<div class="feature">
 
-                <div class="feature-icon">🔒</div>
+<div class="feature-icon">💻</div>
 
-                <h3
-                    data-fa="قفل صفحه"
-                    data-en="Screen Lock">
-                    قفل صفحه
-                </h3>
+<h3 data-i18n="features.f5.title">
+    Desktop
+</h3>
 
-                <p
-                    data-fa="کنترل‌های ناخواسته را هنگام تماشای ویدیو متوقف کنید."
-                    data-en="Prevent accidental touches while watching videos.">
-                    کنترل‌های ناخواسته را هنگام تماشای ویدیو متوقف کنید.
-                </p>
+<p data-i18n="features.f5.text">
+    Enjoy PelirFami on Windows desktop.
+</p>
 
-            </div>
+</div>
 
 
-            <div class="feature">
+<div class="feature">
 
-                <div class="feature-icon">🖼️</div>
+<div class="feature-icon">⚡</div>
 
-                <h3
-                    data-fa="حالت‌های نمایش"
-                    data-en="Display Modes">
-                    حالت‌های نمایش
-                </h3>
+<h3 data-i18n="features.f6.title">
+    Fast & Lightweight
+</h3>
 
-                <p
-                    data-fa="ویدیو را با نسبت تصویر مناسب و تجربه بهتر مشاهده کنید."
-                    data-en="Watch videos with the right aspect ratio and better experience.">
-                    ویدیو را با نسبت تصویر مناسب و تجربه بهتر مشاهده کنید.
-                </p>
+<p data-i18n="features.f6.text">
+    A clean interface without unnecessary complexity.
+</p>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </section>
 
 
 <!-- =========================
-     ANDROID TV
-========================== -->
+     PLATFORMS
+========================= -->
 
-<section id="androidTv" class="platform">
+<section id="platforms">
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-title">
+<div class="section-title">
 
-            <h2
-                data-fa="PelirFami برای Android TV"
-                data-en="PelirFami for Android TV">
-                PelirFami برای Android TV
-            </h2>
+<h2 data-i18n="platforms.title">
+    Available everywhere
+</h2>
 
-            <p
-                data-fa="تجربه‌ای مناسب صفحه‌نمایش بزرگ"
-                data-en="A better experience for the big screen">
-                تجربه‌ای مناسب صفحه‌نمایش بزرگ
-            </p>
+<p data-i18n="platforms.subtitle">
+    Choose your platform.
+</p>
 
-        </div>
+</div>
 
 
-        <div class="platform-card">
+<div class="platforms">
 
-            <div>
+<div class="platform">
 
-                <h3>📺 Android TV</h3>
+<div class="platform-icon">
+    📱
+</div>
 
-                <p
-                    data-fa="نسخه مخصوص تلویزیون برای استفاده راحت با کنترل از راه دور."
-                    data-en="A TV-optimized version designed for easy remote control use.">
-                    نسخه مخصوص تلویزیون برای استفاده راحت
-                    با کنترل از راه دور.
-                </p>
+<h3>Android</h3>
 
+<p data-i18n="platforms.android">
+    PelirFami for Android phones and tablets.
+</p>
 
-                <ul class="platform-list">
+<span class="status" id="androidStatus">
+    ● <span data-i18n="platforms.checking">Checking...</span>
+</span>
 
-                    <li
-                        data-fa="رابط کاربری مناسب تلویزیون"
-                        data-en="TV-friendly interface">
-                        رابط کاربری مناسب تلویزیون
-                    </li>
+<br><br>
 
-                    <li
-                        data-fa="کنترل آسان با Remote"
-                        data-en="Easy remote control">
-                        کنترل آسان با Remote
-                    </li>
+<a
+    id="androidDownload"
+    href="#"
+    class="btn btn-primary"
+    data-product="android"
+>
+    ⬇
+    <span data-i18n="platforms.download">
+        Download
+    </span>
+</a>
 
-                    <li
-                        data-fa="پخش ویدیو و صدا"
-                        data-en="Video and audio playback">
-                        پخش ویدیو و صدا
-                    </li>
+</div>
 
-                    <li
-                        data-fa="طراحی مناسب صفحه بزرگ"
-                        data-en="Large-screen optimized design">
-                        طراحی مناسب صفحه بزرگ
-                    </li>
 
-                </ul>
+<div class="platform">
 
+<div class="platform-icon">
+    📺
+</div>
 
-                <a
-                    id="androidTvDownload"
-                    class="btn btn-primary"
-                    href="coming-soon.html?product=android-tv">
+<h3>Android TV</h3>
 
-                    📺
-                    <span
-                        data-fa="دانلود Android TV"
-                        data-en="Download Android TV">
-                        دانلود Android TV
-                    </span>
+<p data-i18n="platforms.tv">
+    A TV-friendly version for Android TV devices.
+</p>
 
-                </a>
+<span class="status" id="tvStatus">
+    ● <span data-i18n="platforms.checking">Checking...</span>
+</span>
 
-                <div
-                    id="tvStatus"
-                    class="status">
-                    در حال بررسی آخرین نسخه...
-                </div>
+<br><br>
 
-            </div>
+<a
+    id="tvDownload"
+    href="#"
+    class="btn btn-primary"
+    data-product="android-tv"
+>
+    ⬇
+    <span data-i18n="platforms.download">
+        Download
+    </span>
+</a>
 
+</div>
 
-            <div class="platform-visual">
-                📺
-            </div>
 
-        </div>
+<div class="platform">
 
-    </div>
+<div class="platform-icon">
+    💻
+</div>
 
-</section>
+<h3>Windows</h3>
 
+<p data-i18n="platforms.windows">
+    Windows versions for different computer architectures.
+</p>
 
-<!-- =========================
-     WINDOWS
-========================== -->
-
-<section id="windows">
-
-    <div class="container">
-
-        <div class="windows-box">
-
-            <div class="windows-header">
-
-                <div>
-
-                    <h2
-                        data-fa="نسخه Windows"
-                        data-en="Windows Version">
-                        نسخه Windows
-                    </h2>
-
-                    <p
-                        style="color:var(--muted);"
-                        data-fa="نسخه مناسب سیستم خود را انتخاب کنید."
-                        data-en="Choose the version suitable for your system.">
-                        نسخه مناسب سیستم خود را انتخاب کنید.
-                    </p>
-
-                </div>
-
-
-                <div
-                    id="systemDetect"
-                    class="badge"
-                    style="margin:0;">
-                    در حال تشخیص سیستم...
-                </div>
-
-            </div>
-
-
-            <div class="architecture">
-
-                <div class="architecture-card">
-
-                    <h3>Windows x64</h3>
-
-                    <p
-                        data-fa="مناسب بیشتر کامپیوترهای جدید"
-                        data-en="For most modern PCs">
-                        مناسب بیشتر کامپیوترهای جدید
-                    </p>
-
-                    <a
-                        id="windowsX64"
-                        class="btn btn-primary"
-                        href="coming-soon.html?product=windows-x64">
-
-                        🖥️
-                        <span
-                            data-fa="دانلود x64"
-                            data-en="Download x64">
-                            دانلود x64
-                        </span>
-
-                    </a>
-
-                </div>
-
-
-                <div class="architecture-card">
-
-                    <h3>Windows x86</h3>
-
-                    <p
-                        data-fa="مناسب سیستم‌های 32 بیتی"
-                        data-en="For 32-bit systems">
-                        مناسب سیستم‌های 32 بیتی
-                    </p>
-
-                    <a
-                        id="windowsX86"
-                        class="btn btn-secondary"
-                        href="coming-soon.html?product=windows-x86">
-
-                        🖥️
-                        <span
-                            data-fa="دانلود x86"
-                            data-en="Download x86">
-                            دانلود x86
-                        </span>
-
-                    </a>
-
-                </div>
-
-
-                <div class="architecture-card">
-
-                    <h3>Windows ARM64</h3>
-
-                    <p
-                        data-fa="مناسب دستگاه‌های ARM"
-                        data-en="For ARM devices">
-                        مناسب دستگاه‌های ARM
-                    </p>
-
-                    <a
-                        id="windowsArm64"
-                        class="btn btn-secondary"
-                        href="coming-soon.html?product=windows-arm64">
-
-                        💻
-                        <span
-                            data-fa="دانلود ARM64"
-                            data-en="Download ARM64">
-                            دانلود ARM64
-                        </span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div style="margin-top:25px;text-align:center;">
-
-                <a
-                    id="windowsRecommended"
-                    class="btn btn-green"
-                    href="coming-soon.html?product=windows-x64">
-
-                    ⭐
-                    <span
-                        data-fa="دانلود نسخه مناسب سیستم من"
-                        data-en="Download Recommended Version">
-                        دانلود نسخه مناسب سیستم من
-                    </span>
-
-                </a>
-
-                <a
-                    href="https://github.com/famipelir/PelirFami/releases/latest"
-                    target="_blank"
-                    rel="noopener"
-                    class="btn btn-secondary">
-
-                    📦
-                    <span
-                        data-fa="مشاهده همه نسخه‌ها"
-                        data-en="View All Releases">
-                        مشاهده همه نسخه‌ها
-                    </span>
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
+<span class="status" id="windowsStatus">
+    ● <span data-i18n="platforms.checking">
+        Checking...
+    </span>
+</span>
+
+<br><br>
+
+<a
+    id="windowsDownload"
+    href="#"
+    class="btn btn-primary"
+    data-product="windows"
+>
+    ⬇
+    <span data-i18n="platforms.download">
+        Download
+    </span>
+</a>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- =========================
      SCREENSHOTS
-========================== -->
+========================= -->
 
-<section id="screenshots" class="platform">
+<section id="screenshots">
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-title">
+<div class="section-title">
 
-            <h2
-                data-fa="تصاویر برنامه"
-                data-en="Screenshots">
-                تصاویر برنامه
-            </h2>
+<h2 data-i18n="screenshots.title">
+    See PelirFami
+</h2>
 
-            <p
-                data-fa="نگاهی به محیط PelirFami"
-                data-en="Take a look at PelirFami">
-                نگاهی به محیط PelirFami
-            </p>
+<p data-i18n="screenshots.subtitle">
+    A clean and modern experience.
+</p>
 
-        </div>
+</div>
 
 
-        <div class="screenshots">
+<div class="screenshots">
 
-            <div class="screenshot">
-                <img
-                    src="assets/images/screenshots/screen1.jpg"
-                    alt="PelirFami Screenshot 1"
-                    loading="lazy">
-            </div>
+<div class="screenshot">
+<img
+    src="assets/images/screenshots/screen1.jpg"
+    alt="PelirFami screenshot"
+    loading="lazy"
+>
+</div>
 
-            <div class="screenshot">
-                <img
-                    src="assets/images/screenshots/screen2.jpg"
-                    alt="PelirFami Screenshot 2"
-                    loading="lazy">
-            </div>
+<div class="screenshot">
+<img
+    src="assets/images/screenshots/screen2.jpg"
+    alt="PelirFami screenshot"
+    loading="lazy"
+>
+</div>
 
-            <div class="screenshot">
-                <img
-                    src="assets/images/screenshots/screen3.jpg"
-                    alt="PelirFami Screenshot 3"
-                    loading="lazy">
-            </div>
+<div class="screenshot">
+<img
+    src="assets/images/screenshots/screen3.jpg"
+    alt="PelirFami screenshot"
+    loading="lazy"
+>
+</div>
 
-            <div class="screenshot">
-                <img
-                    src="assets/images/screenshots/screen4.jpg"
-                    alt="PelirFami Screenshot 4"
-                    loading="lazy">
-            </div>
+<div class="screenshot">
+<img
+    src="assets/images/screenshots/screen4.jpg"
+    alt="PelirFami screenshot"
+    loading="lazy"
+>
+</div>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </section>
 
 
 <!-- =========================
      GAME CENTER
-========================== -->
+========================= -->
 
-<section id="games" class="games-section">
+<section>
 
-    <div class="container">
+<div class="container">
 
-        <div class="game-center">
+<div class="game-center">
 
-            <div class="game-icon">
-                🎮
-            </div>
+<div>
 
-            <h2
-                data-fa="Game Center"
-                data-en="Game Center">
-                Game Center
-            </h2>
+<h2 data-i18n="games.title">
+    🎮 Game Center
+</h2>
 
-            <p
-                data-fa="تا وقتی نسخه موردنظر شما آماده شود، حوصله‌تان سر نرود! چند بازی مختلف برای موبایل و کامپیوتر آماده کرده‌ایم."
-                data-en="Don't get bored while waiting for your version! We have several games for mobile and computer.">
-                تا وقتی نسخه موردنظر شما آماده شود،
-                حوصله‌تان سر نرود!
-                چند بازی مختلف برای موبایل و کامپیوتر آماده کرده‌ایم.
-            </p>
+<p data-i18n="games.description">
+    While you wait for new versions of PelirFami,
+    enjoy several games directly in your browser.
+</p>
 
-            <div class="game-buttons">
+</div>
 
-                <a
-                    href="games.html"
-                    class="btn btn-primary">
+<div>
 
-                    🎮
-                    <span
-                        data-fa="ورود به Game Center"
-                        data-en="Open Game Center">
-                        ورود به Game Center
-                    </span>
+<a
+    href="games.html"
+    class="btn btn-primary"
+    data-i18n="games.button"
+>
+    Play Games
+</a>
 
-                </a>
+</div>
 
-                <a
-                    href="games.html#mobile"
-                    class="btn btn-secondary">
+</div>
 
-                    📱
-                    <span
-                        data-fa="بازی‌های موبایل"
-                        data-en="Mobile Games">
-                        بازی‌های موبایل
-                    </span>
-
-                </a>
-
-                <a
-                    href="games.html#computer"
-                    class="btn btn-secondary">
-
-                    🖥️
-                    <span
-                        data-fa="بازی‌های کامپیوتر"
-                        data-en="Computer Games">
-                        بازی‌های کامپیوتر
-                    </span>
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 <!-- =========================
      DOWNLOAD
-========================== -->
+========================= -->
 
-<section id="download" class="platform">
+<section id="download">
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-title">
+<div class="download-box">
 
-            <h2
-                data-fa="دانلود PelirFami"
-                data-en="Download PelirFami">
-                دانلود PelirFami
-            </h2>
+<h2 data-i18n="download.title">
+    Download PelirFami
+</h2>
 
-            <p
-                data-fa="نسخه موردنظر خود را انتخاب کنید."
-                data-en="Choose your preferred version.">
-                نسخه موردنظر خود را انتخاب کنید.
-            </p>
+<p data-i18n="download.description">
+    The website automatically checks the latest
+    available release for your platform.
+</p>
 
-        </div>
+<div class="hero-buttons" style="justify-content:center;">
 
+<a
+    id="mainDownload"
+    href="#platforms"
+    class="btn btn-primary"
+    data-product="auto"
+    data-i18n="download.button"
+>
+    ⬇ Download
+</a>
 
-        <div class="download-grid">
+<a
+    href="https://github.com/famipelir/PelirFami/releases/latest"
+    target="_blank"
+    rel="noopener"
+    class="btn btn-secondary"
+    data-i18n="download.releases"
+>
+    GitHub Releases
+</a>
 
-            <!-- Android -->
+</div>
 
-            <div class="download-card">
+</div>
 
-                <div class="icon">📱</div>
-
-                <h3>Android</h3>
-
-                <p
-                    data-fa="نسخه مخصوص گوشی و تبلت‌های اندرویدی."
-                    data-en="Version for Android phones and tablets.">
-                    نسخه مخصوص گوشی و تبلت‌های اندرویدی.
-                </p>
-
-                <a
-                    id="androidDownload"
-                    class="btn btn-primary"
-                    href="coming-soon.html?product=android">
-
-                    📥
-                    <span
-                        data-fa="دانلود Android"
-                        data-en="Download Android">
-                        دانلود Android
-                    </span>
-
-                </a>
-
-                <div
-                    id="androidStatus"
-                    class="status">
-                    در حال بررسی...
-                </div>
-
-            </div>
-
-
-            <!-- Android TV -->
-
-            <div class="download-card">
-
-                <div class="icon">📺</div>
-
-                <h3>Android TV</h3>
-
-                <p
-                    data-fa="نسخه مخصوص تلویزیون و دستگاه‌های Android TV."
-                    data-en="Version for Android TV devices.">
-                    نسخه مخصوص تلویزیون و دستگاه‌های Android TV.
-                </p>
-
-                <a
-                    id="androidTvDownloadBottom"
-                    class="btn btn-primary"
-                    href="coming-soon.html?product=android-tv">
-
-                    📥
-                    <span
-                        data-fa="دانلود Android TV"
-                        data-en="Download Android TV">
-                        دانلود Android TV
-                    </span>
-
-                </a>
-
-                <div
-                    id="tvBottomStatus"
-                    class="status">
-                    در حال بررسی...
-                </div>
-
-            </div>
-
-
-            <!-- Windows -->
-
-            <div class="download-card">
-
-                <div class="icon">🖥️</div>
-
-                <h3>Windows</h3>
-
-                <p
-                    data-fa="نسخه دسکتاپ برای سیستم‌های Windows."
-                    data-en="Desktop version for Windows.">
-                    نسخه دسکتاپ برای سیستم‌های Windows.
-                </p>
-
-                <a
-                    href="#windows"
-                    class="btn btn-primary">
-
-                    🖥️
-                    <span
-                        data-fa="انتخاب نسخه Windows"
-                        data-en="Choose Windows Version">
-                        انتخاب نسخه Windows
-                    </span>
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div style="
-            text-align:center;
-            margin-top:25px;
-        ">
-
-            <a
-                href="https://github.com/famipelir/PelirFami/releases/latest"
-                target="_blank"
-                rel="noopener"
-                class="btn btn-secondary">
-
-                📦
-                <span
-                    data-fa="مشاهده صفحه Releases در GitHub"
-                    data-en="View GitHub Releases">
-                    مشاهده صفحه Releases در GitHub
-                </span>
-
-            </a>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 <!-- =========================
      ABOUT
-========================== -->
+========================= -->
 
 <section id="about">
 
-    <div class="container">
+<div class="container">
 
-        <div class="section-title">
+<div class="section-title">
 
-            <h2
-                data-fa="درباره PelirFami"
-                data-en="About PelirFami">
-                درباره PelirFami
-            </h2>
+<h2 data-i18n="about.title">
+    About PelirFami
+</h2>
 
-        </div>
+<p data-i18n="about.description">
+    A modern media player project focused on simplicity,
+    performance and a clean user experience.
+</p>
 
+</div>
 
-        <div class="about-box">
+<div style="text-align:center;">
 
-            <p
-                data-fa="PelirFami یک پروژه برای ساخت یک پخش‌کننده مدرن، ساده و قدرتمند برای دستگاه‌های مختلف است."
-                data-en="PelirFami is a project focused on building a modern, simple and powerful media player for different devices.">
-                PelirFami یک پروژه برای ساخت یک پخش‌کننده مدرن،
-                ساده و قدرتمند برای دستگاه‌های مختلف است.
-            </p>
+<a
+    href="https://github.com/famipelir/PelirFami"
+    target="_blank"
+    rel="noopener"
+    class="btn btn-secondary"
+>
+    GitHub
+</a>
 
-            <p
-                data-fa="هدف پروژه این است که تجربه‌ای یکپارچه و راحت برای تماشای ویدیو و گوش دادن به صدا در پلتفرم‌های مختلف ارائه دهد."
-                data-en="The goal is to provide a consistent and easy experience for watching videos and listening to audio across different platforms.">
-                هدف پروژه این است که تجربه‌ای یکپارچه و راحت
-                برای تماشای ویدیو و گوش دادن به صدا
-                در پلتفرم‌های مختلف ارائه دهد.
-            </p>
+<a
+    href="https://instagram.com/mr_hassanpour2008"
+    target="_blank"
+    rel="noopener"
+    class="btn btn-secondary"
+>
+    Instagram
+</a>
 
-        </div>
+</div>
 
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CREATOR
-========================== -->
-
-<section class="creator">
-
-    <div class="container">
-
-        <div class="creator-box">
-
-            <div style="font-size:2.5rem;">
-                👨‍💻
-            </div>
-
-            <strong
-                data-fa="سازنده PelirFami"
-                data-en="PelirFami Creator">
-                سازنده PelirFami
-            </strong>
-
-            <a
-                class="instagram"
-                href="https://instagram.com/mr_hassanpour2008"
-                target="_blank"
-                rel="noopener">
-
-                Instagram:
-                @mr_hassanpour2008
-
-            </a>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
+
+</main>
 
 
 <!-- =========================
      FOOTER
-========================== -->
+========================= -->
 
 <footer>
 
-    <div class="container footer-inner">
+<div class="container">
 
-        <div>
-            © <span id="year"></span> PelirFami
-        </div>
+<div class="footer-inner">
 
-        <div class="footer-links">
+<div>
+    © <span id="year"></span> PelirFami
+</div>
 
-            <a
-                href="index.html"
-                data-fa="خانه"
-                data-en="Home">
-                خانه
-            </a>
+<div
+    data-i18n="footer.made"
+>
+    Made with ❤️
+</div>
 
-            <a
-                href="games.html"
-                data-fa="🎮 بازی‌ها"
-                data-en="🎮 Games">
-                🎮 بازی‌ها
-            </a>
+<div class="footer-links">
 
-            <a
-                href="https://github.com/famipelir/PelirFami"
-                target="_blank"
-                rel="noopener">
-                GitHub
-            </a>
+<a href="games.html" data-i18n="nav.games">
+    Games
+</a>
 
-        </div>
+<a
+    href="https://github.com/famipelir/PelirFami"
+    target="_blank"
+    rel="noopener"
+>
+    GitHub
+</a>
 
-    </div>
+</div>
+
+</div>
+
+</div>
 
 </footer>
 
 
 <script>
 
-    /* =========================================
-       CONFIG
-    ========================================= */
+/* =========================================================
+   LANGUAGE SYSTEM
+========================================================= */
 
-    const API_URL =
-        "https://api.github.com/repos/famipelir/PelirFami/releases/latest";
+/*
+   Add new languages here.
 
-    const RELEASE_PAGE =
-        "https://github.com/famipelir/PelirFami/releases/latest";
+   Format:
+
+   "language-code": {
+       name: "English name",
+       native: "Native name",
+       flag: "🇬🇧",
+       dir: "ltr",
+       translations: {
+           ...
+       }
+   }
+*/
+
+const LANGUAGES = {
+
+    en: {
+        name: "English",
+        native: "English",
+        flag: "🇬🇧",
+        dir: "ltr",
+
+        translations: {
+
+            "nav.features": "Features",
+            "nav.platforms": "Platforms",
+            "nav.games": "🎮 Games",
+            "nav.download": "Download",
+            "nav.about": "About",
+
+            "hero.badge": "Modern media player",
+            "hero.title1": "Your media.",
+            "hero.title2": "Your way.",
+
+            "hero.description":
+                "PelirFami is a modern and powerful media player designed for a smooth and enjoyable video and audio experience across multiple platforms.",
+
+            "hero.download": "⬇ Download",
+            "hero.games": "🎮 Game Center",
+
+            "features.title": "Everything you need",
+            "features.subtitle": "Simple, powerful and modern.",
+
+            "features.f1.title": "Powerful Playback",
+            "features.f1.text":
+                "Smooth playback for popular video and audio formats.",
+
+            "features.f2.title": "Smart Controls",
+            "features.f2.text":
+                "Gestures, playback speed, subtitles and aspect ratio controls.",
+
+            "features.f3.title": "Privacy",
+            "features.f3.text":
+                "Your media experience stays under your control.",
+
+            "features.f4.title": "TV Ready",
+            "features.f4.text":
+                "Designed to work comfortably on Android TV devices.",
+
+            "features.f5.title": "Desktop",
+            "features.f5.text":
+                "Enjoy PelirFami on Windows desktop.",
+
+            "features.f6.title": "Fast & Lightweight",
+            "features.f6.text":
+                "A clean interface without unnecessary complexity.",
+
+            "platforms.title": "Available everywhere",
+            "platforms.subtitle": "Choose your platform.",
+
+            "platforms.android":
+                "PelirFami for Android phones and tablets.",
+
+            "platforms.tv":
+                "A TV-friendly version for Android TV devices.",
+
+            "platforms.windows":
+                "Windows versions for different computer architectures.",
+
+            "platforms.checking": "Checking...",
+            "platforms.available": "Available",
+            "platforms.soon": "Coming Soon",
+            "platforms.download": "Download",
+
+            "screenshots.title": "See PelirFami",
+            "screenshots.subtitle":
+                "A clean and modern experience.",
+
+            "games.title": "🎮 Game Center",
+            "games.description":
+                "While you wait for new versions of PelirFami, enjoy several games directly in your browser.",
+            "games.button": "Play Games",
+
+            "download.title": "Download PelirFami",
+            "download.description":
+                "The website automatically checks the latest available release for your platform.",
+            "download.button": "⬇ Download",
+            "download.releases": "GitHub Releases",
+
+            "about.title": "About PelirFami",
+            "about.description":
+                "A modern media player project focused on simplicity, performance and a clean user experience.",
+
+            "footer.made": "Made with ❤️"
+        }
+    },
 
 
-    /* =========================================
-       ELEMENTS
-    ========================================= */
+    fa: {
+        name: "Persian",
+        native: "فارسی",
+        flag: "🇮🇷",
+        dir: "rtl",
 
-    const androidDownload =
-        document.getElementById("androidDownload");
+        translations: {
 
-    const heroAndroidButton =
-        document.getElementById("heroAndroidButton");
+            "nav.features": "ویژگی‌ها",
+            "nav.platforms": "پلتفرم‌ها",
+            "nav.games": "🎮 بازی‌ها",
+            "nav.download": "دانلود",
+            "nav.about": "درباره ما",
 
-    const androidTvDownload =
-        document.getElementById("androidTvDownload");
+            "hero.badge": "پخش‌کننده مدرن رسانه",
 
-    const androidTvDownloadBottom =
-        document.getElementById("androidTvDownloadBottom");
+            "hero.title1": "رسانه‌های شما.",
+            "hero.title2": "به سبک شما.",
 
-    const windowsX64 =
-        document.getElementById("windowsX64");
+            "hero.description":
+                "فمی پلیر یک پخش‌کننده مدرن و قدرتمند برای تجربه‌ای روان و لذت‌بخش از ویدیو و صدا در پلتفرم‌های مختلف است.",
 
-    const windowsX86 =
-        document.getElementById("windowsX86");
+            "hero.download": "⬇ دانلود",
+            "hero.games": "🎮 مرکز بازی",
 
-    const windowsArm64 =
-        document.getElementById("windowsArm64");
+            "features.title": "همه چیزهایی که نیاز دارید",
+            "features.subtitle":
+                "ساده، قدرتمند و مدرن.",
 
-    const windowsRecommended =
-        document.getElementById("windowsRecommended");
+            "features.f1.title": "پخش قدرتمند",
+            "features.f1.text":
+                "پخش روان فرمت‌های محبوب ویدیو و صدا.",
 
-    const systemDetect =
-        document.getElementById("systemDetect");
+            "features.f2.title": "کنترل‌های هوشمند",
+            "features.f2.text":
+                "ژست‌های حرکتی، سرعت پخش، زیرنویس و کنترل نسبت تصویر.",
 
-    const androidStatus =
-        document.getElementById("androidStatus");
+            "features.f3.title": "حریم خصوصی",
+            "features.f3.text":
+                "تجربه رسانه‌ای شما تحت کنترل خودتان باقی می‌ماند.",
 
-    const tvStatus =
-        document.getElementById("tvStatus");
+            "features.f4.title": "مناسب تلویزیون",
+            "features.f4.text":
+                "طراحی‌شده برای استفاده راحت روی دستگاه‌های Android TV.",
 
-    const tvBottomStatus =
-        document.getElementById("tvBottomStatus");
+            "features.f5.title": "نسخه دسکتاپ",
+            "features.f5.text":
+                "فمی پلیر را روی کامپیوترهای ویندوزی تجربه کنید.",
+
+            "features.f6.title": "سریع و سبک",
+            "features.f6.text":
+                "رابط کاربری تمیز بدون پیچیدگی‌های غیرضروری.",
+
+            "platforms.title": "در همه‌جا در دسترس",
+            "platforms.subtitle":
+                "پلتفرم خود را انتخاب کنید.",
+
+            "platforms.android":
+                "فمی پلیر برای گوشی‌ها و تبلت‌های اندرویدی.",
+
+            "platforms.tv":
+                "نسخه مناسب تلویزیون برای دستگاه‌های Android TV.",
+
+            "platforms.windows":
+                "نسخه‌های ویندوز برای معماری‌های مختلف کامپیوتر.",
+
+            "platforms.checking": "در حال بررسی...",
+            "platforms.available": "در دسترس",
+            "platforms.soon": "به‌زودی",
+            "platforms.download": "دانلود",
+
+            "screenshots.title": "فمی پلیر را ببینید",
+            "screenshots.subtitle":
+                "یک تجربه تمیز و مدرن.",
+
+            "games.title": "🎮 مرکز بازی",
+            "games.description":
+                "تا زمان انتشار نسخه‌های جدید فمی پلیر، چندین بازی را مستقیماً در مرورگر خود تجربه کنید.",
+            "games.button": "بازی‌ها",
+
+            "download.title": "دانلود فمی پلیر",
+            "download.description":
+                "سایت به‌صورت خودکار آخرین نسخه موجود برای پلتفرم شما را بررسی می‌کند.",
+            "download.button": "⬇ دانلود",
+            "download.releases": "نسخه‌های GitHub",
+
+            "about.title": "درباره فمی پلیر",
+            "about.description":
+                "پروژه‌ای مدرن برای پخش رسانه با تمرکز بر سادگی، عملکرد و تجربه کاربری تمیز.",
+
+            "footer.made": "ساخته شده با ❤️"
+        }
+    },
 
 
-    /* =========================================
-       COMING SOON
-    ========================================= */
+    ar: {
+        name: "Arabic",
+        native: "العربية",
+        flag: "🇸🇦",
+        dir: "rtl",
 
-    function comingSoon(product) {
+        translations: {
 
-        return "coming-soon.html?product=" +
-            encodeURIComponent(product);
+            "nav.features": "المميزات",
+            "nav.platforms": "المنصات",
+            "nav.games": "🎮 الألعاب",
+            "nav.download": "تحميل",
+            "nav.about": "حول",
 
+            "hero.badge": "مشغل وسائط حديث",
+            "hero.title1": "وسائطك.",
+            "hero.title2": "بطريقتك.",
+
+            "hero.description":
+                "PelirFami هو مشغل وسائط حديث وقوي لتجربة سلسة وممتعة للفيديو والصوت عبر منصات متعددة.",
+
+            "hero.download": "⬇ تحميل",
+            "hero.games": "🎮 مركز الألعاب",
+
+            "features.title": "كل ما تحتاجه",
+            "features.subtitle": "بسيط وقوي وحديث.",
+
+            "features.f1.title": "تشغيل قوي",
+            "features.f1.text": "تشغيل سلس لتنسيقات الفيديو والصوت الشائعة.",
+
+            "features.f2.title": "تحكم ذكي",
+            "features.f2.text": "الإيماءات وسرعة التشغيل والترجمة ونسبة العرض.",
+
+            "features.f3.title": "الخصوصية",
+            "features.f3.text": "تجربتك الإعلامية تبقى تحت سيطرتك.",
+
+            "features.f4.title": "جاهز للتلفزيون",
+            "features.f4.text": "مصمم للاستخدام المريح على أجهزة Android TV.",
+
+            "features.f5.title": "سطح المكتب",
+            "features.f5.text": "استمتع بـ PelirFami على Windows.",
+
+            "features.f6.title": "سريع وخفيف",
+            "features.f6.text": "واجهة نظيفة بدون تعقيد غير ضروري.",
+
+            "platforms.title": "متوفر في كل مكان",
+            "platforms.subtitle": "اختر منصتك.",
+
+            "platforms.android": "PelirFami لهواتف وأجهزة Android اللوحية.",
+            "platforms.tv": "إصدار مناسب للتلفزيون لأجهزة Android TV.",
+            "platforms.windows": "إصدارات Windows لمعالجات مختلفة.",
+
+            "platforms.checking": "جارٍ التحقق...",
+            "platforms.available": "متوفر",
+            "platforms.soon": "قريباً",
+            "platforms.download": "تحميل",
+
+            "screenshots.title": "شاهد PelirFami",
+            "screenshots.subtitle": "تجربة نظيفة وحديثة.",
+
+            "games.title": "🎮 مركز الألعاب",
+            "games.description":
+                "أثناء انتظار الإصدارات الجديدة، يمكنك الاستمتاع بعدة ألعاب مباشرة في المتصفح.",
+            "games.button": "العب الآن",
+
+            "download.title": "تحميل PelirFami",
+            "download.description":
+                "يتحقق الموقع تلقائياً من أحدث إصدار متوفر لمنصتك.",
+            "download.button": "⬇ تحميل",
+            "download.releases": "إصدارات GitHub",
+
+            "about.title": "حول PelirFami",
+            "about.description":
+                "مشروع مشغل وسائط حديث يركز على البساطة والأداء وتجربة المستخدم النظيفة.",
+
+            "footer.made": "صُنع بـ ❤️"
+        }
+    },
+
+
+    tr: {
+        name: "Turkish",
+        native: "Türkçe",
+        flag: "🇹🇷",
+        dir: "ltr",
+
+        translations: {
+
+            "nav.features": "Özellikler",
+            "nav.platforms": "Platformlar",
+            "nav.games": "🎮 Oyunlar",
+            "nav.download": "İndir",
+            "nav.about": "Hakkında",
+
+            "hero.badge": "Modern medya oynatıcı",
+            "hero.title1": "Medyanız.",
+            "hero.title2": "Sizin tarzınız.",
+
+            "hero.description":
+                "PelirFami, farklı platformlarda akıcı ve keyifli video ve ses deneyimi sunan modern ve güçlü bir medya oynatıcıdır.",
+
+            "hero.download": "⬇ İndir",
+            "hero.games": "🎮 Oyun Merkezi",
+
+            "features.title": "İhtiyacınız olan her şey",
+            "features.subtitle": "Basit, güçlü ve modern.",
+
+            "features.f1.title": "Güçlü Oynatma",
+            "features.f1.text":
+                "Popüler video ve ses formatlarında akıcı oynatma.",
+
+            "features.f2.title": "Akıllı Kontroller",
+            "features.f2.text":
+                "Hareketler, oynatma hızı, altyazılar ve görüntü oranı.",
+
+            "features.f3.title": "Gizlilik",
+            "features.f3.text":
+                "Medya deneyiminiz sizin kontrolünüzde kalır.",
+
+            "features.f4.title": "TV Hazır",
+            "features.f4.text":
+                "Android TV cihazlarında rahat kullanım için tasarlandı.",
+
+            "features.f5.title": "Masaüstü",
+            "features.f5.text":
+                "PelirFami'yi Windows bilgisayarınızda kullanın.",
+
+            "features.f6.title": "Hızlı ve Hafif",
+            "features.f6.text":
+                "Gereksiz karmaşıklık olmadan temiz arayüz.",
+
+            "platforms.title": "Her yerde kullanılabilir",
+            "platforms.subtitle": "Platformunuzu seçin.",
+
+            "platforms.android":
+                "Android telefonlar ve tabletler için PelirFami.",
+
+            "platforms.tv":
+                "Android TV cihazları için TV uyumlu sürüm.",
+
+            "platforms.windows":
+                "Farklı bilgisayar mimarileri için Windows sürümleri.",
+
+            "platforms.checking": "Kontrol ediliyor...",
+            "platforms.available": "Mevcut",
+            "platforms.soon": "Yakında",
+            "platforms.download": "İndir",
+
+            "screenshots.title": "PelirFami'yi keşfedin",
+            "screenshots.subtitle":
+                "Temiz ve modern bir deneyim.",
+
+            "games.title": "🎮 Oyun Merkezi",
+            "games.description":
+                "Yeni sürümleri beklerken tarayıcınızdan çeşitli oyunları oynayabilirsiniz.",
+            "games.button": "Oyunları Oyna",
+
+            "download.title": "PelirFami'yi İndir",
+            "download.description":
+                "Site, platformunuz için mevcut en son sürümü otomatik olarak kontrol eder.",
+            "download.button": "⬇ İndir",
+            "download.releases": "GitHub Sürümleri",
+
+            "about.title": "PelirFami Hakkında",
+            "about.description":
+                "Basitlik, performans ve temiz kullanıcı deneyimine odaklanan modern medya oynatıcı projesi.",
+
+            "footer.made": "❤️ ile yapıldı"
+        }
+    },
+
+
+    ru: {
+        name: "Russian",
+        native: "Русский",
+        flag: "🇷🇺",
+        dir: "ltr",
+
+        translations: {
+
+            "nav.features": "Возможности",
+            "nav.platforms": "Платформы",
+            "nav.games": "🎮 Игры",
+            "nav.download": "Скачать",
+            "nav.about": "О проекте",
+
+            "hero.badge": "Современный медиаплеер",
+            "hero.title1": "Ваши медиа.",
+            "hero.title2": "Ваш способ.",
+
+            "hero.description":
+                "PelirFami — современный и мощный медиаплеер для плавного воспроизведения видео и аудио на разных платформах.",
+
+            "hero.download": "⬇ Скачать",
+            "hero.games": "🎮 Игровой центр",
+
+            "features.title": "Всё необходимое",
+            "features.subtitle": "Просто, мощно и современно.",
+
+            "features.f1.title": "Мощное воспроизведение",
+            "features.f1.text":
+                "Плавное воспроизведение популярных видео и аудиоформатов.",
+
+            "features.f2.title": "Умное управление",
+            "features.f2.text":
+                "Жесты, скорость воспроизведения, субтитры и соотношение сторон.",
+
+            "features.f3.title": "Конфиденциальность",
+            "features.f3.text":
+                "Ваш медиаконтент остаётся под вашим контролем.",
+
+            "features.f4.title": "Для ТВ",
+            "features.f4.text":
+                "Удобно для устройств Android TV.",
+
+            "features.f5.title": "ПК",
+            "features.f5.text":
+                "Используйте PelirFami на Windows.",
+
+            "features.f6.title": "Быстро и легко",
+            "features.f6.text":
+                "Чистый интерфейс без лишней сложности.",
+
+            "platforms.title": "Доступно везде",
+            "platforms.subtitle": "Выберите платформу.",
+
+            "platforms.android":
+                "PelirFami для телефонов и планшетов Android.",
+
+            "platforms.tv":
+                "Версия для Android TV.",
+
+            "platforms.windows":
+                "Версии Windows для разных архитектур.",
+
+            "platforms.checking": "Проверка...",
+            "platforms.available": "Доступно",
+            "platforms.soon": "Скоро",
+            "platforms.download": "Скачать",
+
+            "screenshots.title": "PelirFami",
+            "screenshots.subtitle": "Чистый и современный интерфейс.",
+
+            "games.title": "🎮 Игровой центр",
+            "games.description":
+                "Пока вы ждёте новые версии PelirFami, играйте прямо в браузере.",
+            "games.button": "Играть",
+
+            "download.title": "Скачать PelirFami",
+            "download.description":
+                "Сайт автоматически проверяет последнюю доступную версию для вашей платформы.",
+            "download.button": "⬇ Скачать",
+            "download.releases": "Релизы GitHub",
+
+            "about.title": "О PelirFami",
+            "about.description":
+                "Современный медиаплеер с акцентом на простоту, производительность и удобство.",
+
+            "footer.made": "Сделано с ❤️"
+        }
+    },
+
+
+    de: {
+        name: "German",
+        native: "Deutsch",
+        flag: "🇩🇪",
+        dir: "ltr",
+
+        translations: {
+
+            "nav.features": "Funktionen",
+            "nav.platforms": "Plattformen",
+            "nav.games": "🎮 Spiele",
+            "nav.download": "Download",
+            "nav.about": "Über uns",
+
+            "hero.badge": "Moderner Mediaplayer",
+            "hero.title1": "Deine Medien.",
+            "hero.title2": "Dein Weg.",
+
+            "hero.description":
+                "PelirFami ist ein moderner und leistungsstarker Mediaplayer für eine flüssige Video- und Audioerfahrung auf mehreren Plattformen.",
+
+            "hero.download": "⬇ Download",
+            "hero.games": "🎮 Game Center",
+
+            "features.title": "Alles, was du brauchst",
+            "features.subtitle": "Einfach, leistungsstark und modern.",
+
+            "features.f1.title": "Leistungsstarke Wiedergabe",
+            "features.f1.text":
+                "Flüssige Wiedergabe beliebter Video- und Audioformate.",
+
+            "features.f2.title": "Intelligente Steuerung",
+            "features.f2.text":
+                "Gesten, Wiedergabegeschwindigkeit, Untertitel und Seitenverhältnis.",
+
+            "features.f3.title": "Datenschutz",
+            "features.f3.text":
+                "Dein Medienerlebnis bleibt unter deiner Kontrolle.",
+
+            "features.f4.title": "TV bereit",
+            "features.f4.text":
+                "Für eine komfortable Nutzung auf Android TV entwickelt.",
+
+            "features.f5.title": "Desktop",
+            "features.f5.text":
+                "PelirFami auf Windows verwenden.",
+
+            "features.f6.title": "Schnell und leicht",
+            "features.f6.text":
+                "Eine klare Oberfläche ohne unnötige Komplexität.",
+
+            "platforms.title": "Überall verfügbar",
+            "platforms.subtitle": "Wähle deine Plattform.",
+
+            "platforms.android":
+                "PelirFami für Android-Telefone und Tablets.",
+
+            "platforms.tv":
+                "TV-freundliche Version für Android TV.",
+
+            "platforms.windows":
+                "Windows-Versionen für verschiedene Architekturen.",
+
+            "platforms.checking": "Wird geprüft...",
+            "platforms.available": "Verfügbar",
+            "platforms.soon": "Demnächst",
+            "platforms.download": "Download",
+
+            "screenshots.title": "PelirFami ansehen",
+            "screenshots.subtitle":
+                "Eine saubere und moderne Erfahrung.",
+
+            "games.title": "🎮 Game Center",
+            "games.description":
+                "Spiele direkt im Browser, während du auf neue PelirFami-Versionen wartest.",
+            "games.button": "Spielen",
+
+            "download.title": "PelirFami herunterladen",
+            "download.description":
+                "Die Website prüft automatisch die neueste verfügbare Version für deine Plattform.",
+            "download.button": "⬇ Download",
+            "download.releases": "GitHub Releases",
+
+            "about.title": "Über PelirFami",
+            "about.description":
+                "Ein moderner Mediaplayer mit Fokus auf Einfachheit, Leistung und Benutzerfreundlichkeit.",
+
+            "footer.made": "Mit ❤️ erstellt"
+        }
+    },
+
+
+    fr: {
+        name: "French",
+        native: "Français",
+        flag: "🇫🇷",
+        dir: "ltr",
+
+        translations: {
+
+            "nav.features": "Fonctionnalités",
+            "nav.platforms": "Plateformes",
+            "nav.games": "🎮 Jeux",
+            "nav.download": "Télécharger",
+            "nav.about": "À propos",
+
+            "hero.badge": "Lecteur multimédia moderne",
+            "hero.title1": "Vos médias.",
+            "hero.title2": "À votre façon.",
+
+            "hero.description":
+                "PelirFami est un lecteur multimédia moderne et puissant conçu pour une expérience vidéo et audio fluide sur plusieurs plateformes.",
+
+            "hero.download": "⬇ Télécharger",
+            "hero.games": "🎮 Centre de jeux",
+
+            "features.title": "Tout ce dont vous avez besoin",
+            "features.subtitle": "Simple, puissant et moderne.",
+
+            "features.f1.title": "Lecture puissante",
+            "features.f1.text":
+                "Lecture fluide des formats vidéo et audio populaires.",
+
+            "features.f2.title": "Contrôles intelligents",
+            "features.f2.text":
+                "Gestes, vitesse de lecture, sous-titres et format d'image.",
+
+            "features.f3.title": "Confidentialité",
+            "features.f3.text":
+                "Votre expérience multimédia reste sous votre contrôle.",
+
+            "features.f4.title": "Prêt pour la TV",
+            "features.f4.text":
+                "Conçu pour une utilisation confortable sur Android TV.",
+
+            "features.f5.title": "Bureau",
+            "features.f5.text":
+                "Profitez de PelirFami sur Windows.",
+
+            "features.f6.title": "Rapide et léger",
+            "features.f6.text":
+                "Une interface claire sans complexité inutile.",
+
+            "platforms.title": "Disponible partout",
+            "platforms.subtitle": "Choisissez votre plateforme.",
+
+            "platforms.android":
+                "PelirFami pour téléphones et tablettes Android.",
+
+            "platforms.tv":
+                "Version adaptée aux appareils Android TV.",
+
+            "platforms.windows":
+                "Versions Windows pour différentes architectures.",
+
+            "platforms.checking": "Vérification...",
+            "platforms.available": "Disponible",
+            "platforms.soon": "Bientôt",
+            "platforms.download": "Télécharger",
+
+            "screenshots.title": "Découvrez PelirFami",
+            "screenshots.subtitle":
+                "Une expérience moderne et claire.",
+
+            "games.title": "🎮 Centre de jeux",
+            "games.description":
+                "Jouez directement dans votre navigateur en attendant les nouvelles versions de PelirFami.",
+            "games.button": "Jouer",
+
+            "download.title": "Télécharger PelirFami",
+            "download.description":
+                "Le site vérifie automatiquement la dernière version disponible pour votre plateforme.",
+            "download.button": "⬇ Télécharger",
+            "download.releases": "Versions GitHub",
+
+            "about.title": "À propos de PelirFami",
+            "about.description":
+                "Un lecteur multimédia moderne axé sur la simplicité, les performances et une expérience utilisateur claire.",
+
+            "footer.made": "Créé avec ❤️"
+        }
+    },
+
+
+    es: {
+        name: "Spanish",
+        native: "Español",
+        flag: "🇪🇸",
+        dir: "ltr",
+
+        translations: {
+
+            "nav.features": "Funciones",
+            "nav.platforms": "Plataformas",
+            "nav.games": "🎮 Juegos",
+            "nav.download": "Descargar",
+            "nav.about": "Acerca de",
+
+            "hero.badge": "Reproductor multimedia moderno",
+            "hero.title1": "Tus medios.",
+            "hero.title2": "A tu manera.",
+
+            "hero.description":
+                "PelirFami es un reproductor multimedia moderno y potente diseñado para una experiencia fluida de vídeo y audio en múltiples plataformas.",
+
+            "hero.download": "⬇ Descargar",
+            "hero.games": "🎮 Centro de juegos",
+
+            "features.title": "Todo lo que necesitas",
+            "features.subtitle": "Simple, potente y moderno.",
+
+            "features.f1.title": "Reproducción potente",
+            "features.f1.text":
+                "Reproducción fluida de formatos populares de vídeo y audio.",
+
+            "features.f2.title": "Controles inteligentes",
+            "features.f2.text":
+                "Gestos, velocidad de reproducción, subtítulos y relación de aspecto.",
+
+            "features.f3.title": "Privacidad",
+            "features.f3.text":
+                "Tu experiencia multimedia permanece bajo tu control.",
+
+            "features.f4.title": "Listo para TV",
+            "features.f4.text":
+                "Diseñado para funcionar cómodamente en Android TV.",
+
+            "features.f5.title": "Escritorio",
+            "features.f5.text":
+                "Disfruta de PelirFami en Windows.",
+
+            "features.f6.title": "Rápido y ligero",
+            "features.f6.text":
+                "Una interfaz limpia sin complejidad innecesaria.",
+
+            "platforms.title": "Disponible en todas partes",
+            "platforms.subtitle": "Elige tu plataforma.",
+
+            "platforms.android":
+                "PelirFami para teléfonos y tabletas Android.",
+
+            "platforms.tv":
+                "Versión compatible con Android TV.",
+
+            "platforms.windows":
+                "Versiones de Windows para diferentes arquitecturas.",
+
+            "platforms.checking": "Comprobando...",
+            "platforms.available": "Disponible",
+            "platforms.soon": "Próximamente",
+            "platforms.download": "Descargar",
+
+            "screenshots.title": "Conoce PelirFami",
+            "screenshots.subtitle":
+                "Una experiencia limpia y moderna.",
+
+            "games.title": "🎮 Centro de juegos",
+            "games.description":
+                "Juega directamente en tu navegador mientras esperas nuevas versiones de PelirFami.",
+            "games.button": "Jugar",
+
+            "download.title": "Descargar PelirFami",
+            "download.description":
+                "El sitio comprueba automáticamente la última versión disponible para tu plataforma.",
+            "download.button": "⬇ Descargar",
+            "download.releases": "Versiones de GitHub",
+
+            "about.title": "Acerca de PelirFami",
+            "about.description":
+                "Un reproductor multimedia moderno centrado en la simplicidad, el rendimiento y una experiencia limpia.",
+
+            "footer.made": "Hecho con ❤️"
+        }
+    },
+
+
+    zh: {
+        name: "Chinese",
+        native: "中文",
+        flag: "🇨🇳",
+        dir: "ltr",
+
+        translations: {
+
+            "nav.features": "功能",
+            "nav.platforms": "平台",
+            "nav.games": "🎮 游戏",
+            "nav.download": "下载",
+            "nav.about": "关于",
+
+            "hero.badge": "现代媒体播放器",
+            "hero.title1": "你的媒体。",
+            "hero.title2": "你的方式。",
+
+            "hero.description":
+                "PelirFami 是一款现代而强大的媒体播放器，为多个平台提供流畅、愉快的视频和音频体验。",
+
+            "hero.download": "⬇ 下载",
+            "hero.games": "🎮 游戏中心",
+
+            "features.title": "你需要的一切",
+            "features.subtitle": "简单、强大、现代。",
+
+            "features.f1.title": "强大播放",
+            "features.f1.text":
+                "流畅播放常见的视频和音频格式。",
+
+            "features.f2.title": "智能控制",
+            "features.f2.text":
+                "手势、播放速度、字幕和画面比例控制。",
+
+            "features.f3.title": "隐私",
+            "features.f3.text":
+                "你的媒体体验始终由你控制。",
+
+            "features.f4.title": "支持电视",
+            "features.f4.text":
+                "针对 Android TV 设备进行了优化。",
+
+            "features.f5.title": "桌面版",
+            "features.f5.text":
+                "在 Windows 电脑上使用 PelirFami。",
+
+            "features.f6.title": "快速轻量",
+            "features.f6.text":
+                "简洁界面，没有不必要的复杂功能。",
+
+            "platforms.title": "随处可用",
+            "platforms.subtitle": "选择你的平台。",
+
+            "platforms.android":
+                "适用于 Android 手机和平板电脑。",
+
+            "platforms.tv":
+                "适用于 Android TV 的电视版本。",
+
+            "platforms.windows":
+                "支持不同电脑架构的 Windows 版本。",
+
+            "platforms.checking": "正在检查...",
+            "platforms.available": "可用",
+            "platforms.soon": "即将推出",
+            "platforms.download": "下载",
+
+            "screenshots.title": "了解 PelirFami",
+            "screenshots.subtitle": "简洁现代的体验。",
+
+            "games.title": "🎮 游戏中心",
+            "games.description":
+                "等待新版本期间，可以直接在浏览器中玩多个游戏。",
+            "games.button": "开始游戏",
+
+            "download.title": "下载 PelirFami",
+            "download.description":
+                "网站会自动检查适合你平台的最新版本。",
+            "download.button": "⬇ 下载",
+            "download.releases": "GitHub 版本",
+
+            "about.title": "关于 PelirFami",
+            "about.description":
+                "专注于简单、高性能和优秀用户体验的现代媒体播放器项目。",
+
+            "footer.made": "用 ❤️ 制作"
+        }
+    },
+
+
+    ja: {
+        name: "Japanese",
+        native: "日本語",
+        flag: "🇯🇵",
+        dir: "ltr",
+
+        translations: {
+
+            "nav.features": "機能",
+            "nav.platforms": "プラットフォーム",
+            "nav.games": "🎮 ゲーム",
+            "nav.download": "ダウンロード",
+            "nav.about": "概要",
+
+            "hero.badge": "モダンなメディアプレーヤー",
+            "hero.title1": "あなたのメディア。",
+            "hero.title2": "あなたのスタイル。",
+
+            "hero.description":
+                "PelirFami は、複数のプラットフォームで快適な動画・音声体験を提供する、モダンでパワフルなメディアプレーヤーです。",
+
+            "hero.download": "⬇ ダウンロード",
+            "hero.games": "🎮 ゲームセンター",
+
+            "features.title": "必要なものがすべて揃っています",
+            "features.subtitle": "シンプル、パワフル、モダン。",
+
+            "features.f1.title": "強力な再生",
+            "features.f1.text":
+                "一般的な動画・音声フォーマットをスムーズに再生。",
+
+            "features.f2.title": "スマート操作",
+            "features.f2.text":
+                "ジェスチャー、再生速度、字幕、アスペクト比を操作できます。",
+
+            "features.f3.title": "プライバシー",
+            "features.f3.text":
+                "メディア体験を自分でコントロールできます。",
+
+            "features.f4.title": "TV対応",
+            "features.f4.text":
+                "Android TVで快適に利用できるよう設計されています。",
+
+            "features.f5.title": "デスクトップ",
+            "features.f5.text":
+                "WindowsでPelirFamiを楽しめます。",
+
+            "features.f6.title": "高速・軽量",
+            "features.f6.text":
+                "不要な複雑さを省いたクリーンなインターフェース。",
+
+            "platforms.title": "どこでも利用可能",
+            "platforms.subtitle": "プラットフォームを選択してください。",
+
+            "platforms.android":
+                "Androidスマートフォン・タブレット向けPelirFami。",
+
+            "platforms.tv":
+                "Android TV向けテレビ対応バージョン。",
+
+            "platforms.windows":
+                "さまざまなPCアーキテクチャ向けWindows版。",
+
+            "platforms.checking": "確認中...",
+            "platforms.available": "利用可能",
+            "platforms.soon": "近日公開",
+            "platforms.download": "ダウンロード",
+
+            "screenshots.title": "PelirFamiを見る",
+            "screenshots.subtitle": "クリーンでモダンな体験。",
+
+            "games.title": "🎮 ゲームセンター",
+            "games.description":
+                "新しいPelirFamiのバージョンを待つ間、ブラウザでゲームを楽しめます。",
+            "games.button": "ゲームをプレイ",
+
+            "download.title": "PelirFamiをダウンロード",
+            "download.description":
+                "サイトが使用しているプラットフォームの最新バージョンを自動確認します。",
+            "download.button": "⬇ ダウンロード",
+            "download.releases": "GitHub Releases",
+
+            "about.title": "PelirFamiについて",
+            "about.description":
+                "シンプルさ、パフォーマンス、快適なユーザー体験を重視したメディアプレーヤープロジェクトです。",
+
+            "footer.made": "❤️ で作成"
+        }
+    },
+
+
+    ko: {
+        name: "Korean",
+        native: "한국어",
+        flag: "🇰🇷",
+        dir: "ltr",
+
+        translations: {
+
+            "nav.features": "기능",
+            "nav.platforms": "플랫폼",
+            "nav.games": "🎮 게임",
+            "nav.download": "다운로드",
+            "nav.about": "소개",
+
+            "hero.badge": "모던 미디어 플레이어",
+            "hero.title1": "당신의 미디어.",
+            "hero.title2": "당신의 방식.",
+
+            "hero.description":
+                "PelirFami는 여러 플랫폼에서 부드럽고 즐거운 비디오 및 오디오 경험을 제공하는 현대적인 미디어 플레이어입니다.",
+
+            "hero.download": "⬇ 다운로드",
+            "hero.games": "🎮 게임 센터",
+
+            "features.title": "필요한 모든 것",
+            "features.subtitle": "간단하고 강력하며 현대적입니다.",
+
+            "features.f1.title": "강력한 재생",
+            "features.f1.text":
+                "인기 있는 비디오 및 오디오 형식을 부드럽게 재생합니다.",
+
+            "features.f2.title": "스마트 컨트롤",
+            "features.f2.text":
+                "제스처, 재생 속도, 자막 및 화면 비율을 지원합니다.",
+
+            "features.f3.title": "개인정보 보호",
+            "features.f3.text":
+                "미디어 경험을 직접 제어할 수 있습니다.",
+
+            "features.f4.title": "TV 지원",
+            "features.f4.text":
+                "Android TV에서 편리하게 사용할 수 있도록 설계되었습니다.",
+
+            "features.f5.title": "데스크톱",
+            "features.f5.text":
+                "Windows에서 PelirFami를 즐겨보세요.",
+
+            "features.f6.title": "빠르고 가벼움",
+            "features.f6.text":
+                "불필요한 복잡함을 줄인 깔끔한 인터페이스.",
+
+            "platforms.title": "어디서나 사용 가능",
+            "platforms.subtitle": "플랫폼을 선택하세요.",
+
+            "platforms.android":
+                "Android 휴대폰 및 태블릿용 PelirFami.",
+
+            "platforms.tv":
+                "Android TV용 TV 최적화 버전.",
+
+            "platforms.windows":
+                "다양한 컴퓨터 아키텍처용 Windows 버전.",
+
+            "platforms.checking": "확인 중...",
+            "platforms.available": "사용 가능",
+            "platforms.soon": "곧 출시",
+            "platforms.download": "다운로드",
+
+            "screenshots.title": "PelirFami 살펴보기",
+            "screenshots.subtitle":
+                "깔끔하고 현대적인 경험.",
+
+            "games.title": "🎮 게임 센터",
+            "games.description":
+                "새로운 버전을 기다리는 동안 브라우저에서 다양한 게임을 즐길 수 있습니다.",
+            "games.button": "게임 플레이",
+
+            "download.title": "PelirFami 다운로드",
+            "download.description":
+                "사이트가 플랫폼에 맞는 최신 버전을 자동으로 확인합니다.",
+            "download.button": "⬇ 다운로드",
+            "download.releases": "GitHub Releases",
+
+            "about.title": "PelirFami 소개",
+            "about.description":
+                "간단함, 성능 및 깔끔한 사용자 경험에 중점을 둔 현대적인 미디어 플레이어 프로젝트입니다.",
+
+            "footer.made": "❤️로 제작"
+        }
+    },
+
+
+    hi: {
+        name: "Hindi",
+        native: "हिन्दी",
+        flag: "🇮🇳",
+        dir: "ltr",
+
+        translations: {
+
+            "nav.features": "विशेषताएँ",
+            "nav.platforms": "प्लेटफ़ॉर्म",
+            "nav.games": "🎮 गेम्स",
+            "nav.download": "डाउनलोड",
+            "nav.about": "हमारे बारे में",
+
+            "hero.badge": "आधुनिक मीडिया प्लेयर",
+            "hero.title1": "आपका मीडिया।",
+            "hero.title2": "आपका तरीका।",
+
+            "hero.description":
+                "PelirFami एक आधुनिक और शक्तिशाली मीडिया प्लेयर है जो कई प्लेटफ़ॉर्म पर वीडियो और ऑडियो का शानदार अनुभव देता है।",
+
+            "hero.download": "⬇ डाउनलोड",
+            "hero.games": "🎮 गेम सेंटर",
+
+            "features.title": "आपको जो चाहिए वह सब",
+            "features.subtitle": "सरल, शक्तिशाली और आधुनिक।",
+
+            "features.f1.title": "शक्तिशाली प्लेबैक",
+            "features.f1.text":
+                "लोकप्रिय वीडियो और ऑडियो फॉर्मेट का आसान प्लेबैक।",
+
+            "features.f2.title": "स्मार्ट कंट्रोल",
+            "features.f2.text":
+                "जेस्चर, प्लेबैक स्पीड, सबटाइटल और आस्पेक्ट रेशियो नियंत्रण।",
+
+            "features.f3.title": "गोपनीयता",
+            "features.f3.text":
+                "आपका मीडिया अनुभव आपके नियंत्रण में रहता है।",
+
+            "features.f4.title": "TV Ready",
+            "features.f4.text":
+                "Android TV डिवाइस के लिए सुविधाजनक डिज़ाइन।",
+
+            "features.f5.title": "डेस्कटॉप",
+            "features.f5.text":
+                "Windows पर PelirFami का आनंद लें।",
+
+            "features.f6.title": "तेज़ और हल्का",
+            "features.f6.text":
+                "बिना अनावश्यक जटिलता के साफ़ इंटरफ़ेस।",
+
+            "platforms.title": "हर जगह उपलब्ध",
+            "platforms.subtitle": "अपना प्लेटफ़ॉर्म चुनें।",
+
+            "platforms.android":
+                "Android फोन और टैबलेट के लिए PelirFami।",
+
+            "platforms.tv":
+                "Android TV के लिए TV-अनुकूल संस्करण।",
+
+            "platforms.windows":
+                "अलग-अलग कंप्यूटर आर्किटेक्चर के लिए Windows संस्करण।",
+
+            "platforms.checking": "जाँच हो रही है...",
+            "platforms.available": "उपलब्ध",
+            "platforms.soon": "जल्द आ रहा है",
+            "platforms.download": "डाउनलोड",
+
+            "screenshots.title": "PelirFami देखें",
+            "screenshots.subtitle": "साफ़ और आधुनिक अनुभव।",
+
+            "games.title": "🎮 गेम सेंटर",
+            "games.description":
+                "नई PelirFami रिलीज़ का इंतज़ार करते हुए ब्राउज़र में गेम खेलें।",
+            "games.button": "गेम खेलें",
+
+            "download.title": "PelirFami डाउनलोड करें",
+            "download.description":
+                "वेबसाइट आपके प्लेटफ़ॉर्म के लिए उपलब्ध नवीनतम संस्करण को स्वतः जाँचती है।",
+            "download.button": "⬇ डाउनलोड",
+            "download.releases": "GitHub Releases",
+
+            "about.title": "PelirFami के बारे में",
+            "about.description":
+                "सरलता, प्रदर्शन और साफ़ उपयोगकर्ता अनुभव पर केंद्रित आधुनिक मीडिया प्लेयर प्रोजेक्ट।",
+
+            "footer.made": "❤️ से बनाया गया"
+        }
+    }
+
+};
+
+
+/* =========================================================
+   LANGUAGE DETECTION
+========================================================= */
+
+const LANGUAGE_STORAGE_KEY = "pelirfami_language";
+
+
+function normalizeLanguage(language){
+
+    if(!language){
+        return null;
+    }
+
+    language = language.toLowerCase().trim();
+
+    /*
+        Example:
+        fa-IR -> fa
+        en-US -> en
+        tr-TR -> tr
+    */
+
+    const short = language.split("-")[0];
+
+    if(LANGUAGES[language]){
+        return language;
+    }
+
+    if(LANGUAGES[short]){
+        return short;
+    }
+
+    return null;
+}
+
+
+function detectBrowserLanguage(){
+
+    /*
+        First check all preferred browser languages.
+    */
+
+    if(
+        navigator.languages &&
+        navigator.languages.length
+    ){
+
+        for(
+            const browserLanguage of navigator.languages
+        ){
+
+            const detected =
+                normalizeLanguage(browserLanguage);
+
+            if(detected){
+                return detected;
+            }
+        }
     }
 
 
-    /* =========================================
-       SET DOWNLOAD LINK
-    ========================================= */
+    /*
+        Fallback to navigator.language.
+    */
 
-    function setDownloadLink(
-        element,
-        asset,
-        product
-    ) {
+    const single =
+        normalizeLanguage(navigator.language);
 
-        if (!element) {
-            return;
-        }
-
-        if (asset && asset.browser_download_url) {
-
-            element.href =
-                asset.browser_download_url;
-
-            element.target = "_blank";
-            element.rel = "noopener";
-
-            element.classList.remove("loading");
-
-        } else {
-
-            element.href =
-                comingSoon(product);
-
-            element.removeAttribute("target");
-            element.removeAttribute("rel");
-
-        }
-
+    if(single){
+        return single;
     }
 
 
-    /* =========================================
-       FIND ANDROID APK
-    ========================================= */
+    /*
+        Final fallback.
+    */
 
-    function findAndroidAPK(assets) {
+    return "en";
+}
 
-        return assets.find(function(asset) {
 
-            const name =
-                asset.name.toLowerCase();
+/* =========================================================
+   APPLY LANGUAGE
+========================================================= */
 
-            return (
-                name.endsWith(".apk") &&
-                !name.includes("android-tv") &&
-                !name.includes("androidtv") &&
-                !name.includes("android_tv") &&
-                !name.includes("tv")
+let currentLanguageCode = "en";
+
+
+function translatePage(languageCode){
+
+    const language =
+        LANGUAGES[languageCode] ||
+        LANGUAGES.en;
+
+    currentLanguageCode =
+        languageCode in LANGUAGES
+            ? languageCode
+            : "en";
+
+
+    /*
+        HTML language + direction
+    */
+
+    document.documentElement.lang =
+        currentLanguageCode;
+
+    document.documentElement.dir =
+        language.dir;
+
+    document.body.classList.toggle(
+        "rtl",
+        language.dir === "rtl"
+    );
+
+
+    /*
+        Translate every element.
+    */
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            const key =
+                element.dataset.i18n;
+
+            const value =
+                language.translations[key];
+
+            if(value !== undefined){
+
+                element.textContent =
+                    value;
+
+            }
+
+        });
+
+
+    /*
+        Update language button.
+    */
+
+    document
+        .getElementById("currentLanguage")
+        .textContent =
+        language.native;
+
+
+    /*
+        Update menu active state.
+    */
+
+    document
+        .querySelectorAll(".language-option")
+        .forEach(option => {
+
+            option.classList.toggle(
+                "active",
+                option.dataset.language ===
+                currentLanguageCode
             );
 
         });
 
-    }
 
+    /*
+        Save language.
+    */
 
-    /* =========================================
-       FIND ANDROID TV APK
-    ========================================= */
+    localStorage.setItem(
+        LANGUAGE_STORAGE_KEY,
+        currentLanguageCode
+    );
 
-    function findAndroidTVAPK(assets) {
 
-        return assets.find(function(asset) {
+    /*
+        Update title.
+    */
 
-            const name =
-                asset.name.toLowerCase();
+    document.title =
+        currentLanguageCode === "fa"
+            ? "فمی پلیر | PelirFami"
+            : "PelirFami";
 
-            return (
-                name.endsWith(".apk") &&
-                (
-                    name.includes("android-tv") ||
-                    name.includes("androidtv") ||
-                    name.includes("android_tv") ||
-                    name.includes("-tv") ||
-                    name.includes("_tv") ||
-                    name.includes("tv-") ||
-                    name.includes("tv_")
-                )
-            );
 
-        });
+    /*
+        Refresh platform statuses because their
+        text also belongs to the translation system.
+    */
 
-    }
+    refreshPlatformStatusText();
+}
 
 
-    /* =========================================
-       FIND WINDOWS
-    ========================================= */
+/* =========================================================
+   BUILD LANGUAGE MENU
+========================================================= */
 
-    function findWindowsAsset(
-        assets,
-        architecture
-    ) {
+function buildLanguageMenu(){
 
-        return assets.find(function(asset) {
+    const menu =
+        document.getElementById("languageMenu");
 
-            const name =
-                asset.name.toLowerCase();
+    menu.innerHTML = "";
 
-            if (!name.includes("windows")) {
-                return false;
-            }
 
-            if (architecture === "x64") {
+    Object
+        .entries(LANGUAGES)
+        .forEach(([code, language]) => {
 
-                return (
-                    name.includes("x64") ||
-                    name.includes("amd64")
-                );
+            const button =
+                document.createElement("button");
 
-            }
+            button.type = "button";
 
-            if (architecture === "x86") {
+            button.className =
+                "language-option";
 
-                return (
-                    name.includes("x86") ||
-                    name.includes("win32") ||
-                    name.includes("32bit") ||
-                    name.includes("32-bit")
-                );
+            button.dataset.language =
+                code;
 
-            }
+            button.innerHTML = `
+                <span class="language-flag">
+                    ${language.flag}
+                </span>
 
-            if (architecture === "arm64") {
+                <span class="language-name">
+                    ${language.native}
+                </span>
 
-                return (
-                    name.includes("arm64") ||
-                    name.includes("aarch64")
-                );
+                <span class="language-native">
+                    ${language.name}
+                </span>
+            `;
 
-            }
 
-            return false;
+            button.addEventListener(
+                "click",
+                () => {
 
-        });
+                    translatePage(code);
 
-    }
-
-
-    /* =========================================
-       LOAD RELEASE
-    ========================================= */
-
-    async function loadLatestRelease() {
-
-        try {
-
-            const response =
-                await fetch(API_URL, {
-                    cache: "no-store"
-                });
-
-            if (!response.ok) {
-                throw new Error(
-                    "GitHub API error"
-                );
-            }
-
-            const release =
-                await response.json();
-
-            const assets =
-                Array.isArray(release.assets)
-                    ? release.assets
-                    : [];
-
-
-            /* ==============================
-               ANDROID
-            ============================== */
-
-            const androidAPK =
-                findAndroidAPK(assets);
-
-            setDownloadLink(
-                androidDownload,
-                androidAPK,
-                "android"
-            );
-
-            setDownloadLink(
-                heroAndroidButton,
-                androidAPK,
-                "android"
-            );
-
-
-            if (androidAPK) {
-
-                androidStatus.textContent =
-                    "✓ آخرین APK آماده دانلود است.";
-
-            } else {
-
-                androidStatus.textContent =
-                    "نسخه Android فعلاً آماده نیست.";
-
-            }
-
-
-            /* ==============================
-               ANDROID TV
-            ============================== */
-
-            const tvAPK =
-                findAndroidTVAPK(assets);
-
-            setDownloadLink(
-                androidTvDownload,
-                tvAPK,
-                "android-tv"
-            );
-
-            setDownloadLink(
-                androidTvDownloadBottom,
-                tvAPK,
-                "android-tv"
-            );
-
-
-            if (tvAPK) {
-
-                tvStatus.textContent =
-                    "✓ نسخه Android TV آماده دانلود است.";
-
-                tvBottomStatus.textContent =
-                    "✓ نسخه آماده دانلود است.";
-
-            } else {
-
-                tvStatus.textContent =
-                    "نسخه Android TV هنوز منتشر نشده است.";
-
-                tvBottomStatus.textContent =
-                    "Android TV به‌زودی.";
-
-            }
-
-
-            /* ==============================
-               WINDOWS
-            ============================== */
-
-            const x64 =
-                findWindowsAsset(
-                    assets,
-                    "x64"
-                );
-
-            const x86 =
-                findWindowsAsset(
-                    assets,
-                    "x86"
-                );
-
-            const arm64 =
-                findWindowsAsset(
-                    assets,
-                    "arm64"
-                );
-
-
-            setDownloadLink(
-                windowsX64,
-                x64,
-                "windows-x64"
-            );
-
-            setDownloadLink(
-                windowsX86,
-                x86,
-                "windows-x86"
-            );
-
-            setDownloadLink(
-                windowsArm64,
-                arm64,
-                "windows-arm64"
-            );
-
-
-            setRecommendedWindows(
-                x64,
-                x86,
-                arm64
-            );
-
-
-        } catch (error) {
-
-            console.error(
-                "Release loading failed:",
-                error
-            );
-
-
-            /*
-             * اگر GitHub API موقتاً در دسترس نبود،
-             * لینک‌ها را به Coming Soon می‌فرستیم
-             * تا لینک خراب نداشته باشیم.
-             */
-
-            setDownloadLink(
-                androidDownload,
-                null,
-                "android"
-            );
-
-            setDownloadLink(
-                heroAndroidButton,
-                null,
-                "android"
-            );
-
-            setDownloadLink(
-                androidTvDownload,
-                null,
-                "android-tv"
-            );
-
-            setDownloadLink(
-                androidTvDownloadBottom,
-                null,
-                "android-tv"
-            );
-
-            setDownloadLink(
-                windowsX64,
-                null,
-                "windows-x64"
-            );
-
-            setDownloadLink(
-                windowsX86,
-                null,
-                "windows-x86"
-            );
-
-            setDownloadLink(
-                windowsArm64,
-                null,
-                "windows-arm64"
-            );
-
-            setRecommendedWindows(
-                null,
-                null,
-                null
-            );
-
-
-            androidStatus.textContent =
-                "امکان بررسی نسخه فعلی وجود ندارد.";
-
-            tvStatus.textContent =
-                "امکان بررسی نسخه فعلی وجود ندارد.";
-
-            tvBottomStatus.textContent =
-                "امکان بررسی نسخه فعلی وجود ندارد.";
-
-        }
-
-    }
-
-
-    /* =========================================
-       DETECT WINDOWS ARCHITECTURE
-    ========================================= */
-
-    function detectArchitecture() {
-
-        const ua =
-            navigator.userAgent.toLowerCase();
-
-        const platform =
-            navigator.platform
-                ? navigator.platform.toLowerCase()
-                : "";
-
-
-        if (
-            ua.includes("arm64") ||
-            ua.includes("aarch64") ||
-            platform.includes("arm")
-        ) {
-
-            return "arm64";
-
-        }
-
-
-        if (
-            ua.includes("wow64") ||
-            ua.includes("win32")
-        ) {
-
-            return "x86";
-
-        }
-
-
-        /*
-         * بیشتر سیستم‌های Windows جدید
-         * x64 هستند.
-         */
-
-        if (
-            ua.includes("windows") ||
-            platform.includes("win")
-        ) {
-
-            return "x64";
-
-        }
-
-
-        return "x64";
-
-    }
-
-
-    /* =========================================
-       SET RECOMMENDED WINDOWS
-    ========================================= */
-
-    function setRecommendedWindows(
-        x64,
-        x86,
-        arm64
-    ) {
-
-        const architecture =
-            detectArchitecture();
-
-
-        let asset = null;
-        let product = "windows-x64";
-
-
-        if (architecture === "arm64") {
-
-            asset = arm64;
-            product = "windows-arm64";
-
-        } else if (
-            architecture === "x86"
-        ) {
-
-            asset = x86;
-            product = "windows-x86";
-
-        } else {
-
-            asset = x64;
-            product = "windows-x64";
-
-        }
-
-
-        setDownloadLink(
-            windowsRecommended,
-            asset,
-            product
-        );
-
-
-        if (architecture === "arm64") {
-
-            systemDetect.textContent =
-                "سیستم شما: Windows ARM64";
-
-        } else if (
-            architecture === "x86"
-        ) {
-
-            systemDetect.textContent =
-                "سیستم شما: Windows x86";
-
-        } else {
-
-            systemDetect.textContent =
-                "سیستم شما: Windows x64";
-
-        }
-
-    }
-
-
-    /* =========================================
-       LANGUAGE
-    ========================================= */
-
-    let currentLanguage = "fa";
-
-
-    const languageBtn =
-        document.getElementById(
-            "languageBtn"
-        );
-
-
-    function updateLanguage() {
-
-        const html =
-            document.documentElement;
-
-
-        html.lang =
-            currentLanguage;
-
-        html.dir =
-            currentLanguage === "fa"
-                ? "rtl"
-                : "ltr";
-
-
-        document
-            .querySelectorAll(
-                "[data-fa]"
-            )
-            .forEach(function(element) {
-
-                const value =
-                    element.getAttribute(
-                        "data-" +
-                        currentLanguage
+                    menu.classList.remove(
+                        "show"
                     );
 
-                if (value !== null) {
-
-                    element.textContent =
-                        value;
-
                 }
-
-            });
-
-
-        languageBtn.textContent =
-            currentLanguage === "fa"
-                ? "EN"
-                : "FA";
+            );
 
 
-        updateTVLanguageStatus();
+            menu.appendChild(button);
 
-    }
+        });
+
+}
 
 
-    function updateTVLanguageStatus() {
+/* =========================================================
+   INITIAL LANGUAGE
+========================================================= */
 
-        if (
-            !tvStatus ||
-            !tvBottomStatus
-        ) {
-            return;
-        }
+function initializeLanguage(){
+
+    const savedLanguage =
+        localStorage.getItem(
+            LANGUAGE_STORAGE_KEY
+        );
+
+
+    let language;
+
+
+    /*
+        If user manually selected a language
+        before, use it.
+    */
+
+    if(
+        savedLanguage &&
+        LANGUAGES[savedLanguage]
+    ){
+
+        language =
+            savedLanguage;
+
+    }else{
 
         /*
-         * وضعیت واقعی بعد از fetch
-         * دوباره توسط loadLatestRelease
-         * نوشته می‌شود.
-         */
+            Otherwise detect browser language.
+        */
+
+        language =
+            detectBrowserLanguage();
 
     }
 
 
-    languageBtn.addEventListener(
+    translatePage(language);
+}
+
+
+/* =========================================================
+   LANGUAGE UI
+========================================================= */
+
+document
+    .getElementById("languageButton")
+    .addEventListener(
         "click",
-        function() {
+        event => {
 
-            currentLanguage =
-                currentLanguage === "fa"
-                    ? "en"
-                    : "fa";
+            event.stopPropagation();
 
-            updateLanguage();
+            document
+                .getElementById("languageMenu")
+                .classList.toggle("show");
 
         }
     );
 
 
-    /* =========================================
-       YEAR
-    ========================================= */
+document.addEventListener(
+    "click",
+    event => {
 
-    document.getElementById(
-        "year"
-    ).textContent =
-        new Date().getFullYear();
+        const menu =
+            document.getElementById(
+                "languageMenu"
+            );
+
+        const button =
+            document.getElementById(
+                "languageButton"
+            );
 
 
-    /* =========================================
-       START
-    ========================================= */
+        if(
+            !menu.contains(event.target) &&
+            !button.contains(event.target)
+        ){
 
-    loadLatestRelease();
+            menu.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+document
+    .getElementById("mobileMenuButton")
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById("mobileNav")
+                .classList.toggle("show");
+
+        }
+    );
+
+
+document
+    .querySelectorAll("#mobileNav a")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .getElementById("mobileNav")
+                    .classList.remove("show");
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   GITHUB RELEASE SYSTEM
+========================================================= */
+
+const RELEASE_API =
+    "https://api.github.com/repos/famipelir/PelirFami/releases/latest";
+
+const RELEASE_PAGE =
+    "https://github.com/famipelir/PelirFami/releases/latest";
+
+
+let latestRelease = null;
+
+
+/* =========================================================
+   WINDOWS ARCHITECTURE
+========================================================= */
+
+function detectWindowsArchitecture(){
+
+    const userAgent =
+        navigator.userAgent.toLowerCase();
+
+    const platform =
+        (navigator.platform || "")
+        .toLowerCase();
+
+
+    /*
+        ARM64
+    */
+
+    if(
+        userAgent.includes("arm64") ||
+        userAgent.includes("aarch64") ||
+        platform.includes("arm")
+    ){
+
+        return "windows-arm64";
+
+    }
+
+
+    /*
+        32-bit Windows
+    */
+
+    if(
+        userAgent.includes("wow64") ||
+        userAgent.includes("win32")
+    ){
+
+        return "windows-x86";
+
+    }
+
+
+    /*
+        Default:
+        x64
+    */
+
+    return "windows-x64";
+}
+
+
+/* =========================================================
+   FIND RELEASE ASSET
+========================================================= */
+
+function findAsset(product){
+
+    if(!latestRelease){
+        return null;
+    }
+
+
+    const assets =
+        latestRelease.assets || [];
+
+
+    const names =
+        assets.map(
+            asset =>
+                asset.name.toLowerCase()
+        );
+
+
+    let keywords = [];
+
+
+    switch(product){
+
+        case "android":
+
+            keywords = [
+                "android",
+                ".apk"
+            ];
+
+            break;
+
+
+        case "android-tv":
+
+            keywords = [
+                "androidtv",
+                "android-tv",
+                "tv",
+                ".apk"
+            ];
+
+            break;
+
+
+        case "windows-x64":
+
+            keywords = [
+                "windows",
+                "win",
+                "x64",
+                "64"
+            ];
+
+            break;
+
+
+        case "windows-x86":
+
+            keywords = [
+                "windows",
+                "win",
+                "x86",
+                "32"
+            ];
+
+            break;
+
+
+        case "windows-arm64":
+
+            keywords = [
+                "windows",
+                "win",
+                "arm64",
+                "arm"
+            ];
+
+            break;
+
+    }
+
+
+    /*
+        Special Android TV detection.
+    */
+
+    if(product === "android-tv"){
+
+        const tvAsset =
+            latestRelease.assets.find(
+                asset => {
+
+                    const name =
+                        asset.name.toLowerCase();
+
+                    return (
+                        name.includes("androidtv") ||
+                        name.includes("android-tv") ||
+                        name.includes("android_tv")
+                    )
+                    &&
+                    name.endsWith(".apk");
+
+                }
+            );
+
+
+        if(tvAsset){
+            return tvAsset;
+        }
+
+    }
+
+
+    /*
+        Android APK.
+    */
+
+    if(product === "android"){
+
+        const androidAsset =
+            latestRelease.assets.find(
+                asset => {
+
+                    const name =
+                        asset.name.toLowerCase();
+
+                    return (
+                        name.endsWith(".apk") &&
+                        !name.includes("tv")
+                    );
+
+                }
+            );
+
+
+        if(androidAsset){
+            return androidAsset;
+        }
+
+    }
+
+
+    /*
+        Windows assets.
+    */
+
+    if(product.startsWith("windows")){
+
+        const architecture =
+            product
+                .replace("windows-", "")
+                .toLowerCase();
+
+
+        const asset =
+            latestRelease.assets.find(
+                asset => {
+
+                    const name =
+                        asset.name.toLowerCase();
+
+                    if(
+                        !(
+                            name.endsWith(".exe") ||
+                            name.endsWith(".zip") ||
+                            name.endsWith(".msi")
+                        )
+                    ){
+                        return false;
+                    }
+
+
+                    if(
+                        architecture === "x64"
+                    ){
+
+                        return (
+                            name.includes("x64") ||
+                            name.includes("amd64") ||
+                            name.includes("win64")
+                        );
+
+                    }
+
+
+                    if(
+                        architecture === "x86"
+                    ){
+
+                        return (
+                            name.includes("x86") ||
+                            name.includes("win32") ||
+                            name.includes("32bit")
+                        );
+
+                    }
+
+
+                    if(
+                        architecture === "arm64"
+                    ){
+
+                        return (
+                            name.includes("arm64") ||
+                            name.includes("aarch64")
+                        );
+
+                    }
+
+
+                    return false;
+
+                }
+            );
+
+
+        if(asset){
+            return asset;
+        }
+
+    }
+
+
+    return null;
+}
+
+
+/* =========================================================
+   PRODUCT DOWNLOAD
+========================================================= */
+
+function getProductUrl(product){
+
+    const asset =
+        findAsset(product);
+
+
+    if(asset){
+
+        return asset.browser_download_url;
+
+    }
+
+
+    /*
+        No file:
+        send user to Coming Soon.
+    */
+
+    return (
+        "coming-soon.html?product=" +
+        encodeURIComponent(product)
+    );
+}
+
+
+/* =========================================================
+   SET DOWNLOAD BUTTON
+========================================================= */
+
+function setupDownloadButton(
+    element,
+    product
+){
+
+    if(!element){
+        return;
+    }
+
+
+    element.href =
+        getProductUrl(product);
+
+
+    element.onclick =
+        null;
+
+}
+
+
+/* =========================================================
+   PLATFORM STATUS
+========================================================= */
+
+function refreshPlatformStatusText(){
+
+    if(!latestRelease){
+        return;
+    }
+
+
+    updateStatus(
+        "androidStatus",
+        "android"
+    );
+
+    updateStatus(
+        "tvStatus",
+        "android-tv"
+    );
+
+    updateStatus(
+        "windowsStatus",
+        detectWindowsArchitecture()
+    );
+
+}
+
+
+function updateStatus(
+    elementId,
+    product
+){
+
+    const element =
+        document.getElementById(
+            elementId
+        );
+
+
+    if(!element){
+        return;
+    }
+
+
+    const asset =
+        findAsset(product);
+
+
+    if(asset){
+
+        element.innerHTML =
+            `● ${LANGUAGES[currentLanguageCode]
+                .translations["platforms.available"]}`;
+
+        element.style.color =
+            "var(--green)";
+
+    }else{
+
+        element.innerHTML =
+            `● ${LANGUAGES[currentLanguageCode]
+                .translations["platforms.soon"]}`;
+
+        element.style.color =
+            "var(--yellow)";
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD GITHUB RELEASE
+========================================================= */
+
+async function loadLatestRelease(){
+
+    try{
+
+        const response =
+            await fetch(
+                RELEASE_API,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Release request failed"
+            );
+
+        }
+
+
+        latestRelease =
+            await response.json();
+
+
+        /*
+            Android
+        */
+
+        setupDownloadButton(
+            document.getElementById(
+                "androidDownload"
+            ),
+            "android"
+        );
+
+
+        /*
+            Android TV
+        */
+
+        setupDownloadButton(
+            document.getElementById(
+                "tvDownload"
+            ),
+            "android-tv"
+        );
+
+
+        /*
+            Windows
+        */
+
+        setupDownloadButton(
+            document.getElementById(
+                "windowsDownload"
+            ),
+            detectWindowsArchitecture()
+        );
+
+
+        /*
+            Main automatic button
+        */
+
+        const mainProduct =
+            detectMainProduct();
+
+
+        setupDownloadButton(
+            document.getElementById(
+                "mainDownload"
+            ),
+            mainProduct
+        );
+
+
+        /*
+            Update status
+        */
+
+        refreshPlatformStatusText();
+
+
+    }catch(error){
+
+        console.warn(
+            "Could not load GitHub release:",
+            error
+        );
+
+
+        /*
+            If GitHub API is unavailable,
+            platform buttons still work
+            and go to Coming Soon.
+        */
+
+        setupDownloadButton(
+            document.getElementById(
+                "androidDownload"
+            ),
+            "android"
+        );
+
+        setupDownloadButton(
+            document.getElementById(
+                "tvDownload"
+            ),
+            "android-tv"
+        );
+
+        setupDownloadButton(
+            document.getElementById(
+                "windowsDownload"
+            ),
+            detectWindowsArchitecture()
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   DETECT MAIN PRODUCT
+========================================================= */
+
+function detectMainProduct(){
+
+    const userAgent =
+        navigator.userAgent.toLowerCase();
+
+
+    /*
+        Android TV
+    */
+
+    if(
+        userAgent.includes("android") &&
+        (
+            userAgent.includes("tv") ||
+            userAgent.includes("googletv")
+        )
+    ){
+
+        return "android-tv";
+
+    }
+
+
+    /*
+        Android
+    */
+
+    if(
+        userAgent.includes("android")
+    ){
+
+        return "android";
+
+    }
+
+
+    /*
+        Windows
+    */
+
+    if(
+        userAgent.includes("windows")
+    ){
+
+        return detectWindowsArchitecture();
+
+    }
+
+
+    /*
+        Other platforms:
+        default to Android download section.
+    */
+
+    return "android";
+
+}
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+document.getElementById(
+    "year"
+).textContent =
+    new Date().getFullYear();
+
+
+/* =========================================================
+   START
+========================================================= */
+
+buildLanguageMenu();
+
+initializeLanguage();
+
+loadLatestRelease();
 
 </script>
 
