@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PelirFami — Coming Soon</title>
+
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="PelirFami — Coming Soon">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #080b12;
+      --panel: #10151f;
+      --panel2: #151b27;
+      --border: rgba(255,255,255,.09);
+      --text: #f5f7fb;
+      --muted: #9ba6b7;
+      --accent: #7c5cff;
+      --accent2: #00d4ff;
+      --green: #35d07f;
+      --red: #ff5d73;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family:
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(124,92,255,.18),
+          transparent 38%
+        ),
+        radial-gradient(
+          circle at 80% 80%,
+          rgba(0,212,255,.08),
+          transparent 30%
+        ),
+        var(--bg);
+
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          rgba(255,255,255,.015) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.015) 1px,
+          transparent 1px
+        );
+
+      background-size: 40px 40px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* LANGUAGE */
+
+    .language-box {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 18px;
+    }
+
+    select {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(16,21,31,.9);
+      color: var(--text);
+
+      padding: 11px 38px 11px 15px;
+      border-radius: 12px;
+
+      font-size: 14px;
+      cursor: pointer;
+
+      outline: none;
+
+      background-image:
+        linear-gradient(45deg, transparent 50%, #aaa 50%),
+        linear-gradient(135deg, #aaa 50%, transparent 50%);
+
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 13px) 50%;
+
+      background-size:
+        5px 5px,
+        5px 5px;
+
+      background-repeat: no-repeat;
+    }
+
+    select:hover {
+      border-color: rgba(124,92,255,.5);
+    }
+
+    option {
+      background: #10151f;
+      color: white;
+    }
+
+    /* CARD */
+
+    .card {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.045),
+          rgba(255,255,255,.015)
+        );
+
+      border: 1px solid var(--border);
+      border-radius: 28px;
+
+      padding: 55px 35px;
+
+      text-align: center;
+
+      box-shadow:
+        0 30px 100px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.04);
+
+      backdrop-filter: blur(18px);
+    }
+
+    /* LOGO */
+
+    .logo {
+      width: 95px;
+      height: 95px;
+
+      object-fit: contain;
+
+      border-radius: 24px;
+
+      margin-bottom: 25px;
+
+      box-shadow:
+        0 15px 45px rgba(124,92,255,.25);
+    }
+
+    /* ICON */
+
+    .icon {
+      width: 92px;
+      height: 92px;
+
+      margin: 0 auto 28px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 43px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(124,92,255,.22),
+          rgba(0,212,255,.12)
+        );
+
+      border: 1px solid rgba(124,92,255,.3);
+
+      box-shadow:
+        0 20px 50px rgba(124,92,255,.18);
+    }
+
+    h1 {
+      font-size: clamp(30px, 6vw, 52px);
+      line-height: 1.15;
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+
+    .product {
+      color: var(--accent2);
+      font-weight: 700;
+    }
+
+    .description {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.9;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    /* BADGE */
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 9px 17px;
+
+      border-radius: 50px;
+
+      background: rgba(255,193,7,.08);
+      border: 1px solid rgba(255,193,7,.18);
+
+      color: #ffd86a;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      margin-bottom: 30px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: #ffc107;
+
+      box-shadow:
+        0 0 12px rgba(255,193,7,.8);
+
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .4;
+        transform: scale(.75);
+      }
+    }
+
+    /* BUTTONS */
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      text-decoration: none;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 165px;
+
+      padding: 13px 20px;
+
+      border-radius: 13px;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          #5d3df2
+        );
+
+      box-shadow:
+        0 12px 30px rgba(124,92,255,.25);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+
+      background: rgba(255,255,255,.04);
+
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(124,92,255,.45);
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 25px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      text-align: center;
+
+      line-height: 1.8;
+    }
+
+    .made-by {
+      margin-top: 5px;
+      color: #c2c9d4;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .language-box {
+        margin-bottom: 12px;
+      }
+
+      .card {
+        padding: 38px 20px;
+        border-radius: 22px;
+      }
+
+      .logo {
+        width: 78px;
+        height: 78px;
+      }
+
+      .icon {
+        width: 78px;
+        height: 78px;
+        font-size: 35px;
+      }
+
+      .description {
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    /* RTL */
+
+    html[dir="rtl"] .language-box {
+      justify-content: flex-start;
+    }
+
+    html[dir="ltr"] .language-box {
+      justify-content: flex-end;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- LANGUAGE -->
+    <div class="language-box">
+      <select id="languageSelect" aria-label="Language">
+        <option value="fa">فارسی</option>
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="tr">Türkçe</option>
+        <option value="az">Azərbaycanca</option>
+        <option value="ru">Русский</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+        <option value="it">Italiano</option>
+        <option value="zh">中文</option>
+        <option value="ja">日本語</option>
+        <option value="ko">한국어</option>
+        <option value="hi">हिन्दी</option>
+        <option value="ur">اردو</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="nl">Nederlands</option>
+        <option value="pl">Polski</option>
+        <option value="uk">Українська</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="th">ไทย</option>
+      </select>
+    </div>
+
+    <!-- CARD -->
+    <main class="card">
+
+      <img
+        src="assets/images/logo/logo.png"
+        alt="PelirFami"
+        class="logo"
+        onerror="this.style.display='none'"
+      >
+
+      <div class="icon">
+        🚀
+      </div>
+
+      <div class="badge">
+        <span class="dot"></span>
+        <span data-i18n="badge">به‌زودی</span>
+      </div>
+
+      <h1>
+        <span class="product" id="productName">
+          PelirFami
+        </span>
+      </h1>
+
+      <p
+        class="description"
+        data-i18n="description"
+      >
+        این نسخه از فمی پلیر در حال آماده‌سازی است.
+        به‌زودی می‌توانید آن را دریافت و استفاده کنید.
+      </p>
+
+      <div class="buttons">
+
+        <a
+          href="games.html"
+          class="btn btn-primary"
+          data-i18n="games"
+        >
+          🎮 مرکز بازی
+        </a>
+
+        <a
+          href="index.html"
+          class="btn btn-secondary"
+          data-i18n="home"
+        >
+          🏠 صفحه اصلی
+        </a>
+
+        <a
+          href="https://github.com/famipelir/PelirFami/releases/latest"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-secondary"
+          data-i18n="releases"
+        >
+          📦 نسخه‌ها
+        </a>
+
+      </div>
+
+    </main>
+
+    <footer>
+
+      <div data-i18n="footer">
+        PelirFami — پخش‌کننده مدرن و حرفه‌ای ویدیو و صدا
+      </div>
+
+      <div
+        class="made-by"
+        data-i18n="footerMadeBy"
+      >
+        ساخته شده توسط محمدمهدی حسن پور
+      </div>
+
+    </footer>
+
+  </div>
+
+
+<script>
+
+/* =========================================================
+   PELIRFAMI MULTI LANGUAGE SYSTEM
+   ========================================================= */
+
+const LANG_KEY = "pelirfami_language";
+
+
+/* =========================================================
+   LANGUAGES
+   ========================================================= */
+
+const LANGUAGES = {
+
+  fa: {
+    native: "فارسی",
+    dir: "rtl"
+  },
+
+  en: {
+    native: "English",
+    dir: "ltr"
+  },
+
+  ar: {
+    native: "العربية",
+    dir: "rtl"
+  },
+
+  tr: {
+    native: "Türkçe",
+    dir: "ltr"
+  },
+
+  az: {
+    native: "Azərbaycanca",
+    dir: "ltr"
+  },
+
+  ru: {
+    native: "Русский",
+    dir: "ltr"
+  },
+
+  de: {
+    native: "Deutsch",
+    dir: "ltr"
+  },
+
+  fr: {
+    native: "Français",
+    dir: "ltr"
+  },
+
+  es: {
+    native: "Español",
+    dir: "ltr"
+  },
+
+  pt: {
+    native: "Português",
+    dir: "ltr"
+  },
+
+  it: {
+    native: "Italiano",
+    dir: "ltr"
+  },
+
+  zh: {
+    native: "中文",
+    dir: "ltr"
+  },
+
+  ja: {
+    native: "日本語",
+    dir: "ltr"
+  },
+
+  ko: {
+    native: "한국어",
+    dir: "ltr"
+  },
+
+  hi: {
+    native: "हिन्दी",
+    dir: "ltr"
+  },
+
+  ur: {
+    native: "اردو",
+    dir: "rtl"
+  },
+
+  id: {
+    native: "Bahasa Indonesia",
+    dir: "ltr"
+  },
+
+  nl: {
+    native: "Nederlands",
+    dir: "ltr"
+  },
+
+  pl: {
+    native: "Polski",
+    dir: "ltr"
+  },
+
+  uk: {
+    native: "Українська",
+    dir: "ltr"
+  },
+
+  vi: {
+    native: "Tiếng Việt",
+    dir: "ltr"
+  },
+
+  th: {
+    native: "ไทย",
+    dir: "ltr"
+  }
+
+};
+
+
+/* =========================================================
+   TRANSLATIONS
+   ========================================================= */
+
+const translations = {
+
+  fa: {
+
+    badge: "به‌زودی",
+
+    description:
+      "این نسخه از فمی پلیر در حال آماده‌سازی است. به‌زودی می‌توانید آن را دریافت و استفاده کنید.",
+
+    games:
+      "🎮 مرکز بازی",
+
+    home:
+      "🏠 صفحه اصلی",
+
+    releases:
+      "📦 نسخه‌ها",
+
+    footer:
+      "PelirFami — پخش‌کننده مدرن و حرفه‌ای ویدیو و صدا",
+
+    footerMadeBy:
+      "ساخته شده توسط محمدمهدی حسن پور"
+
+  },
+
+
+  en: {
+
+    badge:
+      "Coming Soon",
+
+    description:
+      "This version of PelirFami is currently being prepared. It will be available soon.",
+
+    games:
+      "🎮 Game Center",
+
+    home:
+      "🏠 Home",
+
+    releases:
+      "📦 Releases",
+
+    footer:
+      "PelirFami — Modern and professional video & audio player",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  ar: {
+
+    badge:
+      "قريباً",
+
+    description:
+      "يتم حالياً تجهيز هذا الإصدار من PelirFami. سيكون متاحاً قريباً.",
+
+    games:
+      "🎮 مركز الألعاب",
+
+    home:
+      "🏠 الصفحة الرئيسية",
+
+    releases:
+      "📦 الإصدارات",
+
+    footer:
+      "PelirFami — مشغل فيديو وصوت حديث واحترافي",
+
+    footerMadeBy:
+      "صنع بواسطة محمد مهدي حسن بور"
+
+  },
+
+
+  tr: {
+
+    badge:
+      "Çok Yakında",
+
+    description:
+      "PelirFami'nin bu sürümü hazırlanıyor. Yakında kullanıma sunulacak.",
+
+    games:
+      "🎮 Oyun Merkezi",
+
+    home:
+      "🏠 Ana Sayfa",
+
+    releases:
+      "📦 Sürümler",
+
+    footer:
+      "PelirFami — Modern ve profesyonel video ve ses oynatıcı",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  az: {
+
+    badge:
+      "Tezliklə",
+
+    description:
+      "PelirFami-nin bu versiyası hazırlanır. Tezliklə istifadəyə veriləcək.",
+
+    games:
+      "🎮 Oyun Mərkəzi",
+
+    home:
+      "🏠 Əsas Səhifə",
+
+    releases:
+      "📦 Versiyalar",
+
+    footer:
+      "PelirFami — Müasir və peşəkar video və audio pleyer",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  ru: {
+
+    badge:
+      "Скоро",
+
+    description:
+      "Эта версия PelirFami сейчас готовится. Скоро она будет доступна.",
+
+    games:
+      "🎮 Игровой центр",
+
+    home:
+      "🏠 Главная",
+
+    releases:
+      "📦 Релизы",
+
+    footer:
+      "PelirFami — современный профессиональный видео- и аудиоплеер",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  de: {
+
+    badge:
+      "Demnächst",
+
+    description:
+      "Diese Version von PelirFami wird derzeit vorbereitet und bald verfügbar sein.",
+
+    games:
+      "🎮 Spielezentrum",
+
+    home:
+      "🏠 Startseite",
+
+    releases:
+      "📦 Versionen",
+
+    footer:
+      "PelirFami — moderner und professioneller Video- und Audioplayer",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  fr: {
+
+    badge:
+      "Bientôt disponible",
+
+    description:
+      "Cette version de PelirFami est actuellement en préparation. Elle sera bientôt disponible.",
+
+    games:
+      "🎮 Centre de jeux",
+
+    home:
+      "🏠 Accueil",
+
+    releases:
+      "📦 Versions",
+
+    footer:
+      "PelirFami — lecteur vidéo et audio moderne et professionnel",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  es: {
+
+    badge:
+      "Próximamente",
+
+    description:
+      "Esta versión de PelirFami está en preparación. Estará disponible próximamente.",
+
+    games:
+      "🎮 Centro de juegos",
+
+    home:
+      "🏠 Inicio",
+
+    releases:
+      "📦 Versiones",
+
+    footer:
+      "PelirFami — reproductor moderno y profesional de vídeo y audio",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  pt: {
+
+    badge:
+      "Em breve",
+
+    description:
+      "Esta versão do PelirFami está sendo preparada. Estará disponível em breve.",
+
+    games:
+      "🎮 Central de jogos",
+
+    home:
+      "🏠 Página inicial",
+
+    releases:
+      "📦 Versões",
+
+    footer:
+      "PelirFami — leitor moderno e profissional de vídeo e áudio",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  it: {
+
+    badge:
+      "Prossimamente",
+
+    description:
+      "Questa versione di PelirFami è in preparazione. Sarà disponibile presto.",
+
+    games:
+      "🎮 Centro giochi",
+
+    home:
+      "🏠 Home",
+
+    releases:
+      "📦 Versioni",
+
+    footer:
+      "PelirFami — lettore video e audio moderno e professionale",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  zh: {
+
+    badge:
+      "即将推出",
+
+    description:
+      "PelirFami 的此版本正在准备中，很快就会提供使用。",
+
+    games:
+      "🎮 游戏中心",
+
+    home:
+      "🏠 首页",
+
+    releases:
+      "📦 版本",
+
+    footer:
+      "PelirFami — 现代专业的视频和音频播放器",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  ja: {
+
+    badge:
+      "近日公開",
+
+    description:
+      "この PelirFami バージョンは現在準備中です。近日中に利用できるようになります。",
+
+    games:
+      "🎮 ゲームセンター",
+
+    home:
+      "🏠 ホーム",
+
+    releases:
+      "📦 リリース",
+
+    footer:
+      "PelirFami — モダンでプロフェッショナルな動画・音楽プレーヤー",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  ko: {
+
+    badge:
+      "출시 예정",
+
+    description:
+      "현재 이 PelirFami 버전을 준비하고 있습니다. 곧 이용할 수 있습니다.",
+
+    games:
+      "🎮 게임 센터",
+
+    home:
+      "🏠 홈",
+
+    releases:
+      "📦 릴리스",
+
+    footer:
+      "PelirFami — 현대적이고 전문적인 비디오 및 오디오 플레이어",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  hi: {
+
+    badge:
+      "जल्द आ रहा है",
+
+    description:
+      "PelirFami का यह संस्करण अभी तैयार किया जा रहा है। यह जल्द उपलब्ध होगा।",
+
+    games:
+      "🎮 गेम सेंटर",
+
+    home:
+      "🏠 होम",
+
+    releases:
+      "📦 रिलीज़",
+
+    footer:
+      "PelirFami — आधुनिक और पेशेवर वीडियो और ऑडियो प्लेयर",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  ur: {
+
+    badge:
+      "جلد آرہا ہے",
+
+    description:
+      "PelirFami کا یہ ورژن ابھی تیار کیا جا رہا ہے۔ یہ جلد دستیاب ہوگا۔",
+
+    games:
+      "🎮 گیم سینٹر",
+
+    home:
+      "🏠 ہوم",
+
+    releases:
+      "📦 ریلیزز",
+
+    footer:
+      "PelirFami — جدید اور پیشہ ور ویڈیو اور آڈیو پلیئر",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  id: {
+
+    badge:
+      "Segera Hadir",
+
+    description:
+      "Versi PelirFami ini sedang dipersiapkan dan akan segera tersedia.",
+
+    games:
+      "🎮 Pusat Game",
+
+    home:
+      "🏠 Beranda",
+
+    releases:
+      "📦 Rilis",
+
+    footer:
+      "PelirFami — pemutar video dan audio modern dan profesional",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  nl: {
+
+    badge:
+      "Binnenkort",
+
+    description:
+      "Deze versie van PelirFami wordt momenteel voorbereid en is binnenkort beschikbaar.",
+
+    games:
+      "🎮 Gamecentrum",
+
+    home:
+      "🏠 Home",
+
+    releases:
+      "📦 Releases",
+
+    footer:
+      "PelirFami — moderne en professionele video- en audiospeler",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  pl: {
+
+    badge:
+      "Wkrótce",
+
+    description:
+      "Ta wersja PelirFami jest obecnie przygotowywana i wkrótce będzie dostępna.",
+
+    games:
+      "🎮 Centrum gier",
+
+    home:
+      "🏠 Strona główna",
+
+    releases:
+      "📦 Wersje",
+
+    footer:
+      "PelirFami — nowoczesny i profesjonalny odtwarzacz wideo i audio",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  uk: {
+
+    badge:
+      "Незабаром",
+
+    description:
+      "Ця версія PelirFami зараз готується. Незабаром вона буде доступна.",
+
+    games:
+      "🎮 Ігровий центр",
+
+    home:
+      "🏠 Головна",
+
+    releases:
+      "📦 Версії",
+
+    footer:
+      "PelirFami — сучасний професійний відео- та аудіоплеєр",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  vi: {
+
+    badge:
+      "Sắp ra mắt",
+
+    description:
+      "Phiên bản PelirFami này đang được chuẩn bị và sẽ sớm được phát hành.",
+
+    games:
+      "🎮 Trung tâm trò chơi",
+
+    home:
+      "🏠 Trang chủ",
+
+    releases:
+      "📦 Phiên bản",
+
+    footer:
+      "PelirFami — trình phát video và âm thanh hiện đại, chuyên nghiệp",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  },
+
+
+  th: {
+
+    badge:
+      "เร็ว ๆ นี้",
+
+    description:
+      "PelirFami เวอร์ชันนี้กำลังอยู่ระหว่างการเตรียมการ และจะพร้อมใช้งานเร็ว ๆ นี้",
+
+    games:
+      "🎮 ศูนย์เกม",
+
+    home:
+      "🏠 หน้าแรก",
+
+    releases:
+      "📦 รุ่นต่าง ๆ",
+
+    footer:
+      "PelirFami — เครื่องเล่นวิดีโอและเสียงที่ทันสมัยและเป็นมืออาชีพ",
+
+    footerMadeBy:
+      "Made by Mohammad Mehdi Hassanpour"
+
+  }
+
+};
+
+
+/* =========================================================
+   PRODUCT NAMES
+   ========================================================= */
+
+const productNames = {
+
+  android: {
+    fa: "PelirFami برای اندروید",
+    en: "PelirFami for Android",
+    ar: "PelirFami لنظام Android"
+  },
+
+  "android-tv": {
+    fa: "PelirFami برای Android TV",
+    en: "PelirFami for Android TV",
+    ar: "PelirFami لـ Android TV"
+  },
+
+  "windows-x64": {
+    fa: "PelirFami برای Windows x64",
+    en: "PelirFami for Windows x64",
+    ar: "PelirFami لنظام Windows x64"
+  },
+
+  "windows-x86": {
+    fa: "PelirFami برای Windows x86",
+    en: "PelirFami for Windows x86",
+    ar: "PelirFami لنظام Windows x86"
+  },
+
+  "windows-arm64": {
+    fa: "PelirFami برای Windows ARM64",
+    en: "PelirFami for Windows ARM64",
+    ar: "PelirFami لنظام Windows ARM64"
+  }
+
+};
+
+
+/* =========================================================
+   GET PRODUCT
+   ========================================================= */
+
+function getProduct() {
+
+  const params = new URLSearchParams(
+    window.location.search
+  );
+
+  return params.get("product") || "";
+
+}
+
+
+/* =========================================================
+   LANGUAGE DETECTION
+   ========================================================= */
+
+function detectLanguage() {
+
+  const saved =
+    localStorage.getItem(LANG_KEY);
+
+  if (
+    saved &&
+    LANGUAGES[saved]
+  ) {
+    return saved;
+  }
+
+
+  const browserLanguages =
+    navigator.languages &&
+    navigator.languages.length
+      ? navigator.languages
+      : [navigator.language];
+
+
+  for (
+    const browserLanguage of browserLanguages
+  ) {
+
+    if (!browserLanguage) continue;
+
+    const code =
+      browserLanguage
+        .toLowerCase()
+        .split("-")[0]
+        .split("_")[0];
+
+
+    if (LANGUAGES[code]) {
+      return code;
+    }
+
+  }
+
+
+  return "en";
+
+}
+
+
+/* =========================================================
+   CURRENT LANGUAGE
+   ========================================================= */
+
+let currentLang =
+  detectLanguage();
+
+
+/* =========================================================
+   TRANSLATION
+   ========================================================= */
+
+function t(key) {
+
+  const dictionary =
+    translations[currentLang] ||
+    translations.en;
+
+
+  return (
+    dictionary[key] ??
+    translations.en[key] ??
+    key
+  );
+
+}
+
+
+/* =========================================================
+   APPLY LANGUAGE
+   ========================================================= */
+
+function applyLanguage(
+  language,
+  save = true
+) {
+
+  if (!LANGUAGES[language]) {
+    language = "en";
+  }
+
+
+  currentLang =
+    language;
+
+
+  document.documentElement.lang =
+    language;
+
+
+  document.documentElement.dir =
+    LANGUAGES[language].dir;
+
+
+  if (save) {
+
+    localStorage.setItem(
+      LANG_KEY,
+      language
+    );
+
+  }
+
+
+  /*
+   * Static texts
+   */
+
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach(element => {
+
+      const key =
+        element.dataset.i18n;
+
+      element.textContent =
+        t(key);
+
+    });
+
+
+  /*
+   * Language selector
+   */
+
+  const selector =
+    document.getElementById(
+      "languageSelect"
+    );
+
+
+  if (selector) {
+    selector.value =
+      language;
+  }
+
+
+  /*
+   * Product name
+   */
+
+  updateProductName();
+
+}
+
+
+/* =========================================================
+   UPDATE PRODUCT NAME
+   ========================================================= */
+
+function updateProductName() {
+
+  const element =
+    document.getElementById(
+      "productName"
+    );
+
+
+  if (!element) return;
+
+
+  const product =
+    getProduct();
+
+
+  if (
+    productNames[product] &&
+    productNames[product][currentLang]
+  ) {
+
+    element.textContent =
+      productNames[product][currentLang];
+
+    return;
+
+  }
+
+
+  if (
+    productNames[product] &&
+    productNames[product].en
+  ) {
+
+    element.textContent =
+      productNames[product].en;
+
+    return;
+
+  }
+
+
+  const fallbackNames = {
+
+    fa: "PelirFami",
+    en: "PelirFami",
+    ar: "PelirFami"
+
+  };
+
+
+  element.textContent =
+    fallbackNames[currentLang] ||
+    "PelirFami";
+
+}
+
+
+/* =========================================================
+   LANGUAGE SELECTOR
+   ========================================================= */
+
+document
+  .getElementById("languageSelect")
+  .addEventListener(
+    "change",
+    function () {
+
+      applyLanguage(
+        this.value,
+        true
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   SYNC BETWEEN TABS
+   ========================================================= */
+
+window.addEventListener(
+  "storage",
+  function (event) {
+
+    if (
+      event.key === LANG_KEY &&
+      event.newValue &&
+      LANGUAGES[event.newValue]
+    ) {
+
+      applyLanguage(
+        event.newValue,
+        false
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+applyLanguage(
+  currentLang,
+  false
+);
+
+</script>
+
+</body>
+</html>
