@@ -1,3101 +1,1562 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>PelirFami | Game Center</title>
-<meta name="description" content="مرکز بازی PelirFami">
 
 <style>
+
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 :root{
-    --bg:#060810;
-    --panel:#0d121c;
-    --panel2:#121a27;
-    --border:rgba(255,255,255,.09);
-    --text:#f5f7fb;
-    --muted:#9ca8ba;
-    --accent:#6c63ff;
-    --accent2:#00d4ff;
-    --green:#36e39a;
-    --red:#ff5577;
-    --yellow:#ffd76a;
-}
-
-html{
-    scroll-behavior:smooth;
+--bg:#080b12;
+--panel:#101521;
+--panel2:#151b29;
+--border:#252d3d;
+--text:#f5f7fb;
+--muted:#9ca6b8;
+--accent:#7c5cff;
+--accent2:#00d4ff;
+--green:#20d67b;
+--red:#ff5570;
+--yellow:#ffc857;
 }
 
 body{
-    min-height:100vh;
-    color:var(--text);
-    font-family:Tahoma,Arial,sans-serif;
-    background:
-        radial-gradient(circle at 10% 10%,rgba(108,99,255,.18),transparent 28%),
-        radial-gradient(circle at 90% 20%,rgba(0,212,255,.12),transparent 25%),
-        var(--bg);
-    overflow-x:hidden;
-}
-
-button{
-    font:inherit;
-}
-
-button,
-a{
-    -webkit-tap-highlight-color:transparent;
+font-family:Tahoma,Arial,sans-serif;
+background:
+radial-gradient(circle at top right,#17113a,transparent 35%),
+var(--bg);
+color:var(--text);
+min-height:100vh;
 }
 
 a{
-    text-decoration:none;
-    color:inherit;
+color:inherit;
+text-decoration:none;
 }
 
-/* HEADER */
+.container{
+width:min(1150px,92%);
+margin:auto;
+}
 
-header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:rgba(6,8,16,.82);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--border);
+nav{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(8,11,18,.85);
+backdrop-filter:blur(15px);
+border-bottom:1px solid var(--border);
 }
 
 .nav{
-    max-width:1200px;
-    min-height:70px;
-    margin:auto;
-    padding:0 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:11px;
-    font-size:20px;
-    font-weight:900;
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:bold;
+font-size:20px;
 }
 
 .logo img{
-    width:42px;
-    height:42px;
-    object-fit:contain;
-    border-radius:12px;
+width:42px;
+height:42px;
+border-radius:12px;
 }
 
-.back{
-    padding:10px 17px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    color:var(--muted);
-    transition:.2s;
+.nav-right{
+display:flex;
+align-items:center;
+gap:10px;
 }
 
-.back:hover{
-    color:white;
-    border-color:rgba(108,99,255,.6);
+.lang{
+background:var(--panel);
+border:1px solid var(--border);
+color:#fff;
+padding:8px;
+border-radius:10px;
 }
-
-/* HERO */
 
 .hero{
-    max-width:1000px;
-    margin:auto;
-    padding:70px 20px 40px;
-    text-align:center;
-}
-
-.badge{
-    display:inline-flex;
-    padding:8px 16px;
-    border-radius:999px;
-    background:rgba(108,99,255,.12);
-    border:1px solid rgba(108,99,255,.3);
-    color:#c8c4ff;
-    font-size:14px;
-    margin-bottom:20px;
+padding:65px 0 35px;
+text-align:center;
 }
 
 .hero h1{
-    font-size:clamp(38px,7vw,72px);
-    line-height:1;
-    margin-bottom:20px;
-    background:linear-gradient(90deg,#fff,#9b96ff,#64e7ff);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+font-size:clamp(40px,7vw,65px);
+margin-bottom:10px;
 }
 
 .hero p{
-    max-width:700px;
-    margin:auto;
-    color:var(--muted);
-    line-height:2;
-    font-size:16px;
+color:var(--muted);
 }
 
-/* MENU */
-
-.menu{
-    max-width:1150px;
-    margin:0 auto 25px;
-    padding:0 20px;
+.filters{
+display:flex;
+justify-content:center;
+gap:10px;
+margin:30px 0;
+flex-wrap:wrap;
 }
 
-.menu-inner{
-    padding:18px;
-    background:rgba(13,18,28,.75);
-    border:1px solid var(--border);
-    border-radius:20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
+.filter{
+border:1px solid var(--border);
+background:var(--panel);
+color:#fff;
+padding:10px 18px;
+border-radius:12px;
+cursor:pointer;
 }
 
-.menu-btn{
-    border:1px solid var(--border);
-    background:var(--panel);
-    color:var(--muted);
-    padding:11px 18px;
-    border-radius:12px;
-    cursor:pointer;
-    transition:.2s;
+.filter.active{
+background:linear-gradient(135deg,var(--accent),#5d7cff);
 }
-
-.menu-btn:hover,
-.menu-btn.active{
-    color:#fff;
-    background:rgba(108,99,255,.18);
-    border-color:rgba(108,99,255,.55);
-}
-
-/* GAMES */
 
 .games{
-    max-width:1150px;
-    margin:auto;
-    padding:0 20px 70px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+padding-bottom:50px;
 }
 
-.game-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+.game{
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:20px;
+padding:22px;
+transition:.2s;
 }
 
-.game-card{
-    position:relative;
-    padding:24px;
-    min-height:275px;
-    overflow:hidden;
-    border:1px solid var(--border);
-    border-radius:22px;
-    background:
-        linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012)),
-        var(--panel);
-    transition:.25s;
-}
-
-.game-card:hover{
-    transform:translateY(-6px);
-    border-color:rgba(108,99,255,.5);
-    box-shadow:0 20px 55px rgba(0,0,0,.3);
-}
-
-.record{
-    position:absolute;
-    top:18px;
-    left:18px;
-    color:var(--yellow);
-    font-size:12px;
+.game:hover{
+transform:translateY(-4px);
+border-color:#3a4560;
 }
 
 .game-icon{
-    width:62px;
-    height:62px;
-    display:grid;
-    place-items:center;
-    border-radius:18px;
-    background:rgba(108,99,255,.14);
-    font-size:32px;
-    margin-bottom:18px;
+font-size:48px;
+margin-bottom:10px;
 }
 
-.game-card h3{
-    font-size:21px;
-    margin-bottom:9px;
+.game h3{
+margin-bottom:5px;
 }
 
-.game-card p{
-    color:var(--muted);
-    font-size:14px;
-    line-height:1.8;
-    min-height:50px;
+.game p{
+color:var(--muted);
+font-size:14px;
+margin-bottom:18px;
 }
 
-.tags{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-    margin:15px 0;
+.btn{
+border:none;
+background:linear-gradient(135deg,var(--accent),#5d7cff);
+color:#fff;
+padding:11px 18px;
+border-radius:11px;
+cursor:pointer;
+font-weight:bold;
 }
 
-.tag{
-    padding:5px 9px;
-    border-radius:8px;
-    border:1px solid var(--border);
-    color:#aeb8c8;
-    font-size:11px;
+footer{
+border-top:1px solid var(--border);
+text-align:center;
+padding:30px;
+color:var(--muted);
 }
 
-.play{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:12px;
-    cursor:pointer;
-    color:#fff;
-    font-weight:bold;
-    background:linear-gradient(135deg,var(--accent),#5148e8);
-    transition:.2s;
+.made-by{
+margin-top:8px;
+color:#dce1eb;
+font-weight:bold;
 }
 
-.play:hover{
-    filter:brightness(1.15);
+.overlay{
+display:none;
+position:fixed;
+inset:0;
+z-index:5000;
+background:rgba(0,0,0,.88);
+align-items:center;
+justify-content:center;
+padding:15px;
 }
 
-/* GAME SCREEN */
-
-.game-screen{
-    position:fixed;
-    inset:0;
-    z-index:1000;
-    display:none;
-    padding:12px;
-    background:rgba(0,0,0,.86);
-    backdrop-filter:blur(15px);
-}
-
-.game-screen.show{
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.overlay.show{
+display:flex;
 }
 
 .game-window{
-    width:min(1000px,100%);
-    max-height:96vh;
-    overflow:auto;
-    border-radius:24px;
-    background:#090e17;
-    border:1px solid var(--border);
-    box-shadow:0 30px 100px rgba(0,0,0,.7);
+width:min(900px,100%);
+max-height:95vh;
+overflow:auto;
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:22px;
+padding:15px;
+position:relative;
 }
 
-.game-header{
-    min-height:68px;
-    padding:12px 16px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    border-bottom:1px solid var(--border);
-}
-
-.game-name{
-    font-weight:900;
-    font-size:18px;
+.game-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-bottom:10px;
 }
 
 .stats{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    color:var(--muted);
-    font-size:13px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+color:#fff;
 }
 
-.stats b{
-    color:#fff;
+.stat{
+background:var(--panel2);
+padding:7px 12px;
+border-radius:10px;
 }
 
-.header-actions{
-    display:flex;
-    gap:7px;
-}
-
-.icon-btn{
-    width:40px;
-    height:40px;
-    border:1px solid var(--border);
-    border-radius:11px;
-    background:var(--panel);
-    color:#fff;
-    cursor:pointer;
-}
-
-.icon-btn:hover{
-    background:var(--panel2);
-}
-
-/* CANVAS */
-
-.canvas-area{
-    padding:15px;
+.canvas-wrap{
+display:flex;
+justify-content:center;
+background:#05070c;
+border-radius:15px;
+overflow:hidden;
 }
 
 canvas{
-    display:block;
-    width:100%;
-    max-width:900px;
-    height:auto;
-    margin:auto;
-    border-radius:17px;
-    background:#05070c;
-    border:1px solid rgba(255,255,255,.07);
-    touch-action:none;
+display:block;
+max-width:100%;
+touch-action:none;
 }
 
-/* CONTROLS */
-
-.controls{
-    padding:0 15px 15px;
-    text-align:center;
+.game-controls{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-top:12px;
 }
 
-.help{
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.9;
-}
-
-.touch-controls{
-    display:none;
-    margin-top:12px;
-    justify-content:center;
-    gap:8px;
-    flex-wrap:wrap;
-}
-
-.touch-btn{
-    width:58px;
-    height:48px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    background:var(--panel);
-    color:#fff;
-    cursor:pointer;
-    user-select:none;
-}
-
-.touch-btn:active{
-    background:rgba(108,99,255,.35);
-    transform:scale(.96);
-}
-
-/* PAUSE */
-
-.pause-screen{
-    position:absolute;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,.55);
-    z-index:20;
-}
-
-.pause-screen.show{
-    display:flex;
-}
-
-.pause-box{
-    width:min(360px,90%);
-    padding:30px;
-    text-align:center;
-    background:#0d121c;
-    border:1px solid var(--border);
-    border-radius:22px;
-}
-
-.pause-box h2{
-    font-size:30px;
-    margin-bottom:10px;
-}
-
-.pause-box p{
-    color:var(--muted);
-    margin-bottom:20px;
-}
-
-.big-btn{
-    width:100%;
-    border:0;
-    padding:13px;
-    border-radius:12px;
-    cursor:pointer;
-    color:#fff;
-    font-weight:bold;
-    background:linear-gradient(135deg,var(--accent),#5148e8);
-}
-
-/* RESULT */
-
+.pause-screen,
 .result-screen{
-    position:fixed;
-    inset:0;
-    z-index:1500;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:rgba(0,0,0,.78);
-    backdrop-filter:blur(12px);
+display:none;
+position:absolute;
+inset:0;
+background:rgba(8,11,18,.94);
+align-items:center;
+justify-content:center;
+text-align:center;
+border-radius:22px;
+z-index:20;
 }
 
+.pause-screen.show,
 .result-screen.show{
-    display:flex;
+display:flex;
 }
 
 .result-box{
-    width:min(430px,100%);
-    padding:34px;
-    text-align:center;
-    background:#0d121c;
-    border:1px solid var(--border);
-    border-radius:24px;
-    box-shadow:0 30px 90px rgba(0,0,0,.6);
-}
-
-.result-icon{
-    font-size:55px;
-    margin-bottom:10px;
+padding:30px;
 }
 
 .result-box h2{
-    font-size:29px;
-    margin-bottom:10px;
+font-size:36px;
+margin-bottom:10px;
 }
 
 .result-box p{
-    color:var(--muted);
-    line-height:2;
-    margin-bottom:22px;
+color:var(--muted);
+margin-bottom:20px;
 }
 
-.result-actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:9px;
+@media(max-width:800px){
+.games{
+grid-template-columns:1fr 1fr;
+}
 }
 
-.result-actions button{
-    padding:13px;
-    border-radius:12px;
-    border:1px solid var(--border);
-    background:var(--panel);
-    color:#fff;
-    cursor:pointer;
+@media(max-width:550px){
+.games{
+grid-template-columns:1fr;
+}
 }
 
-.result-actions .primary{
-    border:0;
-    background:linear-gradient(135deg,var(--accent),#5148e8);
-}
-
-/* FOOTER */
-
-footer{
-    padding:30px 20px;
-    text-align:center;
-    border-top:1px solid var(--border);
-    color:var(--muted);
-    font-size:13px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:850px){
-    .game-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:600px){
-
-    .nav{
-        min-height:62px;
-    }
-
-    .logo{
-        font-size:16px;
-    }
-
-    .logo img{
-        width:36px;
-        height:36px;
-    }
-
-    .back{
-        padding:8px 12px;
-        font-size:12px;
-    }
-
-    .hero{
-        padding:50px 20px 30px;
-    }
-
-    .hero p{
-        font-size:14px;
-    }
-
-    .game-grid{
-        grid-template-columns:1fr;
-    }
-
-    .game-card{
-        min-height:auto;
-    }
-
-    .touch-controls{
-        display:flex;
-    }
-
-    .stats{
-        gap:7px;
-        font-size:11px;
-    }
-
-    .game-name{
-        font-size:14px;
-    }
-
-    .game-header{
-        min-height:60px;
-    }
-
-    .result-actions{
-        grid-template-columns:1fr;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="nav">
+<nav>
+<div class="container nav">
 
-        <a href="index.html" class="logo">
-            <img src="assets/images/logo/logo.png" alt="PelirFami">
-            <span>PelirFami</span>
-        </a>
+<a class="logo" href="index.html">
+<img src="assets/images/logo/logo.png">
+<span>PelirFami</span>
+</a>
 
-        <a href="index.html" class="back">
-            ← بازگشت
-        </a>
+<div class="nav-right">
 
-    </div>
+<a href="index.html" class="btn" data-i18n="backHome"></a>
+
+<select id="languageSelector" class="lang"></select>
+
+</div>
+</div>
+</nav>
+
+<header class="hero">
+<div class="container">
+
+<h1>🎮 <span data-i18n="gameCenter"></span></h1>
+
+<p data-i18n="gameSubtitle"></p>
+
+</div>
 </header>
 
-
-<section class="hero">
-
-    <div class="badge">
-        🎮 PelirFami Game Center
-    </div>
-
-    <h1>وقت بازیه!</h1>
-
-    <p>
-        یکی از بازی‌ها را انتخاب کن، رکورد بزن و ببین
-        چند امتیاز می‌توانی بگیری.
-    </p>
-
-</section>
-
-
-<!-- GAME MENU -->
-
-<section class="menu">
-
-    <div class="menu-inner">
-
-        <button class="menu-btn active" data-filter="all">
-            🎮 همه
-        </button>
-
-        <button class="menu-btn" data-filter="mobile">
-            📱 موبایل
-        </button>
-
-        <button class="menu-btn" data-filter="desktop">
-            🖥️ کامپیوتر
-        </button>
-
-    </div>
-
-</section>
-
-
-<main class="games">
-
-<div class="game-grid">
-
-
-<!-- FLAPPY -->
-
-<article class="game-card" data-device="mobile">
-
-    <div class="record">
-        🏆 <span data-record="flappy">0</span>
-    </div>
-
-    <div class="game-icon">🐦</div>
-
-    <h3>Fami Flappy</h3>
-
-    <p>
-        پرواز کن، از لوله‌ها عبور کن و بیشترین رکورد را بزن.
-    </p>
-
-    <div class="tags">
-        <span class="tag">📱 موبایل</span>
-        <span class="tag">👆 لمس</span>
-    </div>
-
-    <button class="play" onclick="startGame('flappy')">
-        ▶ شروع بازی
-    </button>
-
-</article>
-
-
-<!-- SPACE -->
-
-<article class="game-card" data-device="desktop">
-
-    <div class="record">
-        🏆 <span data-record="space">0</span>
-    </div>
-
-    <div class="game-icon">🚀</div>
-
-    <h3>Fami Space</h3>
-
-    <p>
-        سفینه را حرکت بده و دشمنان فضایی را نابود کن.
-    </p>
-
-    <div class="tags">
-        <span class="tag">🖥️ کامپیوتر</span>
-        <span class="tag">⌨️ کیبورد</span>
-    </div>
-
-    <button class="play" onclick="startGame('space')">
-        ▶ شروع بازی
-    </button>
-
-</article>
-
-
-<!-- BREAK -->
-
-<article class="game-card" data-device="all">
-
-    <div class="record">
-        🏆 <span data-record="break">0</span>
-    </div>
-
-    <div class="game-icon">🧱</div>
-
-    <h3>Fami Break</h3>
-
-    <p>
-        توپ را برگردان و تمام آجرها را نابود کن.
-    </p>
-
-    <div class="tags">
-        <span class="tag">📱 موبایل</span>
-        <span class="tag">🖥️ کامپیوتر</span>
-    </div>
-
-    <button class="play" onclick="startGame('break')">
-        ▶ شروع بازی
-    </button>
-
-</article>
-
-
-<!-- SNAKE -->
-
-<article class="game-card" data-device="all">
-
-    <div class="record">
-        🏆 <span data-record="snake">0</span>
-    </div>
-
-    <div class="game-icon">🐍</div>
-
-    <h3>Fami Snake</h3>
-
-    <p>
-        غذا بخور، بزرگ شو و به دیوار یا خودت برخورد نکن.
-    </p>
-
-    <div class="tags">
-        <span class="tag">📱 موبایل</span>
-        <span class="tag">🖥️ کامپیوتر</span>
-    </div>
-
-    <button class="play" onclick="startGame('snake')">
-        ▶ شروع بازی
-    </button>
-
-</article>
-
-
-<!-- TAP -->
-
-<article class="game-card" data-device="mobile">
-
-    <div class="record">
-        🏆 <span data-record="tap">0</span>
-    </div>
-
-    <div class="game-icon">🎯</div>
-
-    <h3>Fami Tap</h3>
-
-    <p>
-        در ۳۰ ثانیه تا می‌توانی هدف‌ها را سریع لمس کن.
-    </p>
-
-    <div class="tags">
-        <span class="tag">📱 موبایل</span>
-        <span class="tag">🖱️ ماوس</span>
-    </div>
-
-    <button class="play" onclick="startGame('tap')">
-        ▶ شروع بازی
-    </button>
-
-</article>
-
-
-<!-- PONG -->
-
-<article class="game-card" data-device="desktop">
-
-    <div class="record">
-        🏆 <span data-record="pong">0</span>
-    </div>
-
-    <div class="game-icon">🏓</div>
-
-    <h3>Fami Pong</h3>
-
-    <p>
-        توپ را برگردان و از حریف کامپیوتری شکست نخور.
-    </p>
-
-    <div class="tags">
-        <span class="tag">🖥️ کامپیوتر</span>
-        <span class="tag">⌨️ کیبورد</span>
-    </div>
-
-    <button class="play" onclick="startGame('pong')">
-        ▶ شروع بازی
-    </button>
-
-</article>
+<main class="container">
+
+<div class="filters">
+
+<button class="filter active" data-filter="all" data-i18n="allGames"></button>
+
+<button class="filter" data-filter="mobile" data-i18n="mobile"></button>
+
+<button class="filter" data-filter="desktop" data-i18n="desktop"></button>
+
+</div>
+
+<div class="games">
+
+<div class="game" data-type="mobile" data-game="flappy">
+<div class="game-icon">🐦</div>
+<h3>Fami Flappy</h3>
+<p data-i18n="flappyDesc"></p>
+<button class="btn play" data-game="flappy" data-i18n="play"></button>
+</div>
+
+<div class="game" data-type="desktop" data-game="space">
+<div class="game-icon">🚀</div>
+<h3>Fami Space</h3>
+<p data-i18n="spaceDesc"></p>
+<button class="btn play" data-game="space" data-i18n="play"></button>
+</div>
+
+<div class="game" data-type="desktop" data-game="break">
+<div class="game-icon">🧱</div>
+<h3>Fami Break</h3>
+<p data-i18n="breakDesc"></p>
+<button class="btn play" data-game="break" data-i18n="play"></button>
+</div>
+
+<div class="game" data-type="mobile" data-game="snake">
+<div class="game-icon">🐍</div>
+<h3>Fami Snake</h3>
+<p data-i18n="snakeDesc"></p>
+<button class="btn play" data-game="snake" data-i18n="play"></button>
+</div>
+
+<div class="game" data-type="mobile" data-game="tap">
+<div class="game-icon">🎯</div>
+<h3>Fami Tap</h3>
+<p data-i18n="tapDesc"></p>
+<button class="btn play" data-game="tap" data-i18n="play"></button>
+</div>
+
+<div class="game" data-type="desktop" data-game="pong">
+<div class="game-icon">🏓</div>
+<h3>Fami Pong</h3>
+<p data-i18n="pongDesc"></p>
+<button class="btn play" data-game="pong" data-i18n="play"></button>
+</div>
 
 </div>
 
 </main>
 
-
-<!-- GAME WINDOW -->
-
-<div class="game-screen" id="gameScreen">
-
-    <div class="game-window">
-
-        <div class="game-header">
-
-            <div class="game-name" id="gameName">
-                بازی
-            </div>
-
-            <div class="stats">
-
-                <span>
-                    امتیاز:
-                    <b id="score">0</b>
-                </span>
-
-                <span>
-                    رکورد:
-                    <b id="record">0</b>
-                </span>
-
-                <div class="header-actions">
-
-                    <button
-                        class="icon-btn"
-                        onclick="togglePause()"
-                        id="pauseButton">
-                        ⏸
-                    </button>
-
-                    <button
-                        class="icon-btn"
-                        onclick="closeGame()">
-                        ✕
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="canvas-area">
-
-            <canvas
-                id="canvas"
-                width="900"
-                height="520">
-            </canvas>
-
-        </div>
-
-
-        <div class="controls">
-
-            <div class="help" id="help">
-                آماده‌ای؟
-            </div>
-
-            <div class="touch-controls" id="touchControls">
-
-                <button class="touch-btn" data-control="left">
-                    ◀
-                </button>
-
-                <button class="touch-btn" data-control="up">
-                    ▲
-                </button>
-
-                <button class="touch-btn" data-control="down">
-                    ▼
-                </button>
-
-                <button class="touch-btn" data-control="right">
-                    ▶
-                </button>
-
-                <button class="touch-btn" data-control="action">
-                    🔥
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- PAUSE -->
-
-        <div class="pause-screen" id="pauseScreen">
-
-            <div class="pause-box">
-
-                <h2>⏸ بازی متوقف شد</h2>
-
-                <p>
-                    برای ادامه آماده‌ای؟
-                </p>
-
-                <button
-                    class="big-btn"
-                    onclick="togglePause()">
-                    ▶ ادامه بازی
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- RESULT -->
-
-<div class="result-screen" id="resultScreen">
-
-    <div class="result-box">
-
-        <div class="result-icon" id="resultIcon">
-            🎮
-        </div>
-
-        <h2 id="resultTitle">
-            بازی تمام شد
-        </h2>
-
-        <p id="resultText"></p>
-
-        <div class="result-actions">
-
-            <button
-                class="primary"
-                onclick="restartGame()">
-                🔄 دوباره بازی
-            </button>
-
-            <button onclick="closeResult()">
-                🎮 انتخاب بازی
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
 <footer>
-    © 2026 PelirFami — Game Center
+
+<div>© 2026 PelirFami</div>
+
+<div class="made-by" data-i18n="footerMadeBy"></div>
+
 </footer>
 
+<div id="gameOverlay" class="overlay">
+
+<div class="game-window">
+
+<div class="game-top">
+
+<div class="stats">
+
+<div class="stat">
+<span data-i18n="score"></span>:
+<span id="score">0</span>
+</div>
+
+<div class="stat">
+<span data-i18n="record"></span>:
+<span id="record">0</span>
+</div>
+
+</div>
+
+<button class="btn" id="closeGame" data-i18n="close"></button>
+
+</div>
+
+<div class="canvas-wrap">
+<canvas id="canvas" width="800" height="500"></canvas>
+</div>
+
+<div class="game-controls">
+
+<button class="btn" id="pauseBtn" data-i18n="pause"></button>
+
+</div>
+
+<div id="pauseScreen" class="pause-screen">
+
+<div class="result-box">
+
+<h2 data-i18n="paused"></h2>
+
+<button class="btn" id="resumeBtn" data-i18n="resume"></button>
+
+</div>
+
+</div>
+
+<div id="resultScreen" class="result-screen">
+
+<div class="result-box">
+
+<h2 data-i18n="gameOver"></h2>
+
+<p>
+<span data-i18n="yourScore"></span>:
+<strong id="finalScore">0</strong>
+</p>
+
+<p>
+<span data-i18n="yourRecord"></span>:
+<strong id="finalRecord">0</strong>
+</p>
+
+<button class="btn" id="restartBtn" data-i18n="restart"></button>
+
+<button class="btn" id="chooseBtn" data-i18n="chooseGame"></button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 <script>
 
-/* =========================================================
-   CORE
-========================================================= */
+/* =====================================================
+LANGUAGE SYSTEM
+===================================================== */
 
-const canvas =
-    document.getElementById("canvas");
+const LANG_STORAGE_KEY="pelirfami_language";
 
-const ctx =
-    canvas.getContext("2d");
+const translations={
 
-const gameScreen =
-    document.getElementById("gameScreen");
+fa:{
+backHome:"صفحه اصلی",
+gameCenter:"مرکز بازی",
+gameSubtitle:"چند بازی سرگرم‌کننده برای زمانی که می‌خواهید کمی استراحت کنید.",
+allGames:"همه بازی‌ها",
+mobile:"موبایل",
+desktop:"کامپیوتر",
+play:"شروع بازی",
+flappyDesc:"پرنده را کنترل کن و از موانع عبور کن.",
+spaceDesc:"با سفینه دشمنان را نابود کن.",
+breakDesc:"آجرها را با توپ نابود کن.",
+snakeDesc:"مار را کنترل کن و امتیاز بگیر.",
+tapDesc:"هدف‌ها را هرچه سریع‌تر بزن.",
+pongDesc:"در برابر کامپیوتر Pong بازی کن.",
+score:"امتیاز",
+record:"رکورد",
+close:"بستن",
+pause:"مکث",
+paused:"بازی متوقف شد",
+resume:"ادامه بازی",
+gameOver:"پایان بازی",
+yourScore:"امتیاز شما",
+yourRecord:"رکورد شما",
+restart:"شروع دوباره",
+chooseGame:"انتخاب بازی",
+footerMadeBy:"ساخته شده توسط محمدمهدی حسن پور"
+},
 
-const resultScreen =
-    document.getElementById("resultScreen");
+en:{
+backHome:"Home",
+gameCenter:"Game Center",
+gameSubtitle:"Fun games to enjoy while taking a short break.",
+allGames:"All Games",
+mobile:"Mobile",
+desktop:"Computer",
+play:"Play",
+flappyDesc:"Control the bird and avoid the obstacles.",
+spaceDesc:"Destroy enemies with your spaceship.",
+breakDesc:"Break the blocks with the ball.",
+snakeDesc:"Control the snake and collect points.",
+tapDesc:"Hit the targets as quickly as possible.",
+pongDesc:"Play Pong against the computer.",
+score:"Score",
+record:"Record",
+close:"Close",
+pause:"Pause",
+paused:"Game Paused",
+resume:"Resume",
+gameOver:"Game Over",
+yourScore:"Your Score",
+yourRecord:"Your Record",
+restart:"Restart",
+chooseGame:"Choose Game",
+footerMadeBy:"Made by Mohammad Mehdi Hassanpour"
+},
 
-const pauseScreen =
-    document.getElementById("pauseScreen");
+ar:{
+backHome:"الرئيسية",
+gameCenter:"مركز الألعاب",
+gameSubtitle:"ألعاب ممتعة للاستراحة.",
+allGames:"كل الألعاب",
+mobile:"الهاتف",
+desktop:"الكمبيوتر",
+play:"ابدأ",
+flappyDesc:"تحكم بالطائر وتجنب العوائق.",
+spaceDesc:"دمر الأعداء بسفينتك.",
+breakDesc:"حطم الكتل بالكرة.",
+snakeDesc:"تحكم بالثعبان واجمع النقاط.",
+tapDesc:"اضرب الأهداف بسرعة.",
+pongDesc:"العب Pong ضد الكمبيوتر.",
+score:"النقاط",
+record:"الرقم القياسي",
+close:"إغلاق",
+pause:"إيقاف مؤقت",
+paused:"اللعبة متوقفة",
+resume:"متابعة",
+gameOver:"انتهت اللعبة",
+yourScore:"نقاطك",
+yourRecord:"رقمك القياسي",
+restart:"إعادة اللعب",
+chooseGame:"اختيار لعبة",
+footerMadeBy:"صنع بواسطة محمد مهدي حسن بور"
+}
 
-let currentGame = null;
-let running = false;
-let paused = false;
-let animationId = null;
-let score = 0;
-
-const keys = {};
-
-const names = {
-    flappy:"🐦 Fami Flappy",
-    space:"🚀 Fami Space",
-    break:"🧱 Fami Break",
-    snake:"🐍 Fami Snake",
-    tap:"🎯 Fami Tap",
-    pong:"🏓 Fami Pong"
 };
 
+const languageNames={
+fa:"🇮🇷 فارسی",
+en:"🇬🇧 English",
+ar:"🇸🇦 العربية"
+};
 
-/* =========================================================
-   SOUND
-========================================================= */
+function detectLanguage(){
 
-let audioContext = null;
-let soundEnabled = true;
+const languages=navigator.languages||[navigator.language];
 
-function initAudio(){
+for(const language of languages){
 
-    if(!audioContext){
+const code=language.toLowerCase().split("-")[0];
 
-        const Audio =
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-        if(Audio)
-            audioContext = new Audio();
-
-    }
-
-    if(
-        audioContext &&
-        audioContext.state === "suspended"
-    ){
-
-        audioContext.resume();
-
-    }
+if(translations[code]){
+return code;
+}
 
 }
 
-function sound(
-    frequency=500,
-    duration=.08,
-    type="sine"
-){
+return "en";
+}
 
-    if(!soundEnabled)
-        return;
+function getLanguage(){
 
-    try{
+const saved=localStorage.getItem(LANG_STORAGE_KEY);
 
-        initAudio();
-
-        if(!audioContext)
-            return;
-
-        const oscillator =
-            audioContext.createOscillator();
-
-        const gain =
-            audioContext.createGain();
-
-        oscillator.type = type;
-
-        oscillator.frequency.value =
-            frequency;
-
-        gain.gain.setValueAtTime(
-            .06,
-            audioContext.currentTime
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-            .001,
-            audioContext.currentTime + duration
-        );
-
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
-
-        oscillator.start();
-
-        oscillator.stop(
-            audioContext.currentTime + duration
-        );
-
-    }catch(e){}
+return saved&&translations[saved]
+?saved
+:detectLanguage();
 
 }
 
-function successSound(){
+function setLanguage(lang){
 
-    sound(600,.07);
-    setTimeout(()=>sound(850,.1),70);
+if(!translations[lang]){
+lang="en";
+}
+
+localStorage.setItem(LANG_STORAGE_KEY,lang);
+
+document.documentElement.lang=lang;
+
+document.documentElement.dir=
+["fa","ar"].includes(lang)?"rtl":"ltr";
+
+document.querySelectorAll("[data-i18n]").forEach(el=>{
+
+const key=el.dataset.i18n;
+
+if(translations[lang][key]!==undefined){
+el.textContent=translations[lang][key];
+}
+
+});
+
+document.getElementById("languageSelector").value=lang;
 
 }
 
-function failSound(){
+const selector=document.getElementById("languageSelector");
 
-    sound(180,.18,"sawtooth");
+Object.keys(languageNames).forEach(lang=>{
+
+const option=document.createElement("option");
+
+option.value=lang;
+option.textContent=languageNames[lang];
+
+selector.appendChild(option);
+
+});
+
+selector.addEventListener("change",()=>{
+setLanguage(selector.value);
+});
+
+setLanguage(getLanguage());
+
+
+/* =====================================================
+GAME ENGINE
+===================================================== */
+
+const overlay=document.getElementById("gameOverlay");
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+
+const scoreEl=document.getElementById("score");
+const recordEl=document.getElementById("record");
+
+const pauseScreen=document.getElementById("pauseScreen");
+const resultScreen=document.getElementById("resultScreen");
+
+let currentGame=null;
+let score=0;
+let record=0;
+let running=false;
+let paused=false;
+let animation=null;
+
+function recordKey(game){
+return "pelirfami_record_"+game;
+}
+
+function loadRecord(game){
+
+record=
+Number(localStorage.getItem(recordKey(game)))||0;
+
+recordEl.textContent=record;
 
 }
 
+function updateScore(value){
 
-/* =========================================================
-   RECORDS
-========================================================= */
+score=value;
+scoreEl.textContent=score;
 
-function getRecord(game){
+if(score>record){
 
-    return Number(
-        localStorage.getItem(
-            "pelirfami_record_"+game
-        ) || 0
-    );
+record=score;
+recordEl.textContent=record;
 
-}
-
-function saveRecord(game,value){
-
-    const old =
-        getRecord(game);
-
-    if(value > old){
-
-        localStorage.setItem(
-            "pelirfami_record_"+game,
-            value
-        );
-
-        updateRecords();
-
-        return true;
-
-    }
-
-    return false;
+localStorage.setItem(
+recordKey(currentGame),
+record
+);
 
 }
 
-function updateRecords(){
-
-    document
-    .querySelectorAll("[data-record]")
-    .forEach(el=>{
-
-        el.textContent =
-            getRecord(el.dataset.record);
-
-    });
-
 }
-
-updateRecords();
-
-
-/* =========================================================
-   SCORE
-========================================================= */
-
-function setScore(value){
-
-    score = value;
-
-    document
-    .getElementById("score")
-    .textContent = score;
-
-}
-
-function addScore(value=1){
-
-    score += value;
-
-    document
-    .getElementById("score")
-    .textContent = score;
-
-}
-
-
-/* =========================================================
-   START
-========================================================= */
 
 function startGame(game){
 
-    initAudio();
+currentGame=game;
 
-    cancelAnimationFrame(animationId);
+overlay.classList.add("show");
 
-    currentGame = game;
+pauseScreen.classList.remove("show");
+resultScreen.classList.remove("show");
 
-    running = true;
+score=0;
+scoreEl.textContent="0";
 
-    paused = false;
+loadRecord(game);
 
-    setScore(0);
+running=true;
+paused=false;
 
-    gameScreen.classList.add("show");
+cancelAnimationFrame(animation);
 
-    resultScreen.classList.remove("show");
-
-    pauseScreen.classList.remove("show");
-
-    document
-    .getElementById("gameName")
-    .textContent = names[game];
-
-    document
-    .getElementById("record")
-    .textContent =
-        getRecord(game);
-
-    document
-    .getElementById("pauseButton")
-    .textContent = "⏸";
-
-    clearCanvas();
-
-    canvas.onclick = null;
-    canvas.onpointermove = null;
-
-    if(game==="flappy")
-        initFlappy();
-
-    if(game==="space")
-        initSpace();
-
-    if(game==="break")
-        initBreak();
-
-    if(game==="snake")
-        initSnake();
-
-    if(game==="tap")
-        initTap();
-
-    if(game==="pong")
-        initPong();
+if(game==="flappy")initFlappy();
+if(game==="space")initSpace();
+if(game==="break")initBreak();
+if(game==="snake")initSnake();
+if(game==="tap")initTap();
+if(game==="pong")initPong();
 
 }
-
-
-/* =========================================================
-   CLOSE
-========================================================= */
-
-function closeGame(){
-
-    running = false;
-    paused = false;
-
-    cancelAnimationFrame(animationId);
-
-    gameScreen.classList.remove("show");
-
-    resultScreen.classList.remove("show");
-
-    pauseScreen.classList.remove("show");
-
-    canvas.onclick = null;
-    canvas.onpointermove = null;
-
-}
-
-function closeResult(){
-
-    resultScreen.classList.remove("show");
-
-    gameScreen.classList.remove("show");
-
-    running = false;
-
-}
-
-
-/* =========================================================
-   GAME OVER
-========================================================= */
 
 function gameOver(){
 
-    if(!running)
-        return;
+running=false;
 
-    running = false;
+cancelAnimationFrame(animation);
 
-    cancelAnimationFrame(animationId);
+document.getElementById("finalScore").textContent=score;
+document.getElementById("finalRecord").textContent=record;
 
-    failSound();
+resultScreen.classList.add("show");
 
-    const newRecord =
-        saveRecord(
-            currentGame,
-            score
-        );
+}
 
-    document
-    .getElementById("record")
-    .textContent =
-        getRecord(currentGame);
+function closeGame(){
 
-    document
-    .getElementById("resultIcon")
-    .textContent =
-        newRecord ? "🏆" : "🎮";
+running=false;
 
-    document
-    .getElementById("resultTitle")
-    .textContent =
-        newRecord
-        ? "رکورد جدید!"
-        : "بازی تمام شد!";
+cancelAnimationFrame(animation);
 
-    document
-    .getElementById("resultText")
-    .innerHTML =
-        `
-        امتیاز شما:
-        <strong>${score}</strong>
-        <br>
-        رکورد:
-        <strong>${getRecord(currentGame)}</strong>
-        `;
-
-    resultScreen.classList.add("show");
+overlay.classList.remove("show");
 
 }
 
 function restartGame(){
 
-    resultScreen.classList.remove("show");
+resultScreen.classList.remove("show");
 
-    startGame(currentGame);
+startGame(currentGame);
 
 }
-
-
-/* =========================================================
-   PAUSE
-========================================================= */
 
 function togglePause(){
 
-    if(!currentGame || !running)
-        return;
+if(!running)return;
 
-    paused = !paused;
+paused=!paused;
 
-    pauseScreen.classList.toggle(
-        "show",
-        paused
-    );
+pauseScreen.classList.toggle("show",paused);
 
-    document
-    .getElementById("pauseButton")
-    .textContent =
-        paused ? "▶" : "⏸";
+if(!paused){
 
-    if(!paused){
-
-        requestGameFrame();
-
-    }
+requestFrame();
 
 }
 
-function requestGameFrame(){
+}
 
-    if(!running || paused)
-        return;
+function requestFrame(){
 
-    if(currentGame==="flappy")
-        animationId =
-            requestAnimationFrame(flappyLoop);
+if(!running||paused)return;
 
-    if(currentGame==="space")
-        animationId =
-            requestAnimationFrame(spaceLoop);
+animation=requestAnimationFrame(loop);
 
-    if(currentGame==="break")
-        animationId =
-            requestAnimationFrame(breakLoop);
+}
 
-    if(currentGame==="snake")
-        animationId =
-            requestAnimationFrame(snakeLoop);
+function loop(){
 
-    if(currentGame==="tap")
-        animationId =
-            requestAnimationFrame(tapLoop);
+if(!running||paused)return;
 
-    if(currentGame==="pong")
-        animationId =
-            requestAnimationFrame(pongLoop);
+if(currentGame==="flappy")updateFlappy();
+if(currentGame==="space")updateSpace();
+if(currentGame==="break")updateBreak();
+if(currentGame==="snake")updateSnake();
+if(currentGame==="tap")updateTap();
+if(currentGame==="pong")updatePong();
+
+requestFrame();
 
 }
 
 
-/* =========================================================
-   CANVAS
-========================================================= */
+/* =====================================================
+FLAPPY
+===================================================== */
 
-function clearCanvas(){
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-}
-
-
-/* =========================================================
-   FLAPPY
-========================================================= */
-
-let flappy;
+let bird,pipes,flappyFrame;
 
 function initFlappy(){
 
-    document
-    .getElementById("help")
-    .textContent =
-        "👆 لمس/کلیک یا Space برای پرش";
+bird={
+x:150,
+y:250,
+vy:0,
+r:18
+};
 
-    flappy = {
+pipes=[];
+flappyFrame=0;
 
-        x:170,
-        y:250,
-        velocity:0,
-        gravity:.42,
-        jump:-7.5,
-        radius:20,
-        pipes:[],
-        timer:0
-
-    };
-
-    flappy.pipes.push(
-        makePipe(canvas.width)
-    );
-
-    canvas.onclick =
-        ()=>{
-
-            if(!paused)
-                flappy.velocity =
-                    flappy.jump;
-
-            sound(520,.05);
-
-        };
-
-    requestGameFrame();
+requestFrame();
 
 }
 
-function makePipe(x){
+function updateFlappy(){
 
-    const gap = 155;
+ctx.clearRect(0,0,800,500);
 
-    const top =
-        55 +
-        Math.random()*250;
+ctx.fillStyle="#07101b";
+ctx.fillRect(0,0,800,500);
 
-    return {
-        x:x,
-        top:top,
-        bottom:top+gap,
-        width:72,
-        passed:false
-    };
+bird.vy+=.42;
+bird.y+=bird.vy;
 
-}
+if(flappyFrame%110===0){
 
-function flappyLoop(time){
+const gap=145;
+const top=80+Math.random()*220;
 
-    if(!running || paused)
-        return;
-
-    if(!flappy.last)
-        flappy.last=time;
-
-    const dt =
-        Math.min(
-            (time-flappy.last)/16.67,
-            2
-        );
-
-    flappy.last=time;
-
-    flappy.velocity +=
-        flappy.gravity*dt;
-
-    flappy.y +=
-        flappy.velocity*dt;
-
-    flappy.timer += dt;
-
-    if(flappy.timer>105){
-
-        flappy.pipes.push(
-            makePipe(canvas.width)
-        );
-
-        flappy.timer=0;
-
-    }
-
-    for(const pipe of flappy.pipes){
-
-        pipe.x -=
-            3.3*dt;
-
-        if(
-            !pipe.passed &&
-            pipe.x+pipe.width <
-            flappy.x
-        ){
-
-            pipe.passed=true;
-
-            addScore(1);
-
-            successSound();
-
-        }
-
-        const hitX =
-            flappy.x+flappy.radius >
-            pipe.x &&
-            flappy.x-flappy.radius <
-            pipe.x+pipe.width;
-
-        const hitY =
-            flappy.y-flappy.radius <
-            pipe.top ||
-            flappy.y+flappy.radius >
-            pipe.bottom;
-
-        if(hitX && hitY){
-
-            gameOver();
-
-            return;
-
-        }
-
-    }
-
-    flappy.pipes =
-        flappy.pipes.filter(
-            p=>p.x>-100
-        );
-
-    if(
-        flappy.y-flappy.radius<0 ||
-        flappy.y+flappy.radius>canvas.height
-    ){
-
-        gameOver();
-
-        return;
-
-    }
-
-    drawFlappy();
-
-    animationId =
-        requestAnimationFrame(flappyLoop);
+pipes.push({
+x:820,
+top,
+bottom:top+gap,
+passed:false
+});
 
 }
 
-function drawFlappy(){
+pipes.forEach(p=>{
 
-    const g =
-        ctx.createLinearGradient(
-            0,
-            0,
-            0,
-            canvas.height
-        );
+p.x-=4;
 
-    g.addColorStop(0,"#111e40");
-    g.addColorStop(1,"#05070c");
+ctx.fillStyle="#20d67b";
 
-    ctx.fillStyle=g;
+ctx.fillRect(p.x,0,60,p.top);
+ctx.fillRect(p.x,p.bottom,60,500-p.bottom);
 
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+if(!p.passed&&p.x<bird.x){
 
-    flappy.pipes.forEach(p=>{
+p.passed=true;
 
-        ctx.fillStyle="#36e39a";
+updateScore(score+1);
 
-        ctx.fillRect(
-            p.x,
-            0,
-            p.width,
-            p.top
-        );
+}
 
-        ctx.fillRect(
-            p.x,
-            p.bottom,
-            p.width,
-            canvas.height
-        );
+});
 
-    });
+ctx.fillStyle="#ffc857";
 
-    ctx.font="40px Arial";
-    ctx.textAlign="center";
+ctx.beginPath();
+ctx.arc(bird.x,bird.y,bird.r,0,Math.PI*2);
+ctx.fill();
 
-    ctx.fillText(
-        "🐦",
-        flappy.x,
-        flappy.y+14
-    );
+if(
+bird.y-bird.r<0||
+bird.y+bird.r>500||
+pipes.some(p=>
+bird.x+bird.r>p.x&&
+bird.x-bird.r<p.x+60&&
+(bird.y-bird.r<p.top||
+bird.y+bird.r>p.bottom)
+)
+){
+
+gameOver();
+return;
+
+}
+
+flappyFrame++;
+
+}
+
+function flappyJump(){
+
+if(currentGame!=="flappy"||paused)return;
+
+bird.vy=-8;
 
 }
 
 
-/* =========================================================
-   SPACE
-========================================================= */
+/* =====================================================
+SPACE
+===================================================== */
 
-let space;
+let ship,bullets,enemies,keys;
 
 function initSpace(){
 
-    document
-    .getElementById("help")
-    .textContent =
-        "⌨️ ← → / A D برای حرکت • Space یا 🔥 برای شلیک";
+ship={
+x:380,
+y:430,
+w:45,
+h:25,
+speed:6
+};
 
-    space = {
+bullets=[];
+enemies=[];
+keys={};
 
-        x:450,
-        y:460,
-        speed:7,
-        bullets:[],
-        enemies:[],
-        timer:0
-
-    };
-
-    requestGameFrame();
+requestFrame();
 
 }
 
-function spaceShoot(){
+function updateSpace(){
 
-    if(
-        currentGame!=="space" ||
-        !running ||
-        paused
-    )
-        return;
+ctx.clearRect(0,0,800,500);
 
-    space.bullets.push({
-        x:space.x,
-        y:space.y-25
-    });
+ctx.fillStyle="#04070d";
+ctx.fillRect(0,0,800,500);
 
-    sound(700,.04,"square");
+if(keys.ArrowLeft)ship.x-=ship.speed;
+if(keys.ArrowRight)ship.x+=ship.speed;
 
-}
+ship.x=Math.max(0,Math.min(755,ship.x));
 
-function spawnEnemy(){
+ctx.fillStyle="#00d4ff";
+ctx.fillRect(ship.x,ship.y,ship.w,ship.h);
 
-    space.enemies.push({
+if(Math.random()<.025){
 
-        x:30+
-            Math.random()*
-            (canvas.width-60),
-
-        y:-30,
-
-        speed:
-            1.4+
-            Math.random()*2,
-
-        size:20
-
-    });
+enemies.push({
+x:Math.random()*760,
+y:-30,
+w:30,
+h:25,
+speed:2+Math.random()*2
+});
 
 }
 
-function spaceLoop(time){
+bullets.forEach(b=>{
+b.y-=8;
+ctx.fillStyle="#ffc857";
+ctx.fillRect(b.x,b.y,5,12);
+});
 
-    if(!running || paused)
-        return;
+enemies.forEach(e=>{
+e.y+=e.speed;
 
-    if(!space.last)
-        space.last=time;
+ctx.fillStyle="#ff5570";
+ctx.fillRect(e.x,e.y,e.w,e.h);
 
-    const dt =
-        Math.min(
-            (time-space.last)/16.67,
-            2
-        );
+if(
+e.y+e.h>ship.y&&
+e.x<ship.x+ship.w&&
+e.x+e.w>ship.x
+){
+gameOver();
+}
 
-    space.last=time;
+});
 
-    if(
-        keys.ArrowLeft ||
-        keys.KeyA
-    )
-        space.x-=space.speed*dt;
+bullets.forEach(b=>{
 
-    if(
-        keys.ArrowRight ||
-        keys.KeyD
-    )
-        space.x+=space.speed*dt;
+enemies.forEach(e=>{
 
-    space.x =
-        Math.max(
-            30,
-            Math.min(
-                canvas.width-30,
-                space.x
-            )
-        );
+if(
+b.x>e.x&&
+b.x<e.x+e.w&&
+b.y<e.y+e.h&&
+b.y>e.y
+){
 
-    space.timer+=dt;
+e.y=600;
 
-    if(space.timer>42){
-
-        spawnEnemy();
-
-        space.timer=0;
-
-    }
-
-    space.bullets.forEach(
-        b=>b.y-=10*dt
-    );
-
-    space.enemies.forEach(
-        e=>e.y+=e.speed*dt
-    );
-
-    for(const bullet of space.bullets){
-
-        for(const enemy of space.enemies){
-
-            if(enemy.dead)
-                continue;
-
-            if(
-                Math.hypot(
-                    bullet.x-enemy.x,
-                    bullet.y-enemy.y
-                )<28
-            ){
-
-                enemy.dead=true;
-                bullet.dead=true;
-
-                addScore(1);
-
-                successSound();
-
-                break;
-
-            }
-
-        }
-
-    }
-
-    for(const enemy of space.enemies){
-
-        if(enemy.dead)
-            continue;
-
-        if(
-            Math.hypot(
-                enemy.x-space.x,
-                enemy.y-space.y
-            )<35
-        ){
-
-            gameOver();
-
-            return;
-
-        }
-
-        if(
-            enemy.y>
-            canvas.height+40
-        ){
-
-            gameOver();
-
-            return;
-
-        }
-
-    }
-
-    space.bullets =
-        space.bullets.filter(
-            b=>!b.dead && b.y>-30
-        );
-
-    space.enemies =
-        space.enemies.filter(
-            e=>!e.dead
-        );
-
-    drawSpace();
-
-    animationId =
-        requestAnimationFrame(spaceLoop);
+updateScore(score+1);
 
 }
 
-function drawSpace(){
+});
 
-    ctx.fillStyle="#04060b";
+});
 
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+if(keys.Space){
 
-    for(let i=0;i<90;i++){
+if(!keys._shot){
 
-        const x =
-            (i*137)%canvas.width;
+bullets.push({
+x:ship.x+ship.w/2,
+y:ship.y
+});
 
-        const y =
-            (i*73)%canvas.height;
+keys._shot=true;
 
-        ctx.fillStyle =
-            "rgba(255,255,255,.3)";
+}
 
-        ctx.fillRect(
-            x,
-            y,
-            2,
-            2
-        );
+}else{
 
-    }
+keys._shot=false;
 
-    ctx.font="42px Arial";
-    ctx.textAlign="center";
+}
 
-    ctx.fillText(
-        "🚀",
-        space.x,
-        space.y
-    );
-
-    ctx.fillStyle="#64e7ff";
-
-    space.bullets.forEach(b=>{
-
-        ctx.fillRect(
-            b.x-2,
-            b.y,
-            4,
-            16
-        );
-
-    });
-
-    space.enemies.forEach(e=>{
-
-        ctx.font="32px Arial";
-
-        ctx.fillText(
-            "👾",
-            e.x,
-            e.y+10
-        );
-
-    });
+requestFrame();
 
 }
 
 
-/* =========================================================
-   BREAKOUT
-========================================================= */
+/* =====================================================
+BREAK
+===================================================== */
 
-let breakout;
+let paddle,ball,bricks;
 
 function initBreak(){
 
-    document
-    .getElementById("help")
-    .textContent =
-        "🖱️ موس/لمس برای حرکت • توپ را برگردان";
+paddle={
+x:340,
+y:465,
+w:120,
+h:15
+};
 
-    breakout={
+ball={
+x:400,
+y:300,
+vx:4,
+vy:-4,
+r:9
+};
 
-        paddleX:375,
-        paddleW:150,
+bricks=[];
 
-        ballX:450,
-        ballY:410,
+for(let row=0;row<5;row++){
 
-        vx:4,
-        vy:-4,
+for(let col=0;col<10;col++){
 
-        bricks:[]
-
-    };
-
-    for(let r=0;r<5;r++){
-
-        for(let c=0;c<10;c++){
-
-            breakout.bricks.push({
-
-                x:35+c*82,
-                y:55+r*32,
-                w:68,
-                h:20,
-                alive:true
-
-            });
-
-        }
-
-    }
-
-    canvas.onpointermove=e=>{
-
-        const rect =
-            canvas.getBoundingClientRect();
-
-        const x =
-            (e.clientX-rect.left) /
-            rect.width *
-            canvas.width;
-
-        breakout.paddleX =
-            x-breakout.paddleW/2;
-
-    };
-
-    requestGameFrame();
+bricks.push({
+x:15+col*78,
+y:30+row*25,
+w:68,
+h:18,
+alive:true
+});
 
 }
 
-function breakLoop(){
+}
 
-    if(!running || paused)
-        return;
-
-    breakout.ballX+=breakout.vx;
-    breakout.ballY+=breakout.vy;
-
-    if(
-        breakout.ballX<10 ||
-        breakout.ballX>
-        canvas.width-10
-    ){
-
-        breakout.vx*=-1;
-
-        sound(300,.03);
-
-    }
-
-    if(breakout.ballY<10){
-
-        breakout.vy*=-1;
-
-        sound(300,.03);
-
-    }
-
-    if(
-        breakout.ballY>
-        canvas.height-55 &&
-        breakout.ballX>
-        breakout.paddleX &&
-        breakout.ballX<
-        breakout.paddleX+
-        breakout.paddleW
-    ){
-
-        breakout.vy=
-            -Math.abs(
-                breakout.vy
-            );
-
-        sound(400,.04);
-
-    }
-
-    if(
-        breakout.ballY>
-        canvas.height+20
-    ){
-
-        gameOver();
-
-        return;
-
-    }
-
-    for(const brick of breakout.bricks){
-
-        if(!brick.alive)
-            continue;
-
-        if(
-            breakout.ballX>brick.x &&
-            breakout.ballX<
-            brick.x+brick.w &&
-            breakout.ballY>brick.y &&
-            breakout.ballY<
-            brick.y+brick.h
-        ){
-
-            brick.alive=false;
-
-            breakout.vy*=-1;
-
-            addScore(1);
-
-            successSound();
-
-            break;
-
-        }
-
-    }
-
-    if(
-        breakout.bricks.every(
-            b=>!b.alive
-        )
-    ){
-
-        gameOver();
-
-        return;
-
-    }
-
-    drawBreak();
-
-    animationId =
-        requestAnimationFrame(breakLoop);
+requestFrame();
 
 }
 
-function drawBreak(){
+function updateBreak(){
 
-    ctx.fillStyle="#070b13";
+ctx.clearRect(0,0,800,500);
 
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+ctx.fillStyle="#05070c";
+ctx.fillRect(0,0,800,500);
 
-    breakout.bricks.forEach(
-        (brick,i)=>{
+if(keys?.ArrowLeft)paddle.x-=7;
+if(keys?.ArrowRight)paddle.x+=7;
 
-            if(!brick.alive)
-                return;
+paddle.x=Math.max(0,Math.min(680,paddle.x));
 
-            ctx.fillStyle =
-                i%2
-                ? "#6c63ff"
-                : "#00d4ff";
+ball.x+=ball.vx;
+ball.y+=ball.vy;
 
-            ctx.fillRect(
-                brick.x,
-                brick.y,
-                brick.w,
-                brick.h
-            );
+if(ball.x<ball.r||ball.x>800-ball.r)
+ball.vx*=-1;
 
-        }
-    );
+if(ball.y<ball.r)
+ball.vy*=-1;
 
-    ctx.fillStyle="#fff";
+if(
+ball.y+ball.r>paddle.y&&
+ball.x>paddle.x&&
+ball.x<paddle.x+paddle.w
+){
 
-    ctx.fillRect(
-        breakout.paddleX,
-        canvas.height-35,
-        breakout.paddleW,
-        12
-    );
+ball.vy=-Math.abs(ball.vy);
 
-    ctx.beginPath();
+}
 
-    ctx.arc(
-        breakout.ballX,
-        breakout.ballY,
-        8,
-        0,
-        Math.PI*2
-    );
+bricks.forEach(b=>{
 
-    ctx.fill();
+if(!b.alive)return;
+
+if(
+ball.x>b.x&&
+ball.x<b.x+b.w&&
+ball.y>b.y&&
+ball.y<b.y+b.h
+){
+
+b.alive=false;
+ball.vy*=-1;
+
+updateScore(score+1);
+
+}
+
+});
+
+if(ball.y>500){
+
+gameOver();
+return;
+
+}
+
+ctx.fillStyle="#7c5cff";
+ctx.fillRect(paddle.x,paddle.y,paddle.w,paddle.h);
+
+ctx.fillStyle="#ffc857";
+
+ctx.beginPath();
+ctx.arc(ball.x,ball.y,ball.r,0,Math.PI*2);
+ctx.fill();
+
+bricks.forEach(b=>{
+
+if(b.alive){
+
+ctx.fillStyle="#00d4ff";
+ctx.fillRect(b.x,b.y,b.w,b.h);
+
+}
+
+});
+
+requestFrame();
 
 }
 
 
-/* =========================================================
-   SNAKE
-========================================================= */
+/* =====================================================
+SNAKE
+===================================================== */
 
-let snake;
+let snake,food,direction,snakeTimer;
 
 function initSnake(){
 
-    document
-    .getElementById("help")
-    .textContent =
-        "⌨️ جهت‌ها / دکمه‌های موبایل برای حرکت";
+snake=[
+{x:10,y:10},
+{x:9,y:10},
+{x:8,y:10}
+];
 
-    snake={
+food={
+x:15,
+y:10
+};
 
-        size:26,
+direction={x:1,y:0};
 
-        body:[
-            {x:12,y:10},
-            {x:11,y:10},
-            {x:10,y:10}
-        ],
+snakeTimer=0;
 
-        dir:{x:1,y:0},
-
-        nextDir:{x:1,y:0},
-
-        food:null,
-
-        timer:0
-
-    };
-
-    placeFood();
-
-    requestGameFrame();
+requestFrame();
 
 }
 
-function placeFood(){
+function updateSnake(){
 
-    const cols =
-        Math.floor(
-            canvas.width/
-            snake.size
-        );
+snakeTimer++;
 
-    const rows =
-        Math.floor(
-            canvas.height/
-            snake.size
-        );
+if(snakeTimer<7)return;
 
-    let food;
+snakeTimer=0;
 
-    do{
+const head={
+x:snake[0].x+direction.x,
+y:snake[0].y+direction.y
+};
 
-        food={
+if(
+head.x<0||
+head.x>=40||
+head.y<0||
+head.y>=25||
+snake.some(s=>s.x===head.x&&s.y===head.y)
+){
 
-            x:
-                Math.floor(
-                    Math.random()*cols
-                ),
-
-            y:
-                Math.floor(
-                    Math.random()*rows
-                )
-
-        };
-
-    }while(
-        snake.body.some(
-            p=>
-            p.x===food.x &&
-            p.y===food.y
-        )
-    );
-
-    snake.food=food;
+gameOver();
+return;
 
 }
 
-function changeSnakeDirection(x,y){
+snake.unshift(head);
 
-    if(
-        snake.dir.x===-x &&
-        snake.dir.y===-y
-    )
-        return;
+if(head.x===food.x&&head.y===food.y){
 
-    snake.nextDir={x,y};
+updateScore(score+1);
 
-}
+food={
+x:Math.floor(Math.random()*40),
+y:Math.floor(Math.random()*25)
+};
 
-function snakeLoop(time){
+}else{
 
-    if(!running || paused)
-        return;
-
-    if(!snake.last)
-        snake.last=time;
-
-    const dt =
-        time-snake.last;
-
-    if(dt>105){
-
-        snake.last=time;
-
-        snake.dir=
-            snake.nextDir;
-
-        const head={
-
-            x:
-                snake.body[0].x+
-                snake.dir.x,
-
-            y:
-                snake.body[0].y+
-                snake.dir.y
-
-        };
-
-        const cols =
-            Math.floor(
-                canvas.width/
-                snake.size
-            );
-
-        const rows =
-            Math.floor(
-                canvas.height/
-                snake.size
-            );
-
-        if(
-            head.x<0 ||
-            head.x>=cols ||
-            head.y<0 ||
-            head.y>=rows
-        ){
-
-            gameOver();
-
-            return;
-
-        }
-
-        const eating =
-            head.x===snake.food.x &&
-            head.y===snake.food.y;
-
-        const bodyToCheck =
-            eating
-            ? snake.body
-            : snake.body.slice(
-                0,
-                snake.body.length-1
-            );
-
-        if(
-            bodyToCheck.some(
-                p=>
-                p.x===head.x &&
-                p.y===head.y
-            )
-        ){
-
-            gameOver();
-
-            return;
-
-        }
-
-        snake.body.unshift(head);
-
-        if(eating){
-
-            addScore(1);
-
-            successSound();
-
-            placeFood();
-
-        }else{
-
-            snake.body.pop();
-
-        }
-
-    }
-
-    drawSnake();
-
-    animationId =
-        requestAnimationFrame(snakeLoop);
+snake.pop();
 
 }
 
-function drawSnake(){
+ctx.clearRect(0,0,800,500);
 
-    ctx.fillStyle="#05070c";
+ctx.fillStyle="#05070c";
+ctx.fillRect(0,0,800,500);
 
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+ctx.fillStyle="#20d67b";
 
-    snake.body.forEach(
-        (p,i)=>{
+snake.forEach(s=>{
+ctx.fillRect(s.x*20,s.y*20,18,18);
+});
 
-            ctx.fillStyle =
-                i===0
-                ? "#64e7ff"
-                : "#36e39a";
+ctx.fillStyle="#ff5570";
 
-            ctx.fillRect(
-                p.x*snake.size+2,
-                p.y*snake.size+2,
-                snake.size-4,
-                snake.size-4
-            );
+ctx.fillRect(food.x*20,food.y*20,18,18);
 
-        }
-    );
-
-    ctx.font="22px Arial";
-
-    ctx.textAlign="left";
-
-    ctx.fillText(
-        "🍎",
-        snake.food.x*snake.size+2,
-        snake.food.y*snake.size+22
-    );
+requestFrame();
 
 }
 
 
-/* =========================================================
-   TAP
-========================================================= */
+/* =====================================================
+TAP
+===================================================== */
 
-let tap;
+let target,tapTime;
 
 function initTap(){
 
-    document
-    .getElementById("help")
-    .textContent =
-        "🎯 هدف را سریع لمس کن • ۳۰ ثانیه فرصت داری";
+target={
+x:Math.random()*700+50,
+y:Math.random()*400+50,
+r:35
+};
 
-    tap={
+tapTime=0;
 
-        targetX:450,
-        targetY:260,
-
-        radius:38,
-
-        end:
-            Date.now()+30000
-
-    };
-
-    moveTarget();
-
-    canvas.onclick =
-        tapClick;
-
-    requestGameFrame();
+requestFrame();
 
 }
 
-function moveTarget(){
+function updateTap(){
 
-    tap.targetX =
-        70+
-        Math.random()*
-        (canvas.width-140);
+ctx.clearRect(0,0,800,500);
 
-    tap.targetY =
-        80+
-        Math.random()*
-        (canvas.height-150);
+ctx.fillStyle="#05070c";
+ctx.fillRect(0,0,800,500);
 
-}
+ctx.fillStyle="#7c5cff";
 
-function tapClick(e){
+ctx.beginPath();
 
-    if(
-        currentGame!=="tap" ||
-        !running ||
-        paused
-    )
-        return;
+ctx.arc(
+target.x,
+target.y,
+target.r,
+0,
+Math.PI*2
+);
 
-    const rect =
-        canvas.getBoundingClientRect();
+ctx.fill();
 
-    const x =
-        (e.clientX-rect.left)/
-        rect.width*
-        canvas.width;
+tapTime++;
 
-    const y =
-        (e.clientY-rect.top)/
-        rect.height*
-        canvas.height;
+if(tapTime>240){
 
-    if(
-        Math.hypot(
-            x-tap.targetX,
-            y-tap.targetY
-        )<=tap.radius
-    ){
-
-        addScore(1);
-
-        successSound();
-
-        moveTarget();
-
-    }
+gameOver();
+return;
 
 }
 
-function tapLoop(){
-
-    if(!running || paused)
-        return;
-
-    const remaining =
-        Math.max(
-            0,
-            tap.end-Date.now()
-        );
-
-    if(remaining<=0){
-
-        gameOver();
-
-        return;
-
-    }
-
-    drawTap(
-        remaining/1000
-    );
-
-    animationId =
-        requestAnimationFrame(tapLoop);
+requestFrame();
 
 }
 
-function drawTap(seconds){
+function tapTarget(x,y){
 
-    ctx.fillStyle="#070b13";
+if(
+currentGame!=="tap"||
+paused||
+!target
+)return;
 
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+const dx=x-target.x;
+const dy=y-target.y;
 
-    ctx.textAlign="center";
+if(Math.sqrt(dx*dx+dy*dy)<target.r){
 
-    ctx.fillStyle="#fff";
+updateScore(score+1);
 
-    ctx.font="25px Arial";
+target={
+x:Math.random()*700+50,
+y:Math.random()*400+50,
+r:Math.max(18,35-score/2)
+};
 
-    ctx.fillText(
-        "زمان: "+seconds.toFixed(1),
-        canvas.width/2,
-        38
-    );
+tapTime=0;
 
-    ctx.beginPath();
-
-    ctx.arc(
-        tap.targetX,
-        tap.targetY,
-        tap.radius,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fillStyle="#6c63ff";
-
-    ctx.fill();
-
-    ctx.font="30px Arial";
-
-    ctx.fillStyle="#fff";
-
-    ctx.fillText(
-        "🎯",
-        tap.targetX,
-        tap.targetY+11
-    );
+}
 
 }
 
 
-/* =========================================================
-   PONG
-========================================================= */
+/* =====================================================
+PONG
+===================================================== */
 
-let pong;
+let player,ai,pongBall;
 
 function initPong(){
 
-    document
-    .getElementById("help")
-    .textContent =
-        "⌨️ W/S یا ↑/↓ • در موبایل از بالا/پایین استفاده کن";
+player={
+x:20,
+y:200,
+w:15,
+h:100
+};
 
-    pong={
+ai={
+x:765,
+y:200,
+w:15,
+h:100
+};
 
-        player:210,
-        ai:210,
+pongBall={
+x:400,
+y:250,
+vx:5,
+vy:3
+};
 
-        ballX:450,
-        ballY:260,
-
-        vx:5,
-        vy:3,
-
-        paddleH:100,
-
-        playerScore:0,
-        aiScore:0
-
-    };
-
-    canvas.onpointermove=e=>{
-
-        const rect =
-            canvas.getBoundingClientRect();
-
-        const y =
-            (e.clientY-rect.top)/
-            rect.height*
-            canvas.height;
-
-        pong.player =
-            y-pong.paddleH/2;
-
-    };
-
-    requestGameFrame();
+requestFrame();
 
 }
 
-function pongLoop(){
+function updatePong(){
 
-    if(!running || paused)
-        return;
+ctx.clearRect(0,0,800,500);
 
-    if(
-        keys.ArrowUp ||
-        keys.KeyW
-    )
-        pong.player-=7;
+ctx.fillStyle="#05070c";
+ctx.fillRect(0,0,800,500);
 
-    if(
-        keys.ArrowDown ||
-        keys.KeyS
-    )
-        pong.player+=7;
+if(keys?.ArrowUp)player.y-=7;
+if(keys?.ArrowDown)player.y+=7;
 
-    pong.player =
-        Math.max(
-            0,
-            Math.min(
-                canvas.height-pong.paddleH,
-                pong.player
-            )
-        );
+player.y=Math.max(0,Math.min(400,player.y));
 
-    pong.ballX+=pong.vx;
-    pong.ballY+=pong.vy;
+ai.y+=(pongBall.y-(ai.y+50))*.06;
 
-    if(
-        pong.ballY<10 ||
-        pong.ballY>
-        canvas.height-10
-    ){
+pongBall.x+=pongBall.vx;
+pongBall.y+=pongBall.vy;
 
-        pong.vy*=-1;
+if(
+pongBall.y<10||
+pongBall.y>490
+)pongBall.vy*=-1;
 
-        sound(280,.03);
+if(
+pongBall.x<35&&
+pongBall.y>player.y&&
+pongBall.y<player.y+100
+){
 
-    }
-
-    pong.ai +=
-        (
-            pong.ballY-
-            (
-                pong.ai+
-                pong.paddleH/2
-            )
-        )*.055;
-
-    if(
-        pong.ballX<40 &&
-        pong.ballX>25 &&
-        pong.ballY>pong.player &&
-        pong.ballY<
-        pong.player+
-        pong.paddleH
-    ){
-
-        pong.vx =
-            Math.abs(pong.vx)*1.03;
-
-        addScore(1);
-
-        successSound();
-
-    }
-
-    if(
-        pong.ballX>
-        canvas.width-40 &&
-        pong.ballY>pong.ai &&
-        pong.ballY<
-        pong.ai+
-        pong.paddleH
-    ){
-
-        pong.vx =
-            -Math.abs(pong.vx);
-
-        sound(320,.04);
-
-    }
-
-    if(pong.ballX<0){
-
-        pong.aiScore++;
-
-        if(pong.aiScore>=3){
-
-            gameOver();
-
-            return;
-
-        }
-
-        resetPongBall();
-
-    }
-
-    if(
-        pong.ballX>
-        canvas.width
-    ){
-
-        pong.playerScore++;
-
-        addScore(1);
-
-        if(pong.playerScore>=10){
-
-            gameOver();
-
-            return;
-
-        }
-
-        resetPongBall();
-
-    }
-
-    drawPong();
-
-    animationId =
-        requestAnimationFrame(pongLoop);
+pongBall.vx=Math.abs(pongBall.vx);
 
 }
 
-function resetPongBall(){
+if(
+pongBall.x>750&&
+pongBall.y>ai.y&&
+pongBall.y<ai.y+100
+){
 
-    pong.ballX=450;
-    pong.ballY=260;
-
-    pong.vx =
-        pong.vx>0
-        ? -5
-        : 5;
-
-    pong.vy =
-        Math.random()>0.5
-        ? 3
-        : -3;
+pongBall.vx=-Math.abs(pongBall.vx);
 
 }
 
-function drawPong(){
+if(pongBall.x<0){
 
-    ctx.fillStyle="#05070c";
-
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-    ctx.setLineDash(
-        [8,12]
-    );
-
-    ctx.strokeStyle=
-        "rgba(255,255,255,.15)";
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        canvas.width/2,
-        0
-    );
-
-    ctx.lineTo(
-        canvas.width/2,
-        canvas.height
-    );
-
-    ctx.stroke();
-
-    ctx.setLineDash([]);
-
-    ctx.fillStyle="#6c63ff";
-
-    ctx.fillRect(
-        15,
-        pong.player,
-        20,
-        pong.paddleH
-    );
-
-    ctx.fillStyle="#00d4ff";
-
-    ctx.fillRect(
-        canvas.width-35,
-        pong.ai,
-        20,
-        pong.paddleH
-    );
-
-    ctx.beginPath();
-
-    ctx.arc(
-        pong.ballX,
-        pong.ballY,
-        10,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fillStyle="#fff";
-
-    ctx.fill();
-
-    ctx.font="30px Arial";
-
-    ctx.fillText(
-        pong.playerScore,
-        canvas.width/2-60,
-        45
-    );
-
-    ctx.fillText(
-        pong.aiScore,
-        canvas.width/2+60,
-        45
-    );
+gameOver();
+return;
 
 }
 
+if(pongBall.x>800){
 
-/* =========================================================
-   KEYBOARD
-========================================================= */
+updateScore(score+1);
 
-window.addEventListener(
-    "keydown",
-    e=>{
+pongBall={
+x:400,
+y:250,
+vx:-5,
+vy:3
+};
 
-        keys[e.code]=true;
+}
 
-        if(
-            currentGame &&
-            (
-                e.code==="Space" ||
-                e.code.startsWith("Arrow")
-            )
-        ){
+ctx.fillStyle="#fff";
 
-            e.preventDefault();
+ctx.fillRect(player.x,player.y,player.w,player.h);
+ctx.fillRect(ai.x,ai.y,ai.w,ai.h);
 
-        }
+ctx.beginPath();
 
-        if(e.code==="Escape"){
-
-            if(
-                gameScreen.classList.contains("show")
-            ){
-
-                togglePause();
-
-            }
-
-        }
-
-        if(
-            currentGame==="flappy" &&
-            e.code==="Space" &&
-            running &&
-            !paused
-        ){
-
-            flappy.velocity=
-                flappy.jump;
-
-            sound(520,.05);
-
-        }
-
-        if(
-            currentGame==="space" &&
-            e.code==="Space"
-        ){
-
-            spaceShoot();
-
-        }
-
-        if(currentGame==="snake"){
-
-            if(e.code==="ArrowUp")
-                changeSnakeDirection(0,-1);
-
-            if(e.code==="ArrowDown")
-                changeSnakeDirection(0,1);
-
-            if(e.code==="ArrowLeft")
-                changeSnakeDirection(-1,0);
-
-            if(e.code==="ArrowRight")
-                changeSnakeDirection(1,0);
-
-        }
-
-    }
+ctx.arc(
+pongBall.x,
+pongBall.y,
+10,
+0,
+Math.PI*2
 );
 
-window.addEventListener(
-    "keyup",
-    e=>{
+ctx.fill();
 
-        keys[e.code]=false;
+requestFrame();
 
-    }
-);
+}
 
 
-/* =========================================================
-   TOUCH CONTROLS
-========================================================= */
+/* =====================================================
+CONTROLS
+===================================================== */
 
-document
-.querySelectorAll(".touch-btn")
-.forEach(button=>{
+document.addEventListener("keydown",e=>{
 
-    const control =
-        button.dataset.control;
+keys=keys||{};
 
-    const press=e=>{
+keys[e.code]=true;
+keys[e.key]=true;
 
-        e.preventDefault();
+if(e.code==="Space"){
 
-        if(
-            !currentGame ||
-            !running ||
-            paused
-        )
-            return;
+e.preventDefault();
 
-        if(currentGame==="snake"){
+if(currentGame==="flappy"){
+flappyJump();
+}
 
-            if(control==="up")
-                changeSnakeDirection(0,-1);
+}
 
-            if(control==="down")
-                changeSnakeDirection(0,1);
-
-            if(control==="left")
-                changeSnakeDirection(-1,0);
-
-            if(control==="right")
-                changeSnakeDirection(1,0);
-
-        }
-
-        if(currentGame==="space"){
-
-            if(control==="left")
-                keys.ArrowLeft=true;
-
-            if(control==="right")
-                keys.ArrowRight=true;
-
-            if(control==="action")
-                spaceShoot();
-
-        }
-
-        if(currentGame==="flappy"){
-
-            if(control==="action"){
-
-                flappy.velocity=
-                    flappy.jump;
-
-                sound(520,.05);
-
-            }
-
-        }
-
-        if(currentGame==="pong"){
-
-            if(control==="up")
-                pong.player-=50;
-
-            if(control==="down")
-                pong.player+=50;
-
-        }
-
-    };
-
-    const release=e=>{
-
-        e.preventDefault();
-
-        keys.ArrowLeft=false;
-        keys.ArrowRight=false;
-
-    };
-
-    button.addEventListener(
-        "pointerdown",
-        press
-    );
-
-    button.addEventListener(
-        "pointerup",
-        release
-    );
-
-    button.addEventListener(
-        "pointercancel",
-        release
-    );
+if(e.key==="Escape"){
+togglePause();
+}
 
 });
 
+document.addEventListener("keyup",e=>{
 
-/* =========================================================
-   FILTER
-========================================================= */
+keys=keys||{};
 
-document
-.querySelectorAll(".menu-btn")
-.forEach(button=>{
-
-    button.addEventListener(
-        "click",
-        ()=>{
-
-            document
-            .querySelectorAll(".menu-btn")
-            .forEach(
-                b=>b.classList.remove("active")
-            );
-
-            button.classList.add("active");
-
-            const filter =
-                button.dataset.filter;
-
-            document
-            .querySelectorAll(".game-card")
-            .forEach(card=>{
-
-                const device =
-                    card.dataset.device;
-
-                if(
-                    filter==="all" ||
-                    device==="all" ||
-                    device===filter
-                ){
-
-                    card.style.display="";
-
-                }else{
-
-                    card.style.display="none";
-
-                }
-
-            });
-
-        }
-    );
+keys[e.code]=false;
+keys[e.key]=false;
 
 });
 
+canvas.addEventListener("pointerdown",e=>{
 
-/* =========================================================
-   VISIBILITY
-========================================================= */
+if(currentGame==="flappy"){
 
-document.addEventListener(
-    "visibilitychange",
-    ()=>{
+flappyJump();
 
-        if(document.hidden){
+}
 
-            if(
-                running &&
-                !paused
-            ){
+if(currentGame==="tap"){
 
-                paused=true;
+const rect=canvas.getBoundingClientRect();
 
-                pauseScreen.classList.add(
-                    "show"
-                );
+const x=(e.clientX-rect.left)*(canvas.width/rect.width);
+const y=(e.clientY-rect.top)*(canvas.height/rect.height);
 
-                document
-                .getElementById("pauseButton")
-                .textContent="▶";
+tapTarget(x,y);
 
-            }
+}
 
-        }
+});
 
-    }
-);
+document.querySelectorAll(".play").forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+startGame(button.dataset.game);
+
+});
+
+});
+
+document.querySelectorAll(".filter").forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+document.querySelectorAll(".filter")
+.forEach(x=>x.classList.remove("active"));
+
+button.classList.add("active");
+
+const filter=button.dataset.filter;
+
+document.querySelectorAll(".game").forEach(game=>{
+
+game.style.display=
+filter==="all"||
+game.dataset.type===filter
+?"block"
+:"none";
+
+});
+
+});
+
+});
+
+document.getElementById("closeGame")
+.addEventListener("click",closeGame);
+
+document.getElementById("pauseBtn")
+.addEventListener("click",togglePause);
+
+document.getElementById("resumeBtn")
+.addEventListener("click",togglePause);
+
+document.getElementById("restartBtn")
+.addEventListener("click",restartGame);
+
+document.getElementById("chooseBtn")
+.addEventListener("click",()=>{
+
+resultScreen.classList.remove("show");
+closeGame();
+
+});
+
+document.addEventListener("visibilitychange",()=>{
+
+if(document.hidden&&running&&!paused){
+
+togglePause();
+
+}
+
+});
 
 </script>
 
