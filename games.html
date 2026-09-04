@@ -2,11 +2,10 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
 <title>PelirFami | Game Center</title>
-
-<meta name="description" content="مرکز بازی PelirFami - چند بازی سرگرم‌کننده برای موبایل و کامپیوتر">
+<meta name="description" content="مرکز بازی PelirFami">
 
 <style>
 *{
@@ -16,16 +15,17 @@
 }
 
 :root{
-    --bg:#070a10;
+    --bg:#060810;
     --panel:#0d121c;
-    --panel2:#111827;
+    --panel2:#121a27;
     --border:rgba(255,255,255,.09);
-    --text:#f4f7fb;
-    --muted:#9ba7b8;
+    --text:#f5f7fb;
+    --muted:#9ca8ba;
     --accent:#6c63ff;
     --accent2:#00d4ff;
-    --danger:#ff5577;
-    --success:#36e39a;
+    --green:#36e39a;
+    --red:#ff5577;
+    --yellow:#ffd76a;
 }
 
 html{
@@ -34,15 +34,12 @@ html{
 
 body{
     min-height:100vh;
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-    background:
-        radial-gradient(circle at 15% 10%,rgba(108,99,255,.18),transparent 30%),
-        radial-gradient(circle at 85% 20%,rgba(0,212,255,.12),transparent 25%),
-        var(--bg);
     color:var(--text);
+    font-family:Tahoma,Arial,sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(108,99,255,.18),transparent 28%),
+        radial-gradient(circle at 90% 20%,rgba(0,212,255,.12),transparent 25%),
+        var(--bg);
     overflow-x:hidden;
 }
 
@@ -50,41 +47,44 @@ button{
     font:inherit;
 }
 
+button,
 a{
-    color:inherit;
-    text-decoration:none;
+    -webkit-tap-highlight-color:transparent;
 }
 
-/* =========================
-   HEADER
-========================= */
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* HEADER */
 
 header{
     position:sticky;
     top:0;
     z-index:100;
+    background:rgba(6,8,16,.82);
     backdrop-filter:blur(18px);
-    background:rgba(7,10,16,.82);
     border-bottom:1px solid var(--border);
 }
 
 .nav{
     max-width:1200px;
+    min-height:70px;
     margin:auto;
-    min-height:72px;
     padding:0 20px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    gap:20px;
+    align-items:center;
+    gap:15px;
 }
 
 .logo{
     display:flex;
     align-items:center;
-    gap:12px;
-    font-weight:900;
+    gap:11px;
     font-size:20px;
+    font-weight:900;
 }
 
 .logo img{
@@ -103,38 +103,33 @@ header{
 }
 
 .back:hover{
-    color:#fff;
+    color:white;
     border-color:rgba(108,99,255,.6);
-    transform:translateY(-2px);
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
     max-width:1000px;
     margin:auto;
-    padding:75px 20px 45px;
+    padding:70px 20px 40px;
     text-align:center;
 }
 
 .badge{
     display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 15px;
+    padding:8px 16px;
     border-radius:999px;
     background:rgba(108,99,255,.12);
-    border:1px solid rgba(108,99,255,.25);
+    border:1px solid rgba(108,99,255,.3);
     color:#c8c4ff;
-    margin-bottom:20px;
     font-size:14px;
+    margin-bottom:20px;
 }
 
 .hero h1{
-    font-size:clamp(36px,7vw,70px);
-    line-height:1.05;
+    font-size:clamp(38px,7vw,72px);
+    line-height:1;
     margin-bottom:20px;
     background:linear-gradient(90deg,#fff,#9b96ff,#64e7ff);
     -webkit-background-clip:text;
@@ -143,52 +138,56 @@ header{
 }
 
 .hero p{
-    color:var(--muted);
     max-width:700px;
     margin:auto;
+    color:var(--muted);
     line-height:2;
-    font-size:17px;
+    font-size:16px;
 }
 
-/* =========================
-   DEVICE FILTER
-========================= */
+/* MENU */
 
-.filters{
-    max-width:1000px;
-    margin:0 auto 30px;
+.menu{
+    max-width:1150px;
+    margin:0 auto 25px;
     padding:0 20px;
+}
+
+.menu-inner{
+    padding:18px;
+    background:rgba(13,18,28,.75);
+    border:1px solid var(--border);
+    border-radius:20px;
     display:flex;
+    align-items:center;
     justify-content:center;
     gap:10px;
     flex-wrap:wrap;
 }
 
-.filter{
-    cursor:pointer;
+.menu-btn{
     border:1px solid var(--border);
     background:var(--panel);
     color:var(--muted);
-    padding:11px 20px;
-    border-radius:13px;
+    padding:11px 18px;
+    border-radius:12px;
+    cursor:pointer;
     transition:.2s;
 }
 
-.filter:hover,
-.filter.active{
+.menu-btn:hover,
+.menu-btn.active{
     color:#fff;
     background:rgba(108,99,255,.18);
     border-color:rgba(108,99,255,.55);
 }
 
-/* =========================
-   GAMES
-========================= */
+/* GAMES */
 
 .games{
     max-width:1150px;
     margin:auto;
-    padding:0 20px 60px;
+    padding:0 20px 70px;
 }
 
 .game-grid{
@@ -199,47 +198,55 @@ header{
 
 .game-card{
     position:relative;
-    overflow:hidden;
     padding:24px;
-    min-height:230px;
+    min-height:275px;
+    overflow:hidden;
+    border:1px solid var(--border);
     border-radius:22px;
     background:
-        linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015)),
+        linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012)),
         var(--panel);
-    border:1px solid var(--border);
     transition:.25s;
 }
 
 .game-card:hover{
     transform:translateY(-6px);
-    border-color:rgba(108,99,255,.45);
-    box-shadow:0 18px 50px rgba(0,0,0,.28);
+    border-color:rgba(108,99,255,.5);
+    box-shadow:0 20px 55px rgba(0,0,0,.3);
+}
+
+.record{
+    position:absolute;
+    top:18px;
+    left:18px;
+    color:var(--yellow);
+    font-size:12px;
 }
 
 .game-icon{
-    width:60px;
-    height:60px;
-    border-radius:18px;
+    width:62px;
+    height:62px;
     display:grid;
     place-items:center;
-    font-size:31px;
+    border-radius:18px;
+    background:rgba(108,99,255,.14);
+    font-size:32px;
     margin-bottom:18px;
-    background:rgba(108,99,255,.13);
 }
 
 .game-card h3{
     font-size:21px;
-    margin-bottom:8px;
+    margin-bottom:9px;
 }
 
 .game-card p{
     color:var(--muted);
     font-size:14px;
     line-height:1.8;
-    min-height:48px;
+    min-height:50px;
 }
 
-.game-tags{
+.tags{
     display:flex;
     gap:7px;
     flex-wrap:wrap;
@@ -247,116 +254,124 @@ header{
 }
 
 .tag{
-    font-size:11px;
-    color:#aeb8c8;
-    border:1px solid var(--border);
     padding:5px 9px;
     border-radius:8px;
+    border:1px solid var(--border);
+    color:#aeb8c8;
+    font-size:11px;
 }
 
-.play-btn{
+.play{
     width:100%;
     border:0;
-    cursor:pointer;
-    padding:12px;
     border-radius:12px;
+    padding:12px;
+    cursor:pointer;
     color:#fff;
     font-weight:bold;
     background:linear-gradient(135deg,var(--accent),#5148e8);
     transition:.2s;
 }
 
-.play-btn:hover{
+.play:hover{
     filter:brightness(1.15);
-    transform:translateY(-1px);
 }
 
-.record{
-    position:absolute;
-    top:18px;
-    left:18px;
-    color:#ffd76a;
-    font-size:12px;
-}
+/* GAME SCREEN */
 
-/* =========================
-   GAME MODAL
-========================= */
-
-.game-modal{
+.game-screen{
     position:fixed;
     inset:0;
-    z-index:999;
+    z-index:1000;
     display:none;
+    padding:12px;
+    background:rgba(0,0,0,.86);
+    backdrop-filter:blur(15px);
+}
+
+.game-screen.show{
+    display:flex;
     align-items:center;
     justify-content:center;
-    padding:15px;
-    background:rgba(0,0,0,.78);
-    backdrop-filter:blur(12px);
 }
 
-.game-modal.show{
-    display:flex;
-}
-
-.game-box{
-    width:min(950px,100%);
-    max-height:95vh;
+.game-window{
+    width:min(1000px,100%);
+    max-height:96vh;
     overflow:auto;
+    border-radius:24px;
     background:#090e17;
     border:1px solid var(--border);
-    border-radius:24px;
-    box-shadow:0 30px 100px rgba(0,0,0,.6);
+    box-shadow:0 30px 100px rgba(0,0,0,.7);
 }
 
-.game-top{
-    min-height:70px;
-    padding:14px 18px;
+.game-header{
+    min-height:68px;
+    padding:12px 16px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:15px;
+    gap:10px;
     border-bottom:1px solid var(--border);
 }
 
-.game-title{
+.game-name{
     font-weight:900;
+    font-size:18px;
 }
 
-.game-stats{
+.stats{
     display:flex;
-    gap:14px;
+    align-items:center;
+    gap:15px;
     color:var(--muted);
     font-size:13px;
 }
 
-.close-game{
+.stats b{
+    color:#fff;
+}
+
+.header-actions{
+    display:flex;
+    gap:7px;
+}
+
+.icon-btn{
     width:40px;
     height:40px;
-    border-radius:11px;
     border:1px solid var(--border);
+    border-radius:11px;
     background:var(--panel);
     color:#fff;
     cursor:pointer;
 }
 
-.canvas-wrap{
+.icon-btn:hover{
+    background:var(--panel2);
+}
+
+/* CANVAS */
+
+.canvas-area{
     padding:15px;
 }
 
 canvas{
     display:block;
     width:100%;
-    max-width:850px;
+    max-width:900px;
     height:auto;
     margin:auto;
-    border-radius:16px;
+    border-radius:17px;
     background:#05070c;
-    border:1px solid rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.07);
     touch-action:none;
 }
 
-.game-controls{
+/* CONTROLS */
+
+.controls{
     padding:0 15px 15px;
     text-align:center;
 }
@@ -367,43 +382,48 @@ canvas{
     line-height:1.9;
 }
 
-.mobile-controls{
+.touch-controls{
     display:none;
     margin-top:12px;
     justify-content:center;
     gap:8px;
+    flex-wrap:wrap;
 }
 
-.control-btn{
+.touch-btn{
     width:58px;
     height:48px;
     border:1px solid var(--border);
+    border-radius:12px;
     background:var(--panel);
     color:#fff;
-    border-radius:12px;
     cursor:pointer;
+    user-select:none;
 }
 
-/* =========================
-   GAME OVER
-========================= */
+.touch-btn:active{
+    background:rgba(108,99,255,.35);
+    transform:scale(.96);
+}
 
-.overlay{
-    position:fixed;
+/* PAUSE */
+
+.pause-screen{
+    position:absolute;
     inset:0;
     display:none;
     align-items:center;
     justify-content:center;
-    z-index:1200;
-    background:rgba(0,0,0,.72);
+    background:rgba(0,0,0,.55);
+    z-index:20;
 }
 
-.overlay.show{
+.pause-screen.show{
     display:flex;
 }
 
-.result{
-    width:min(400px,90%);
+.pause-box{
+    width:min(360px,90%);
     padding:30px;
     text-align:center;
     background:#0d121c;
@@ -411,18 +431,17 @@ canvas{
     border-radius:22px;
 }
 
-.result h2{
-    font-size:28px;
-    margin-bottom:12px;
+.pause-box h2{
+    font-size:30px;
+    margin-bottom:10px;
 }
 
-.result p{
+.pause-box p{
     color:var(--muted);
     margin-bottom:20px;
-    line-height:2;
 }
 
-.result button{
+.big-btn{
     width:100%;
     border:0;
     padding:13px;
@@ -433,21 +452,81 @@ canvas{
     background:linear-gradient(135deg,var(--accent),#5148e8);
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* RESULT */
+
+.result-screen{
+    position:fixed;
+    inset:0;
+    z-index:1500;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(12px);
+}
+
+.result-screen.show{
+    display:flex;
+}
+
+.result-box{
+    width:min(430px,100%);
+    padding:34px;
+    text-align:center;
+    background:#0d121c;
+    border:1px solid var(--border);
+    border-radius:24px;
+    box-shadow:0 30px 90px rgba(0,0,0,.6);
+}
+
+.result-icon{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.result-box h2{
+    font-size:29px;
+    margin-bottom:10px;
+}
+
+.result-box p{
+    color:var(--muted);
+    line-height:2;
+    margin-bottom:22px;
+}
+
+.result-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+}
+
+.result-actions button{
+    padding:13px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:var(--panel);
+    color:#fff;
+    cursor:pointer;
+}
+
+.result-actions .primary{
+    border:0;
+    background:linear-gradient(135deg,var(--accent),#5148e8);
+}
+
+/* FOOTER */
 
 footer{
-    text-align:center;
     padding:30px 20px;
+    text-align:center;
     border-top:1px solid var(--border);
     color:var(--muted);
     font-size:13px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 
 @media(max-width:850px){
     .game-grid{
@@ -456,6 +535,7 @@ footer{
 }
 
 @media(max-width:600px){
+
     .nav{
         min-height:62px;
     }
@@ -469,8 +549,13 @@ footer{
         height:36px;
     }
 
+    .back{
+        padding:8px 12px;
+        font-size:12px;
+    }
+
     .hero{
-        padding-top:50px;
+        padding:50px 20px 30px;
     }
 
     .hero p{
@@ -485,13 +570,25 @@ footer{
         min-height:auto;
     }
 
-    .mobile-controls{
+    .touch-controls{
         display:flex;
     }
 
-    .game-stats{
+    .stats{
         gap:7px;
         font-size:11px;
+    }
+
+    .game-name{
+        font-size:14px;
+    }
+
+    .game-header{
+        min-height:60px;
+    }
+
+    .result-actions{
+        grid-template-columns:1fr;
     }
 }
 </style>
@@ -502,13 +599,13 @@ footer{
 <header>
     <div class="nav">
 
-        <a class="logo" href="index.html">
+        <a href="index.html" class="logo">
             <img src="assets/images/logo/logo.png" alt="PelirFami">
             <span>PelirFami</span>
         </a>
 
-        <a class="back" href="index.html">
-            ← بازگشت به سایت
+        <a href="index.html" class="back">
+            ← بازگشت
         </a>
 
     </div>
@@ -524,213 +621,226 @@ footer{
     <h1>وقت بازیه!</h1>
 
     <p>
-        تا آماده شدن نسخه موردنظر PelirFami،
-        یکی از بازی‌ها را انتخاب کن و رکوردت را ثبت کن.
+        یکی از بازی‌ها را انتخاب کن، رکورد بزن و ببین
+        چند امتیاز می‌توانی بگیری.
     </p>
 
 </section>
 
 
-<div class="filters">
+<!-- GAME MENU -->
 
-    <button class="filter active" data-filter="all">
-        🎮 همه بازی‌ها
-    </button>
+<section class="menu">
 
-    <button class="filter" data-filter="mobile">
-        📱 مناسب موبایل
-    </button>
+    <div class="menu-inner">
 
-    <button class="filter" data-filter="desktop">
-        🖥️ مناسب کامپیوتر
-    </button>
+        <button class="menu-btn active" data-filter="all">
+            🎮 همه
+        </button>
 
-</div>
+        <button class="menu-btn" data-filter="mobile">
+            📱 موبایل
+        </button>
+
+        <button class="menu-btn" data-filter="desktop">
+            🖥️ کامپیوتر
+        </button>
+
+    </div>
+
+</section>
 
 
 <main class="games">
 
-    <div class="game-grid">
-
-        <!-- FLAPPY -->
-
-        <article class="game-card" data-device="mobile">
-            <div class="record">
-                🏆 رکورد:
-                <span data-record="flappy">0</span>
-            </div>
-
-            <div class="game-icon">🐦</div>
-
-            <h3>Fami Flappy</h3>
-
-            <p>
-                پرواز کن، از موانع رد شو و رکورد جدید بزن!
-            </p>
-
-            <div class="game-tags">
-                <span class="tag">📱 موبایل</span>
-                <span class="tag">👆 لمس</span>
-            </div>
-
-            <button class="play-btn" onclick="startGame('flappy')">
-                ▶ شروع بازی
-            </button>
-        </article>
+<div class="game-grid">
 
 
-        <!-- SPACE -->
+<!-- FLAPPY -->
 
-        <article class="game-card" data-device="desktop">
-            <div class="record">
-                🏆 رکورد:
-                <span data-record="space">0</span>
-            </div>
+<article class="game-card" data-device="mobile">
 
-            <div class="game-icon">🚀</div>
-
-            <h3>Fami Space</h3>
-
-            <p>
-                سفینه را کنترل کن و دشمنان فضایی را نابود کن.
-            </p>
-
-            <div class="game-tags">
-                <span class="tag">🖥️ کامپیوتر</span>
-                <span class="tag">⌨️ کیبورد</span>
-            </div>
-
-            <button class="play-btn" onclick="startGame('space')">
-                ▶ شروع بازی
-            </button>
-        </article>
-
-
-        <!-- BREAK -->
-
-        <article class="game-card" data-device="all">
-            <div class="record">
-                🏆 رکورد:
-                <span data-record="break">0</span>
-            </div>
-
-            <div class="game-icon">🧱</div>
-
-            <h3>Fami Break</h3>
-
-            <p>
-                توپ را کنترل کن و تمام آجرها را بشکن.
-            </p>
-
-            <div class="game-tags">
-                <span class="tag">📱 موبایل</span>
-                <span class="tag">🖥️ کامپیوتر</span>
-            </div>
-
-            <button class="play-btn" onclick="startGame('break')">
-                ▶ شروع بازی
-            </button>
-        </article>
-
-
-        <!-- SNAKE -->
-
-        <article class="game-card" data-device="all">
-            <div class="record">
-                🏆 رکورد:
-                <span data-record="snake">0</span>
-            </div>
-
-            <div class="game-icon">🐍</div>
-
-            <h3>Fami Snake</h3>
-
-            <p>
-                غذاها را بخور و تا جایی که می‌توانی بزرگ شو.
-            </p>
-
-            <div class="game-tags">
-                <span class="tag">📱 موبایل</span>
-                <span class="tag">⌨️ کیبورد</span>
-            </div>
-
-            <button class="play-btn" onclick="startGame('snake')">
-                ▶ شروع بازی
-            </button>
-        </article>
-
-
-        <!-- TAP -->
-
-        <article class="game-card" data-device="mobile">
-            <div class="record">
-                🏆 رکورد:
-                <span data-record="tap">0</span>
-            </div>
-
-            <div class="game-icon">🎯</div>
-
-            <h3>Fami Tap</h3>
-
-            <p>
-                سریع باش! قبل از تمام شدن زمان هدف‌ها را لمس کن.
-            </p>
-
-            <div class="game-tags">
-                <span class="tag">📱 موبایل</span>
-                <span class="tag">🖱️ ماوس</span>
-            </div>
-
-            <button class="play-btn" onclick="startGame('tap')">
-                ▶ شروع بازی
-            </button>
-        </article>
-
-
-        <!-- PONG -->
-
-        <article class="game-card" data-device="desktop">
-            <div class="record">
-                🏆 رکورد:
-                <span data-record="pong">0</span>
-            </div>
-
-            <div class="game-icon">🏓</div>
-
-            <h3>Fami Pong</h3>
-
-            <p>
-                توپ را برگردان و اجازه نده از کنار تو عبور کند.
-            </p>
-
-            <div class="game-tags">
-                <span class="tag">🖥️ کامپیوتر</span>
-                <span class="tag">⌨️ کیبورد</span>
-            </div>
-
-            <button class="play-btn" onclick="startGame('pong')">
-                ▶ شروع بازی
-            </button>
-        </article>
-
+    <div class="record">
+        🏆 <span data-record="flappy">0</span>
     </div>
+
+    <div class="game-icon">🐦</div>
+
+    <h3>Fami Flappy</h3>
+
+    <p>
+        پرواز کن، از لوله‌ها عبور کن و بیشترین رکورد را بزن.
+    </p>
+
+    <div class="tags">
+        <span class="tag">📱 موبایل</span>
+        <span class="tag">👆 لمس</span>
+    </div>
+
+    <button class="play" onclick="startGame('flappy')">
+        ▶ شروع بازی
+    </button>
+
+</article>
+
+
+<!-- SPACE -->
+
+<article class="game-card" data-device="desktop">
+
+    <div class="record">
+        🏆 <span data-record="space">0</span>
+    </div>
+
+    <div class="game-icon">🚀</div>
+
+    <h3>Fami Space</h3>
+
+    <p>
+        سفینه را حرکت بده و دشمنان فضایی را نابود کن.
+    </p>
+
+    <div class="tags">
+        <span class="tag">🖥️ کامپیوتر</span>
+        <span class="tag">⌨️ کیبورد</span>
+    </div>
+
+    <button class="play" onclick="startGame('space')">
+        ▶ شروع بازی
+    </button>
+
+</article>
+
+
+<!-- BREAK -->
+
+<article class="game-card" data-device="all">
+
+    <div class="record">
+        🏆 <span data-record="break">0</span>
+    </div>
+
+    <div class="game-icon">🧱</div>
+
+    <h3>Fami Break</h3>
+
+    <p>
+        توپ را برگردان و تمام آجرها را نابود کن.
+    </p>
+
+    <div class="tags">
+        <span class="tag">📱 موبایل</span>
+        <span class="tag">🖥️ کامپیوتر</span>
+    </div>
+
+    <button class="play" onclick="startGame('break')">
+        ▶ شروع بازی
+    </button>
+
+</article>
+
+
+<!-- SNAKE -->
+
+<article class="game-card" data-device="all">
+
+    <div class="record">
+        🏆 <span data-record="snake">0</span>
+    </div>
+
+    <div class="game-icon">🐍</div>
+
+    <h3>Fami Snake</h3>
+
+    <p>
+        غذا بخور، بزرگ شو و به دیوار یا خودت برخورد نکن.
+    </p>
+
+    <div class="tags">
+        <span class="tag">📱 موبایل</span>
+        <span class="tag">🖥️ کامپیوتر</span>
+    </div>
+
+    <button class="play" onclick="startGame('snake')">
+        ▶ شروع بازی
+    </button>
+
+</article>
+
+
+<!-- TAP -->
+
+<article class="game-card" data-device="mobile">
+
+    <div class="record">
+        🏆 <span data-record="tap">0</span>
+    </div>
+
+    <div class="game-icon">🎯</div>
+
+    <h3>Fami Tap</h3>
+
+    <p>
+        در ۳۰ ثانیه تا می‌توانی هدف‌ها را سریع لمس کن.
+    </p>
+
+    <div class="tags">
+        <span class="tag">📱 موبایل</span>
+        <span class="tag">🖱️ ماوس</span>
+    </div>
+
+    <button class="play" onclick="startGame('tap')">
+        ▶ شروع بازی
+    </button>
+
+</article>
+
+
+<!-- PONG -->
+
+<article class="game-card" data-device="desktop">
+
+    <div class="record">
+        🏆 <span data-record="pong">0</span>
+    </div>
+
+    <div class="game-icon">🏓</div>
+
+    <h3>Fami Pong</h3>
+
+    <p>
+        توپ را برگردان و از حریف کامپیوتری شکست نخور.
+    </p>
+
+    <div class="tags">
+        <span class="tag">🖥️ کامپیوتر</span>
+        <span class="tag">⌨️ کیبورد</span>
+    </div>
+
+    <button class="play" onclick="startGame('pong')">
+        ▶ شروع بازی
+    </button>
+
+</article>
+
+</div>
 
 </main>
 
 
-<!-- GAME MODAL -->
+<!-- GAME WINDOW -->
 
-<div class="game-modal" id="gameModal">
+<div class="game-screen" id="gameScreen">
 
-    <div class="game-box">
+    <div class="game-window">
 
-        <div class="game-top">
+        <div class="game-header">
 
-            <div class="game-title" id="gameTitle">
+            <div class="game-name" id="gameName">
                 بازی
             </div>
 
-            <div class="game-stats">
+            <div class="stats">
 
                 <span>
                     امتیاز:
@@ -739,49 +849,91 @@ footer{
 
                 <span>
                     رکورد:
-                    <b id="gameRecord">0</b>
+                    <b id="record">0</b>
                 </span>
 
-                <button class="close-game" onclick="closeGame()">
-                    ✕
-                </button>
+                <div class="header-actions">
+
+                    <button
+                        class="icon-btn"
+                        onclick="togglePause()"
+                        id="pauseButton">
+                        ⏸
+                    </button>
+
+                    <button
+                        class="icon-btn"
+                        onclick="closeGame()">
+                        ✕
+                    </button>
+
+                </div>
 
             </div>
 
         </div>
 
-        <div class="canvas-wrap">
+
+        <div class="canvas-area">
 
             <canvas
-                id="gameCanvas"
-                width="850"
-                height="500">
+                id="canvas"
+                width="900"
+                height="520">
             </canvas>
 
         </div>
 
-        <div class="game-controls">
 
-            <div class="help" id="gameHelp">
-                برای شروع کلیک کن
+        <div class="controls">
+
+            <div class="help" id="help">
+                آماده‌ای؟
             </div>
 
-            <div class="mobile-controls" id="mobileControls">
+            <div class="touch-controls" id="touchControls">
 
-                <button class="control-btn" data-control="left">
+                <button class="touch-btn" data-control="left">
                     ◀
                 </button>
 
-                <button class="control-btn" data-control="up">
+                <button class="touch-btn" data-control="up">
                     ▲
                 </button>
 
-                <button class="control-btn" data-control="down">
+                <button class="touch-btn" data-control="down">
                     ▼
                 </button>
 
-                <button class="control-btn" data-control="right">
+                <button class="touch-btn" data-control="right">
                     ▶
+                </button>
+
+                <button class="touch-btn" data-control="action">
+                    🔥
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAUSE -->
+
+        <div class="pause-screen" id="pauseScreen">
+
+            <div class="pause-box">
+
+                <h2>⏸ بازی متوقف شد</h2>
+
+                <p>
+                    برای ادامه آماده‌ای؟
+                </p>
+
+                <button
+                    class="big-btn"
+                    onclick="togglePause()">
+                    ▶ ادامه بازی
                 </button>
 
             </div>
@@ -795,19 +947,33 @@ footer{
 
 <!-- RESULT -->
 
-<div class="overlay" id="resultOverlay">
+<div class="result-screen" id="resultScreen">
 
-    <div class="result">
+    <div class="result-box">
+
+        <div class="result-icon" id="resultIcon">
+            🎮
+        </div>
 
         <h2 id="resultTitle">
-            بازی تمام شد!
+            بازی تمام شد
         </h2>
 
         <p id="resultText"></p>
 
-        <button onclick="restartCurrentGame()">
-            🔄 دوباره بازی کن
-        </button>
+        <div class="result-actions">
+
+            <button
+                class="primary"
+                onclick="restartGame()">
+                🔄 دوباره بازی
+            </button>
+
+            <button onclick="closeResult()">
+                🎮 انتخاب بازی
+            </button>
+
+        </div>
 
     </div>
 
@@ -822,31 +988,135 @@ footer{
 <script>
 
 /* =========================================================
-   GLOBAL
+   CORE
 ========================================================= */
 
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+const canvas =
+    document.getElementById("canvas");
 
-const modal = document.getElementById("gameModal");
-const overlay = document.getElementById("resultOverlay");
+const ctx =
+    canvas.getContext("2d");
+
+const gameScreen =
+    document.getElementById("gameScreen");
+
+const resultScreen =
+    document.getElementById("resultScreen");
+
+const pauseScreen =
+    document.getElementById("pauseScreen");
 
 let currentGame = null;
+let running = false;
+let paused = false;
 let animationId = null;
 let score = 0;
-let running = false;
-let lastTime = 0;
 
 const keys = {};
 
-const gameNames = {
-    flappy: "🐦 Fami Flappy",
-    space: "🚀 Fami Space",
-    break: "🧱 Fami Break",
-    snake: "🐍 Fami Snake",
-    tap: "🎯 Fami Tap",
-    pong: "🏓 Fami Pong"
+const names = {
+    flappy:"🐦 Fami Flappy",
+    space:"🚀 Fami Space",
+    break:"🧱 Fami Break",
+    snake:"🐍 Fami Snake",
+    tap:"🎯 Fami Tap",
+    pong:"🏓 Fami Pong"
 };
+
+
+/* =========================================================
+   SOUND
+========================================================= */
+
+let audioContext = null;
+let soundEnabled = true;
+
+function initAudio(){
+
+    if(!audioContext){
+
+        const Audio =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        if(Audio)
+            audioContext = new Audio();
+
+    }
+
+    if(
+        audioContext &&
+        audioContext.state === "suspended"
+    ){
+
+        audioContext.resume();
+
+    }
+
+}
+
+function sound(
+    frequency=500,
+    duration=.08,
+    type="sine"
+){
+
+    if(!soundEnabled)
+        return;
+
+    try{
+
+        initAudio();
+
+        if(!audioContext)
+            return;
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+        oscillator.type = type;
+
+        oscillator.frequency.value =
+            frequency;
+
+        gain.gain.setValueAtTime(
+            .06,
+            audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .001,
+            audioContext.currentTime + duration
+        );
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.start();
+
+        oscillator.stop(
+            audioContext.currentTime + duration
+        );
+
+    }catch(e){}
+
+}
+
+function successSound(){
+
+    sound(600,.07);
+    setTimeout(()=>sound(850,.1),70);
+
+}
+
+function failSound(){
+
+    sound(180,.18,"sawtooth");
+
+}
 
 
 /* =========================================================
@@ -857,7 +1127,7 @@ function getRecord(game){
 
     return Number(
         localStorage.getItem(
-            "pelirfami_record_" + game
+            "pelirfami_record_"+game
         ) || 0
     );
 
@@ -865,33 +1135,36 @@ function getRecord(game){
 
 function saveRecord(game,value){
 
-    const old = getRecord(game);
+    const old =
+        getRecord(game);
 
     if(value > old){
 
         localStorage.setItem(
-            "pelirfami_record_" + game,
+            "pelirfami_record_"+game,
             value
         );
 
         updateRecords();
 
         return true;
+
     }
 
     return false;
+
 }
 
 function updateRecords(){
 
     document
-        .querySelectorAll("[data-record]")
-        .forEach(el => {
+    .querySelectorAll("[data-record]")
+    .forEach(el=>{
 
-            el.textContent =
-                getRecord(el.dataset.record);
+        el.textContent =
+            getRecord(el.dataset.record);
 
-        });
+    });
 
 }
 
@@ -899,125 +1172,16 @@ updateRecords();
 
 
 /* =========================================================
-   FILTERS
+   SCORE
 ========================================================= */
 
-document
-.querySelectorAll(".filter")
-.forEach(button => {
+function setScore(value){
 
-    button.addEventListener("click", () => {
+    score = value;
 
-        document
-        .querySelectorAll(".filter")
-        .forEach(b =>
-            b.classList.remove("active")
-        );
-
-        button.classList.add("active");
-
-        const filter =
-            button.dataset.filter;
-
-        document
-        .querySelectorAll(".game-card")
-        .forEach(card => {
-
-            const device =
-                card.dataset.device;
-
-            if(
-                filter === "all" ||
-                device === filter ||
-                device === "all"
-            ){
-
-                card.style.display = "";
-
-            }else{
-
-                card.style.display = "none";
-
-            }
-
-        });
-
-    });
-
-});
-
-
-/* =========================================================
-   GENERAL GAME FUNCTIONS
-========================================================= */
-
-function startGame(game){
-
-    currentGame = game;
-
-    score = 0;
-
-    running = true;
-
-    lastTime = 0;
-
-    overlay.classList.remove("show");
-
-    modal.classList.add("show");
-
-    document.getElementById("gameTitle")
-        .textContent = gameNames[game];
-
-    document.getElementById("score")
-        .textContent = "0";
-
-    document.getElementById("gameRecord")
-        .textContent = getRecord(game);
-
-    cancelAnimationFrame(animationId);
-
-    resetCanvas();
-
-    if(game === "flappy")
-        initFlappy();
-
-    if(game === "space")
-        initSpace();
-
-    if(game === "break")
-        initBreak();
-
-    if(game === "snake")
-        initSnake();
-
-    if(game === "tap")
-        initTap();
-
-    if(game === "pong")
-        initPong();
-
-}
-
-function closeGame(){
-
-    running = false;
-
-    cancelAnimationFrame(animationId);
-
-    modal.classList.remove("show");
-
-    overlay.classList.remove("show");
-
-}
-
-function resetCanvas(){
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+    document
+    .getElementById("score")
+    .textContent = score;
 
 }
 
@@ -1025,10 +1189,112 @@ function addScore(value=1){
 
     score += value;
 
-    document.getElementById("score")
-        .textContent = score;
+    document
+    .getElementById("score")
+    .textContent = score;
 
 }
+
+
+/* =========================================================
+   START
+========================================================= */
+
+function startGame(game){
+
+    initAudio();
+
+    cancelAnimationFrame(animationId);
+
+    currentGame = game;
+
+    running = true;
+
+    paused = false;
+
+    setScore(0);
+
+    gameScreen.classList.add("show");
+
+    resultScreen.classList.remove("show");
+
+    pauseScreen.classList.remove("show");
+
+    document
+    .getElementById("gameName")
+    .textContent = names[game];
+
+    document
+    .getElementById("record")
+    .textContent =
+        getRecord(game);
+
+    document
+    .getElementById("pauseButton")
+    .textContent = "⏸";
+
+    clearCanvas();
+
+    canvas.onclick = null;
+    canvas.onpointermove = null;
+
+    if(game==="flappy")
+        initFlappy();
+
+    if(game==="space")
+        initSpace();
+
+    if(game==="break")
+        initBreak();
+
+    if(game==="snake")
+        initSnake();
+
+    if(game==="tap")
+        initTap();
+
+    if(game==="pong")
+        initPong();
+
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+function closeGame(){
+
+    running = false;
+    paused = false;
+
+    cancelAnimationFrame(animationId);
+
+    gameScreen.classList.remove("show");
+
+    resultScreen.classList.remove("show");
+
+    pauseScreen.classList.remove("show");
+
+    canvas.onclick = null;
+    canvas.onpointermove = null;
+
+}
+
+function closeResult(){
+
+    resultScreen.classList.remove("show");
+
+    gameScreen.classList.remove("show");
+
+    running = false;
+
+}
+
+
+/* =========================================================
+   GAME OVER
+========================================================= */
 
 function gameOver(){
 
@@ -1039,35 +1305,128 @@ function gameOver(){
 
     cancelAnimationFrame(animationId);
 
-    const oldRecord =
-        getRecord(currentGame);
+    failSound();
 
     const newRecord =
-        saveRecord(currentGame,score);
+        saveRecord(
+            currentGame,
+            score
+        );
 
-    document.getElementById("gameRecord")
-        .textContent = getRecord(currentGame);
+    document
+    .getElementById("record")
+    .textContent =
+        getRecord(currentGame);
 
-    document.getElementById("resultTitle")
-        .textContent =
+    document
+    .getElementById("resultIcon")
+    .textContent =
+        newRecord ? "🏆" : "🎮";
+
+    document
+    .getElementById("resultTitle")
+    .textContent =
         newRecord
-        ? "🏆 رکورد جدید!"
-        : "🎮 بازی تمام شد!";
+        ? "رکورد جدید!"
+        : "بازی تمام شد!";
 
-    document.getElementById("resultText")
-        .innerHTML =
-        `امتیاز شما: <strong>${score}</strong><br>
-         رکورد: <strong>${getRecord(currentGame)}</strong>`;
+    document
+    .getElementById("resultText")
+    .innerHTML =
+        `
+        امتیاز شما:
+        <strong>${score}</strong>
+        <br>
+        رکورد:
+        <strong>${getRecord(currentGame)}</strong>
+        `;
 
-    overlay.classList.add("show");
+    resultScreen.classList.add("show");
 
 }
 
-function restartCurrentGame(){
+function restartGame(){
 
-    overlay.classList.remove("show");
+    resultScreen.classList.remove("show");
 
     startGame(currentGame);
+
+}
+
+
+/* =========================================================
+   PAUSE
+========================================================= */
+
+function togglePause(){
+
+    if(!currentGame || !running)
+        return;
+
+    paused = !paused;
+
+    pauseScreen.classList.toggle(
+        "show",
+        paused
+    );
+
+    document
+    .getElementById("pauseButton")
+    .textContent =
+        paused ? "▶" : "⏸";
+
+    if(!paused){
+
+        requestGameFrame();
+
+    }
+
+}
+
+function requestGameFrame(){
+
+    if(!running || paused)
+        return;
+
+    if(currentGame==="flappy")
+        animationId =
+            requestAnimationFrame(flappyLoop);
+
+    if(currentGame==="space")
+        animationId =
+            requestAnimationFrame(spaceLoop);
+
+    if(currentGame==="break")
+        animationId =
+            requestAnimationFrame(breakLoop);
+
+    if(currentGame==="snake")
+        animationId =
+            requestAnimationFrame(snakeLoop);
+
+    if(currentGame==="tap")
+        animationId =
+            requestAnimationFrame(tapLoop);
+
+    if(currentGame==="pong")
+        animationId =
+            requestAnimationFrame(pongLoop);
+
+}
+
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
+function clearCanvas(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
 }
 
@@ -1080,178 +1439,149 @@ let flappy;
 
 function initFlappy(){
 
-    document.getElementById("gameHelp")
-        .textContent =
-        "برای پرش کلیک یا لمس کن • فاصله برای پرش";
+    document
+    .getElementById("help")
+    .textContent =
+        "👆 لمس/کلیک یا Space برای پرش";
 
     flappy = {
 
-        x:150,
-
+        x:170,
         y:250,
-
         velocity:0,
-
-        gravity:0.42,
-
+        gravity:.42,
         jump:-7.5,
-
-        size:20,
-
+        radius:20,
         pipes:[],
-
         timer:0
 
     };
 
     flappy.pipes.push(
-        createPipe(canvas.width)
+        makePipe(canvas.width)
     );
 
-    canvas.onclick = flappyJump;
+    canvas.onclick =
+        ()=>{
 
-    window.addEventListener(
-        "keydown",
-        flappyKey
-    );
+            if(!paused)
+                flappy.velocity =
+                    flappy.jump;
 
-    animationId =
-        requestAnimationFrame(flappyLoop);
+            sound(520,.05);
+
+        };
+
+    requestGameFrame();
 
 }
 
-function createPipe(x){
+function makePipe(x){
 
-    const gap = 145;
+    const gap = 155;
 
     const top =
-        70 + Math.random() * 230;
+        55 +
+        Math.random()*250;
 
     return {
-
         x:x,
-
         top:top,
-
-        bottom:top + gap,
-
-        width:65,
-
+        bottom:top+gap,
+        width:72,
         passed:false
-
     };
-
-}
-
-function flappyJump(){
-
-    if(currentGame !== "flappy")
-        return;
-
-    if(!running)
-        return;
-
-    flappy.velocity =
-        flappy.jump;
-
-}
-
-function flappyKey(e){
-
-    if(
-        currentGame === "flappy" &&
-        e.code === "Space"
-    ){
-
-        e.preventDefault();
-
-        flappyJump();
-
-    }
 
 }
 
 function flappyLoop(time){
 
-    if(!running)
+    if(!running || paused)
         return;
 
-    if(!lastTime)
-        lastTime = time;
+    if(!flappy.last)
+        flappy.last=time;
 
     const dt =
         Math.min(
-            (time-lastTime)/16.67,
+            (time-flappy.last)/16.67,
             2
         );
 
-    lastTime = time;
+    flappy.last=time;
 
     flappy.velocity +=
-        flappy.gravity * dt;
+        flappy.gravity*dt;
 
     flappy.y +=
-        flappy.velocity * dt;
+        flappy.velocity*dt;
 
     flappy.timer += dt;
 
-    if(flappy.timer > 105){
+    if(flappy.timer>105){
 
         flappy.pipes.push(
-            createPipe(canvas.width)
+            makePipe(canvas.width)
         );
 
-        flappy.timer = 0;
+        flappy.timer=0;
 
     }
 
-    flappy.pipes.forEach(pipe => {
+    for(const pipe of flappy.pipes){
 
         pipe.x -=
-            3.2 * dt;
+            3.3*dt;
 
         if(
             !pipe.passed &&
-            pipe.x + pipe.width <
+            pipe.x+pipe.width <
             flappy.x
         ){
 
-            pipe.passed = true;
+            pipe.passed=true;
 
             addScore(1);
 
+            successSound();
+
         }
 
-        if(
-            flappy.x + flappy.size >
+        const hitX =
+            flappy.x+flappy.radius >
             pipe.x &&
-            flappy.x - flappy.size <
-            pipe.x + pipe.width &&
-            (
-                flappy.y - flappy.size <
-                pipe.top ||
-                flappy.y + flappy.size >
-                pipe.bottom
-            )
-        ){
+            flappy.x-flappy.radius <
+            pipe.x+pipe.width;
+
+        const hitY =
+            flappy.y-flappy.radius <
+            pipe.top ||
+            flappy.y+flappy.radius >
+            pipe.bottom;
+
+        if(hitX && hitY){
 
             gameOver();
 
+            return;
+
         }
 
-    });
+    }
 
     flappy.pipes =
         flappy.pipes.filter(
-            p => p.x > -100
+            p=>p.x>-100
         );
 
     if(
-        flappy.y - flappy.size < 0 ||
-        flappy.y + flappy.size > canvas.height
+        flappy.y-flappy.radius<0 ||
+        flappy.y+flappy.radius>canvas.height
     ){
 
         gameOver();
+
+        return;
 
     }
 
@@ -1264,57 +1594,53 @@ function flappyLoop(time){
 
 function drawFlappy(){
 
-    ctx.clearRect(
-        0,0,
-        canvas.width,
-        canvas.height
-    );
-
-    const gradient =
+    const g =
         ctx.createLinearGradient(
-            0,0,
-            0,canvas.height
+            0,
+            0,
+            0,
+            canvas.height
         );
 
-    gradient.addColorStop(0,"#101c38");
-    gradient.addColorStop(1,"#05070c");
+    g.addColorStop(0,"#111e40");
+    g.addColorStop(1,"#05070c");
 
-    ctx.fillStyle = gradient;
+    ctx.fillStyle=g;
 
     ctx.fillRect(
-        0,0,
+        0,
+        0,
         canvas.width,
         canvas.height
     );
 
-    flappy.pipes.forEach(pipe => {
+    flappy.pipes.forEach(p=>{
 
-        ctx.fillStyle = "#36e39a";
+        ctx.fillStyle="#36e39a";
 
         ctx.fillRect(
-            pipe.x,
+            p.x,
             0,
-            pipe.width,
-            pipe.top
+            p.width,
+            p.top
         );
 
         ctx.fillRect(
-            pipe.x,
-            pipe.bottom,
-            pipe.width,
+            p.x,
+            p.bottom,
+            p.width,
             canvas.height
         );
 
     });
 
-    ctx.font = "38px Arial";
-
-    ctx.textAlign = "center";
+    ctx.font="40px Arial";
+    ctx.textAlign="center";
 
     ctx.fillText(
         "🐦",
         flappy.x,
-        flappy.y+13
+        flappy.y+14
     );
 
 }
@@ -1328,69 +1654,41 @@ let space;
 
 function initSpace(){
 
-    document.getElementById("gameHelp")
-        .textContent =
-        "← → یا A/D برای حرکت • Space برای شلیک";
+    document
+    .getElementById("help")
+    .textContent =
+        "⌨️ ← → / A D برای حرکت • Space یا 🔥 برای شلیک";
 
     space = {
 
-        x:425,
-
-        y:450,
-
-        speed:6,
-
+        x:450,
+        y:460,
+        speed:7,
         bullets:[],
-
         enemies:[],
-
         timer:0
 
     };
 
-    canvas.onclick = spaceShoot;
-
-    window.addEventListener(
-        "keydown",
-        spaceKey
-    );
-
-    animationId =
-        requestAnimationFrame(spaceLoop);
-
-}
-
-function spaceKey(e){
-
-    if(currentGame !== "space")
-        return;
-
-    if(e.code === "ArrowLeft" || e.code === "KeyA")
-        space.x -= space.speed;
-
-    if(e.code === "ArrowRight" || e.code === "KeyD")
-        space.x += space.speed;
-
-    if(e.code === "Space")
-        spaceShoot();
+    requestGameFrame();
 
 }
 
 function spaceShoot(){
 
     if(
-        currentGame !== "space" ||
-        !running
+        currentGame!=="space" ||
+        !running ||
+        paused
     )
         return;
 
     space.bullets.push({
-
         x:space.x,
-
-        y:space.y-20
-
+        y:space.y-25
     });
+
+    sound(700,.04,"square");
 
 }
 
@@ -1398,14 +1696,14 @@ function spawnEnemy(){
 
     space.enemies.push({
 
-        x:30 +
-            Math.random() *
+        x:30+
+            Math.random()*
             (canvas.width-60),
 
         y:-30,
 
         speed:
-            1.5 +
+            1.4+
             Math.random()*2,
 
         size:20
@@ -1416,19 +1714,31 @@ function spawnEnemy(){
 
 function spaceLoop(time){
 
-    if(!running)
+    if(!running || paused)
         return;
 
-    if(!lastTime)
-        lastTime=time;
+    if(!space.last)
+        space.last=time;
 
     const dt =
         Math.min(
-            (time-lastTime)/16.67,
+            (time-space.last)/16.67,
             2
         );
 
-    lastTime=time;
+    space.last=time;
+
+    if(
+        keys.ArrowLeft ||
+        keys.KeyA
+    )
+        space.x-=space.speed*dt;
+
+    if(
+        keys.ArrowRight ||
+        keys.KeyD
+    )
+        space.x+=space.speed*dt;
 
     space.x =
         Math.max(
@@ -1439,15 +1749,9 @@ function spaceLoop(time){
             )
         );
 
-    if(keys["ArrowLeft"] || keys["KeyA"])
-        space.x -= space.speed*dt;
+    space.timer+=dt;
 
-    if(keys["ArrowRight"] || keys["KeyD"])
-        space.x += space.speed*dt;
-
-    space.timer += dt;
-
-    if(space.timer > 45){
+    if(space.timer>42){
 
         spawnEnemy();
 
@@ -1455,67 +1759,82 @@ function spaceLoop(time){
 
     }
 
-    space.bullets.forEach(b =>
-        b.y -= 8*dt
+    space.bullets.forEach(
+        b=>b.y-=10*dt
     );
 
-    space.enemies.forEach(e =>
-        e.y += e.speed*dt
+    space.enemies.forEach(
+        e=>e.y+=e.speed*dt
     );
 
-    space.bullets.forEach(b => {
+    for(const bullet of space.bullets){
 
-        space.enemies.forEach(e => {
+        for(const enemy of space.enemies){
 
-            const distance =
+            if(enemy.dead)
+                continue;
+
+            if(
                 Math.hypot(
-                    b.x-e.x,
-                    b.y-e.y
-                );
+                    bullet.x-enemy.x,
+                    bullet.y-enemy.y
+                )<28
+            ){
 
-            if(distance < 28){
-
-                e.dead=true;
-
-                b.dead=true;
+                enemy.dead=true;
+                bullet.dead=true;
 
                 addScore(1);
 
+                successSound();
+
+                break;
+
             }
 
-        });
+        }
 
-    });
+    }
 
-    space.enemies.forEach(e => {
+    for(const enemy of space.enemies){
+
+        if(enemy.dead)
+            continue;
 
         if(
             Math.hypot(
-                e.x-space.x,
-                e.y-space.y
-            ) < 35
+                enemy.x-space.x,
+                enemy.y-space.y
+            )<35
         ){
 
             gameOver();
 
+            return;
+
         }
 
-        if(e.y > canvas.height+50){
+        if(
+            enemy.y>
+            canvas.height+40
+        ){
 
             gameOver();
 
+            return;
+
         }
 
-    });
+    }
 
     space.bullets =
         space.bullets.filter(
-            b => !b.dead && b.y>-30
+            b=>!b.dead && b.y>-30
         );
 
     space.enemies =
         space.enemies.filter(
-            e => !e.dead
+            e=>!e.dead
         );
 
     drawSpace();
@@ -1527,36 +1846,36 @@ function spaceLoop(time){
 
 function drawSpace(){
 
-    ctx.clearRect(
-        0,0,
-        canvas.width,
-        canvas.height
-    );
-
-    ctx.fillStyle="#05070c";
+    ctx.fillStyle="#04060b";
 
     ctx.fillRect(
-        0,0,
+        0,
+        0,
         canvas.width,
         canvas.height
     );
 
-    for(let i=0;i<70;i++){
+    for(let i=0;i<90;i++){
 
         const x =
-            (i*113)%canvas.width;
+            (i*137)%canvas.width;
 
         const y =
-            (i*71)%canvas.height;
+            (i*73)%canvas.height;
 
-        ctx.fillStyle="rgba(255,255,255,.35)";
+        ctx.fillStyle =
+            "rgba(255,255,255,.3)";
 
-        ctx.fillRect(x,y,2,2);
+        ctx.fillRect(
+            x,
+            y,
+            2,
+            2
+        );
 
     }
 
-    ctx.font="36px Arial";
-
+    ctx.font="42px Arial";
     ctx.textAlign="center";
 
     ctx.fillText(
@@ -1567,23 +1886,25 @@ function drawSpace(){
 
     ctx.fillStyle="#64e7ff";
 
-    space.bullets.forEach(b =>
+    space.bullets.forEach(b=>{
+
         ctx.fillRect(
             b.x-2,
             b.y,
             4,
-            14
-        )
-    );
+            16
+        );
 
-    space.enemies.forEach(e => {
+    });
 
-        ctx.font="30px Arial";
+    space.enemies.forEach(e=>{
+
+        ctx.font="32px Arial";
 
         ctx.fillText(
             "👾",
             e.x,
-            e.y
+            e.y+10
         );
 
     });
@@ -1599,22 +1920,20 @@ let breakout;
 
 function initBreak(){
 
-    document.getElementById("gameHelp")
-        .textContent =
-        "موس یا لمس برای حرکت • توپ را برگردان و آجرها را بشکن";
+    document
+    .getElementById("help")
+    .textContent =
+        "🖱️ موس/لمس برای حرکت • توپ را برگردان";
 
-    breakout = {
+    breakout={
 
-        paddleX:350,
-
+        paddleX:375,
         paddleW:150,
 
-        ballX:425,
-
-        ballY:400,
+        ballX:450,
+        ballY:410,
 
         vx:4,
-
         vy:-4,
 
         bricks:[]
@@ -1627,14 +1946,10 @@ function initBreak(){
 
             breakout.bricks.push({
 
-                x:35+c*80,
-
-                y:50+r*30,
-
-                w:65,
-
-                h:18,
-
+                x:35+c*82,
+                y:55+r*32,
+                w:68,
+                h:20,
                 alive:true
 
             });
@@ -1643,7 +1958,7 @@ function initBreak(){
 
     }
 
-    canvas.onpointermove = e => {
+    canvas.onpointermove=e=>{
 
         const rect =
             canvas.getBoundingClientRect();
@@ -1658,84 +1973,95 @@ function initBreak(){
 
     };
 
-    animationId =
-        requestAnimationFrame(breakLoop);
+    requestGameFrame();
 
 }
 
 function breakLoop(){
 
-    if(!running)
+    if(!running || paused)
         return;
 
-    breakout.ballX +=
-        breakout.vx;
-
-    breakout.ballY +=
-        breakout.vy;
+    breakout.ballX+=breakout.vx;
+    breakout.ballY+=breakout.vy;
 
     if(
-        breakout.ballX < 10 ||
-        breakout.ballX > canvas.width-10
+        breakout.ballX<10 ||
+        breakout.ballX>
+        canvas.width-10
     ){
 
-        breakout.vx *= -1;
+        breakout.vx*=-1;
+
+        sound(300,.03);
+
+    }
+
+    if(breakout.ballY<10){
+
+        breakout.vy*=-1;
+
+        sound(300,.03);
 
     }
 
     if(
-        breakout.ballY < 10
-    ){
-
-        breakout.vy *= -1;
-
-    }
-
-    if(
-        breakout.ballY >
+        breakout.ballY>
         canvas.height-55 &&
-        breakout.ballX >
+        breakout.ballX>
         breakout.paddleX &&
-        breakout.ballX <
+        breakout.ballX<
         breakout.paddleX+
         breakout.paddleW
     ){
 
-        breakout.vy =
-            -Math.abs(breakout.vy);
+        breakout.vy=
+            -Math.abs(
+                breakout.vy
+            );
+
+        sound(400,.04);
 
     }
 
     if(
-        breakout.ballY >
+        breakout.ballY>
         canvas.height+20
     ){
 
         gameOver();
 
+        return;
+
     }
 
-    breakout.bricks.forEach(brick => {
+    for(const brick of breakout.bricks){
 
         if(!brick.alive)
-            return;
+            continue;
 
         if(
-            breakout.ballX > brick.x &&
-            breakout.ballX < brick.x+brick.w &&
-            breakout.ballY > brick.y &&
-            breakout.ballY < brick.y+brick.h
+            breakout.ballX>brick.x &&
+            breakout.ballX<
+            brick.x+brick.w &&
+            breakout.ballY>brick.y &&
+            breakout.ballY<
+            brick.y+brick.h
         ){
 
             brick.alive=false;
 
-            breakout.vy *= -1;
+            breakout.vy*=-1;
 
             addScore(1);
 
+            successSound();
+
+            break;
+
         }
 
-    });
+    }
 
     if(
         breakout.bricks.every(
@@ -1744,6 +2070,8 @@ function breakLoop(){
     ){
 
         gameOver();
+
+        return;
 
     }
 
@@ -1756,38 +2084,35 @@ function breakLoop(){
 
 function drawBreak(){
 
-    ctx.clearRect(
-        0,0,
-        canvas.width,
-        canvas.height
-    );
-
     ctx.fillStyle="#070b13";
 
     ctx.fillRect(
-        0,0,
+        0,
+        0,
         canvas.width,
         canvas.height
     );
 
-    breakout.bricks.forEach((b,i)=>{
+    breakout.bricks.forEach(
+        (brick,i)=>{
 
-        if(!b.alive)
-            return;
+            if(!brick.alive)
+                return;
 
-        ctx.fillStyle =
-            i%2
-            ? "#6c63ff"
-            : "#00d4ff";
+            ctx.fillStyle =
+                i%2
+                ? "#6c63ff"
+                : "#00d4ff";
 
-        ctx.fillRect(
-            b.x,
-            b.y,
-            b.w,
-            b.h
-        );
+            ctx.fillRect(
+                brick.x,
+                brick.y,
+                brick.w,
+                brick.h
+            );
 
-    });
+        }
+    );
 
     ctx.fillStyle="#fff";
 
@@ -1821,90 +2146,121 @@ let snake;
 
 function initSnake(){
 
-    document.getElementById("gameHelp")
-        .textContent =
-        "با کلیدهای جهت حرکت کن • در موبایل از دکمه‌های پایین استفاده کن";
+    document
+    .getElementById("help")
+    .textContent =
+        "⌨️ جهت‌ها / دکمه‌های موبایل برای حرکت";
 
-    snake = {
+    snake={
 
-        size:25,
+        size:26,
 
         body:[
-            {x:10,y:10},
-            {x:9,y:10},
-            {x:8,y:10}
+            {x:12,y:10},
+            {x:11,y:10},
+            {x:10,y:10}
         ],
 
         dir:{x:1,y:0},
 
-        food:{x:15,y:10},
+        nextDir:{x:1,y:0},
+
+        food:null,
 
         timer:0
 
     };
 
-    window.addEventListener(
-        "keydown",
-        snakeKey
-    );
+    placeFood();
 
-    animationId =
-        requestAnimationFrame(snakeLoop);
+    requestGameFrame();
 
 }
 
-function snakeKey(e){
+function placeFood(){
 
-    if(currentGame !== "snake")
+    const cols =
+        Math.floor(
+            canvas.width/
+            snake.size
+        );
+
+    const rows =
+        Math.floor(
+            canvas.height/
+            snake.size
+        );
+
+    let food;
+
+    do{
+
+        food={
+
+            x:
+                Math.floor(
+                    Math.random()*cols
+                ),
+
+            y:
+                Math.floor(
+                    Math.random()*rows
+                )
+
+        };
+
+    }while(
+        snake.body.some(
+            p=>
+            p.x===food.x &&
+            p.y===food.y
+        )
+    );
+
+    snake.food=food;
+
+}
+
+function changeSnakeDirection(x,y){
+
+    if(
+        snake.dir.x===-x &&
+        snake.dir.y===-y
+    )
         return;
 
-    if(
-        e.key==="ArrowUp" &&
-        snake.dir.y!==1
-    )
-        snake.dir={x:0,y:-1};
-
-    if(
-        e.key==="ArrowDown" &&
-        snake.dir.y!==-1
-    )
-        snake.dir={x:0,y:1};
-
-    if(
-        e.key==="ArrowLeft" &&
-        snake.dir.x!==1
-    )
-        snake.dir={x:-1,y:0};
-
-    if(
-        e.key==="ArrowRight" &&
-        snake.dir.x!==-1
-    )
-        snake.dir={x:1,y:0};
+    snake.nextDir={x,y};
 
 }
 
 function snakeLoop(time){
 
-    if(!running)
+    if(!running || paused)
         return;
 
-    if(!lastTime)
-        lastTime=time;
+    if(!snake.last)
+        snake.last=time;
 
     const dt =
-        time-lastTime;
+        time-snake.last;
 
-    if(dt > 110){
+    if(dt>105){
 
-        lastTime=time;
+        snake.last=time;
+
+        snake.dir=
+            snake.nextDir;
 
         const head={
-            x:snake.body[0].x+
-              snake.dir.x,
 
-            y:snake.body[0].y+
-              snake.dir.y
+            x:
+                snake.body[0].x+
+                snake.dir.x,
+
+            y:
+                snake.body[0].y+
+                snake.dir.y
+
         };
 
         const cols =
@@ -1923,9 +2279,30 @@ function snakeLoop(time){
             head.x<0 ||
             head.x>=cols ||
             head.y<0 ||
-            head.y>=rows ||
-            snake.body.some(
-                p =>
+            head.y>=rows
+        ){
+
+            gameOver();
+
+            return;
+
+        }
+
+        const eating =
+            head.x===snake.food.x &&
+            head.y===snake.food.y;
+
+        const bodyToCheck =
+            eating
+            ? snake.body
+            : snake.body.slice(
+                0,
+                snake.body.length-1
+            );
+
+        if(
+            bodyToCheck.some(
+                p=>
                 p.x===head.x &&
                 p.y===head.y
             )
@@ -1939,26 +2316,13 @@ function snakeLoop(time){
 
         snake.body.unshift(head);
 
-        if(
-            head.x===snake.food.x &&
-            head.y===snake.food.y
-        ){
+        if(eating){
 
             addScore(1);
 
-            snake.food={
+            successSound();
 
-                x:
-                    Math.floor(
-                        Math.random()*cols
-                    ),
-
-                y:
-                    Math.floor(
-                        Math.random()*rows
-                    )
-
-            };
+            placeFood();
 
         }else{
 
@@ -1977,38 +2341,40 @@ function snakeLoop(time){
 
 function drawSnake(){
 
-    ctx.clearRect(
-        0,0,
-        canvas.width,
-        canvas.height
-    );
-
     ctx.fillStyle="#05070c";
 
     ctx.fillRect(
-        0,0,
+        0,
+        0,
         canvas.width,
         canvas.height
     );
 
-    ctx.fillStyle="#36e39a";
+    snake.body.forEach(
+        (p,i)=>{
 
-    snake.body.forEach((p,i)=>{
+            ctx.fillStyle =
+                i===0
+                ? "#64e7ff"
+                : "#36e39a";
 
-        ctx.fillRect(
-            p.x*snake.size+2,
-            p.y*snake.size+2,
-            snake.size-4,
-            snake.size-4
-        );
+            ctx.fillRect(
+                p.x*snake.size+2,
+                p.y*snake.size+2,
+                snake.size-4,
+                snake.size-4
+            );
 
-    });
+        }
+    );
 
-    ctx.font="23px Arial";
+    ctx.font="22px Arial";
+
+    ctx.textAlign="left";
 
     ctx.fillText(
         "🍎",
-        snake.food.x*snake.size,
+        snake.food.x*snake.size+2,
         snake.food.y*snake.size+22
     );
 
@@ -2023,74 +2389,80 @@ let tap;
 
 function initTap(){
 
-    document.getElementById("gameHelp")
-        .textContent =
-        "روی هدف کلیک یا لمس کن • 30 ثانیه وقت داری!";
+    document
+    .getElementById("help")
+    .textContent =
+        "🎯 هدف را سریع لمس کن • ۳۰ ثانیه فرصت داری";
 
     tap={
 
-        time:30,
+        targetX:450,
+        targetY:260,
 
-        targetX:300,
+        radius:38,
 
-        targetY:200,
-
-        radius:35,
-
-        startedAt:Date.now()
+        end:
+            Date.now()+30000
 
     };
 
-    canvas.onclick = tapClick;
+    moveTarget();
 
-    animationId =
-        requestAnimationFrame(tapLoop);
+    canvas.onclick =
+        tapClick;
+
+    requestGameFrame();
 
 }
 
-function moveTapTarget(){
+function moveTarget(){
 
     tap.targetX =
-        60+
+        70+
         Math.random()*
-        (canvas.width-120);
+        (canvas.width-140);
 
     tap.targetY =
-        60+
+        80+
         Math.random()*
-        (canvas.height-120);
+        (canvas.height-150);
 
 }
 
 function tapClick(e){
 
-    if(currentGame!=="tap")
+    if(
+        currentGame!=="tap" ||
+        !running ||
+        paused
+    )
         return;
 
     const rect =
         canvas.getBoundingClientRect();
 
     const x =
-        (e.clientX-rect.left) /
-        rect.width *
+        (e.clientX-rect.left)/
+        rect.width*
         canvas.width;
 
     const y =
-        (e.clientY-rect.top) /
-        rect.height *
+        (e.clientY-rect.top)/
+        rect.height*
         canvas.height;
 
     if(
         Math.hypot(
             x-tap.targetX,
             y-tap.targetY
-        ) <
-        tap.radius
+        )<=tap.radius
     ){
 
         addScore(1);
 
-        moveTapTarget();
+        successSound();
+
+        moveTarget();
 
     }
 
@@ -2098,19 +2470,16 @@ function tapClick(e){
 
 function tapLoop(){
 
-    if(!running)
+    if(!running || paused)
         return;
 
-    const elapsed =
-        (Date.now()-tap.startedAt)/1000;
-
-    tap.time =
+    const remaining =
         Math.max(
             0,
-            30-elapsed
+            tap.end-Date.now()
         );
 
-    if(tap.time<=0){
+    if(remaining<=0){
 
         gameOver();
 
@@ -2118,25 +2487,22 @@ function tapLoop(){
 
     }
 
-    drawTap();
+    drawTap(
+        remaining/1000
+    );
 
     animationId =
         requestAnimationFrame(tapLoop);
 
 }
 
-function drawTap(){
-
-    ctx.clearRect(
-        0,0,
-        canvas.width,
-        canvas.height
-    );
+function drawTap(seconds){
 
     ctx.fillStyle="#070b13";
 
     ctx.fillRect(
-        0,0,
+        0,
+        0,
         canvas.width,
         canvas.height
     );
@@ -2145,12 +2511,12 @@ function drawTap(){
 
     ctx.fillStyle="#fff";
 
-    ctx.font="24px Arial";
+    ctx.font="25px Arial";
 
     ctx.fillText(
-        `زمان: ${tap.time.toFixed(1)}`,
+        "زمان: "+seconds.toFixed(1),
         canvas.width/2,
-        35
+        38
     );
 
     ctx.beginPath();
@@ -2167,14 +2533,14 @@ function drawTap(){
 
     ctx.fill();
 
-    ctx.font="28px Arial";
+    ctx.font="30px Arial";
 
     ctx.fillStyle="#fff";
 
     ctx.fillText(
         "🎯",
         tap.targetX,
-        tap.targetY+10
+        tap.targetY+11
     );
 
 }
@@ -2188,42 +2554,63 @@ let pong;
 
 function initPong(){
 
-    document.getElementById("gameHelp")
-        .textContent =
-        "↑ ↓ یا W/S برای حرکت • توپ را برگردان";
+    document
+    .getElementById("help")
+    .textContent =
+        "⌨️ W/S یا ↑/↓ • در موبایل از بالا/پایین استفاده کن";
 
     pong={
 
-        player:200,
+        player:210,
+        ai:210,
 
-        ai:200,
-
-        ballX:425,
-
-        ballY:250,
+        ballX:450,
+        ballY:260,
 
         vx:5,
-
         vy:3,
 
-        paddleH:100
+        paddleH:100,
+
+        playerScore:0,
+        aiScore:0
 
     };
 
-    animationId =
-        requestAnimationFrame(pongLoop);
+    canvas.onpointermove=e=>{
+
+        const rect =
+            canvas.getBoundingClientRect();
+
+        const y =
+            (e.clientY-rect.top)/
+            rect.height*
+            canvas.height;
+
+        pong.player =
+            y-pong.paddleH/2;
+
+    };
+
+    requestGameFrame();
 
 }
 
 function pongLoop(){
 
-    if(!running)
+    if(!running || paused)
         return;
 
-    if(keys["ArrowUp"] || keys["KeyW"])
+    if(
+        keys.ArrowUp ||
+        keys.KeyW
+    )
         pong.player-=7;
 
-    if(keys["ArrowDown"] || keys["KeyS"])
+    if(
+        keys.ArrowDown ||
+        keys.KeyS
+    )
         pong.player+=7;
 
     pong.player =
@@ -2235,24 +2622,33 @@ function pongLoop(){
             )
         );
 
-    pong.ballX += pong.vx;
-    pong.ballY += pong.vy;
+    pong.ballX+=pong.vx;
+    pong.ballY+=pong.vy;
 
     if(
         pong.ballY<10 ||
-        pong.ballY>canvas.height-10
+        pong.ballY>
+        canvas.height-10
     ){
 
         pong.vy*=-1;
 
+        sound(280,.03);
+
     }
 
     pong.ai +=
-        (pong.ballY-
-        (pong.ai+50))*.06;
+        (
+            pong.ballY-
+            (
+                pong.ai+
+                pong.paddleH/2
+            )
+        )*.055;
 
     if(
-        pong.ballX<35 &&
+        pong.ballX<40 &&
+        pong.ballX>25 &&
         pong.ballY>pong.player &&
         pong.ballY<
         pong.player+
@@ -2260,15 +2656,17 @@ function pongLoop(){
     ){
 
         pong.vx =
-            Math.abs(pong.vx);
+            Math.abs(pong.vx)*1.03;
 
         addScore(1);
+
+        successSound();
 
     }
 
     if(
         pong.ballX>
-        canvas.width-35 &&
+        canvas.width-40 &&
         pong.ballY>pong.ai &&
         pong.ballY<
         pong.ai+
@@ -2278,23 +2676,44 @@ function pongLoop(){
         pong.vx =
             -Math.abs(pong.vx);
 
+        sound(320,.04);
+
     }
 
     if(pong.ballX<0){
 
-        gameOver();
+        pong.aiScore++;
 
-        return;
+        if(pong.aiScore>=3){
+
+            gameOver();
+
+            return;
+
+        }
+
+        resetPongBall();
 
     }
 
-    if(pong.ballX>canvas.width){
+    if(
+        pong.ballX>
+        canvas.width
+    ){
 
-        pong.ballX=425;
+        pong.playerScore++;
 
-        pong.ballY=250;
+        addScore(1);
 
-        pong.vx=-5;
+        if(pong.playerScore>=10){
+
+            gameOver();
+
+            return;
+
+        }
+
+        resetPongBall();
 
     }
 
@@ -2305,23 +2724,37 @@ function pongLoop(){
 
 }
 
-function drawPong(){
+function resetPongBall(){
 
-    ctx.clearRect(
-        0,0,
-        canvas.width,
-        canvas.height
-    );
+    pong.ballX=450;
+    pong.ballY=260;
+
+    pong.vx =
+        pong.vx>0
+        ? -5
+        : 5;
+
+    pong.vy =
+        Math.random()>0.5
+        ? 3
+        : -3;
+
+}
+
+function drawPong(){
 
     ctx.fillStyle="#05070c";
 
     ctx.fillRect(
-        0,0,
+        0,
+        0,
         canvas.width,
         canvas.height
     );
 
-    ctx.setLineDash([8,12]);
+    ctx.setLineDash(
+        [8,12]
+    );
 
     ctx.strokeStyle=
         "rgba(255,255,255,.15)";
@@ -2374,6 +2807,20 @@ function drawPong(){
 
     ctx.fill();
 
+    ctx.font="30px Arial";
+
+    ctx.fillText(
+        pong.playerScore,
+        canvas.width/2-60,
+        45
+    );
+
+    ctx.fillText(
+        pong.aiScore,
+        canvas.width/2+60,
+        45
+    );
+
 }
 
 
@@ -2383,16 +2830,79 @@ function drawPong(){
 
 window.addEventListener(
     "keydown",
-    e => {
+    e=>{
 
         keys[e.code]=true;
+
+        if(
+            currentGame &&
+            (
+                e.code==="Space" ||
+                e.code.startsWith("Arrow")
+            )
+        ){
+
+            e.preventDefault();
+
+        }
+
+        if(e.code==="Escape"){
+
+            if(
+                gameScreen.classList.contains("show")
+            ){
+
+                togglePause();
+
+            }
+
+        }
+
+        if(
+            currentGame==="flappy" &&
+            e.code==="Space" &&
+            running &&
+            !paused
+        ){
+
+            flappy.velocity=
+                flappy.jump;
+
+            sound(520,.05);
+
+        }
+
+        if(
+            currentGame==="space" &&
+            e.code==="Space"
+        ){
+
+            spaceShoot();
+
+        }
+
+        if(currentGame==="snake"){
+
+            if(e.code==="ArrowUp")
+                changeSnakeDirection(0,-1);
+
+            if(e.code==="ArrowDown")
+                changeSnakeDirection(0,1);
+
+            if(e.code==="ArrowLeft")
+                changeSnakeDirection(-1,0);
+
+            if(e.code==="ArrowRight")
+                changeSnakeDirection(1,0);
+
+        }
 
     }
 );
 
 window.addEventListener(
     "keyup",
-    e => {
+    e=>{
 
         keys[e.code]=false;
 
@@ -2401,60 +2911,87 @@ window.addEventListener(
 
 
 /* =========================================================
-   MOBILE CONTROL BUTTONS
+   TOUCH CONTROLS
 ========================================================= */
 
 document
-.querySelectorAll(".control-btn")
-.forEach(button => {
+.querySelectorAll(".touch-btn")
+.forEach(button=>{
 
     const control =
         button.dataset.control;
 
-    const press = e => {
+    const press=e=>{
 
         e.preventDefault();
+
+        if(
+            !currentGame ||
+            !running ||
+            paused
+        )
+            return;
 
         if(currentGame==="snake"){
 
             if(control==="up")
-                snake.dir={x:0,y:-1};
+                changeSnakeDirection(0,-1);
 
             if(control==="down")
-                snake.dir={x:0,y:1};
+                changeSnakeDirection(0,1);
 
             if(control==="left")
-                snake.dir={x:-1,y:0};
+                changeSnakeDirection(-1,0);
 
             if(control==="right")
-                snake.dir={x:1,y:0};
+                changeSnakeDirection(1,0);
 
         }
 
         if(currentGame==="space"){
 
             if(control==="left")
-                keys["ArrowLeft"]=true;
+                keys.ArrowLeft=true;
 
             if(control==="right")
-                keys["ArrowRight"]=true;
+                keys.ArrowRight=true;
+
+            if(control==="action")
+                spaceShoot();
+
+        }
+
+        if(currentGame==="flappy"){
+
+            if(control==="action"){
+
+                flappy.velocity=
+                    flappy.jump;
+
+                sound(520,.05);
+
+            }
+
+        }
+
+        if(currentGame==="pong"){
 
             if(control==="up")
-                spaceShoot();
+                pong.player-=50;
+
+            if(control==="down")
+                pong.player+=50;
 
         }
 
     };
 
-    const release = e => {
+    const release=e=>{
 
         e.preventDefault();
 
-        if(control==="left")
-            keys["ArrowLeft"]=false;
-
-        if(control==="right")
-            keys["ArrowRight"]=false;
+        keys.ArrowLeft=false;
+        keys.ArrowRight=false;
 
     };
 
@@ -2477,83 +3014,81 @@ document
 
 
 /* =========================================================
-   CLEANUP WHEN MODAL CLOSES
+   FILTER
 ========================================================= */
 
-const originalCloseGame =
-    closeGame;
+document
+.querySelectorAll(".menu-btn")
+.forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            document
+            .querySelectorAll(".menu-btn")
+            .forEach(
+                b=>b.classList.remove("active")
+            );
+
+            button.classList.add("active");
+
+            const filter =
+                button.dataset.filter;
+
+            document
+            .querySelectorAll(".game-card")
+            .forEach(card=>{
+
+                const device =
+                    card.dataset.device;
+
+                if(
+                    filter==="all" ||
+                    device==="all" ||
+                    device===filter
+                ){
+
+                    card.style.display="";
+
+                }else{
+
+                    card.style.display="none";
+
+                }
+
+            });
+
+        }
+    );
+
+});
 
 
 /* =========================================================
-   RANDOM GAME
-========================================================= */
-
-function randomGame(){
-
-    const games=[
-        "flappy",
-        "space",
-        "break",
-        "snake",
-        "tap",
-        "pong"
-    ];
-
-    const selected =
-        games[
-            Math.floor(
-                Math.random()*games.length
-            )
-        ];
-
-    startGame(selected);
-
-}
-
-
-/* =========================================================
-   INITIAL UI
+   VISIBILITY
 ========================================================= */
 
 document.addEventListener(
     "visibilitychange",
-    () => {
+    ()=>{
 
         if(document.hidden){
 
-            if(running)
-                cancelAnimationFrame(animationId);
-
-        }else{
-
             if(
                 running &&
-                currentGame
+                !paused
             ){
 
-                if(currentGame==="flappy")
-                    animationId=
-                        requestAnimationFrame(flappyLoop);
+                paused=true;
 
-                if(currentGame==="space")
-                    animationId=
-                        requestAnimationFrame(spaceLoop);
+                pauseScreen.classList.add(
+                    "show"
+                );
 
-                if(currentGame==="break")
-                    animationId=
-                        requestAnimationFrame(breakLoop);
-
-                if(currentGame==="snake")
-                    animationId=
-                        requestAnimationFrame(snakeLoop);
-
-                if(currentGame==="tap")
-                    animationId=
-                        requestAnimationFrame(tapLoop);
-
-                if(currentGame==="pong")
-                    animationId=
-                        requestAnimationFrame(pongLoop);
+                document
+                .getElementById("pauseButton")
+                .textContent="▶";
 
             }
 
